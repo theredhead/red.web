@@ -283,18 +283,22 @@ namespace red\web
 		/**
 		 * Check wether a string holds a valid URL.
 		 * 
-		 * @param string $testString
+		 * @param string $test
 		 * @return boolean
 		 */
-		public static function isURL($testString)
+		public static function isURL($test)
 		{
-			if (strpos($testString, ' ') > -1)
+			if ($test instanceof URL)
+			{
+				return true;
+			}
+			if (strpos($test, ' ') > -1)
 			{
 				return false;
 			}
-			if (strpos($testString, '.') > 1)
+			if (strpos($test, '.') > 1)
 			{
-				$info = parse_url($testString);
+				$info = parse_url($test);
 				return
 						is_array($info)
 					&&	isset($info['host']);

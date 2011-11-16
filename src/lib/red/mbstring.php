@@ -28,7 +28,7 @@ namespace red
 		static public function defaultValue()
 		{
 			static $empty = null;
-			$empty = static::withString('');
+			assert($empty instanceof MBString or $empty = static::withString(''));
 			return $empty;
 		}
 
@@ -45,14 +45,17 @@ namespace red
 		public function __construct($aString = '', $encoding = self::ENCODING_UTF8)
 		{
 			parent::__construct();
-			return $this->initWithString($aString, $encoding);
+			return $this->initWithString((string)$aString, $encoding);
 		}
 
 		/**
+		 * Allows you to initialize this instance with a given string.
 		 * @return MBString
 		 */
 		public function initWithString($aString, $encoding = self::ENCODING_UTF8)
 		{
+			assert('is_string($aString); // MBString::initWithString');
+			assert('is_string($encoding); // MBString::initWithString');
 			$this->string = $aString;
 			$this->encoding = $encoding;
 

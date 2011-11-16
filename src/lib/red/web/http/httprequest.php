@@ -70,6 +70,8 @@ namespace red\web\http
 		 */
 		public function setRefererUrl($newRefererUrl)
 		{
+			assert($newRefererUrl === null or Url::isUrl($newRefererUrl));
+			
 			$newRefererUrl instanceof Url or 
 				Url::isUrl($newRefererUrl) and $newRefererUrl = new Url($newRefererUrl);
 
@@ -300,18 +302,16 @@ namespace red\web\http
 		}
 		// </editor-fold>
 		// <editor-fold defaultstate="collapsed" desc="Property boolean IsPostback">
-		private $isPostback = null;
-
 		/**
+		 * Determine wether this request represents a posted respons back to the
+		 * previous request.
+		 * 
 		 * @return boolean
 		 */
 		public function isPostback()
 		{
-			if ($this->isPostback === null)
-			{
-				$this->isPostback = $this->getRequestMethod() == 'POST';
-			}
-			return $this->isPostback;
+			return $this->isPostback = $this->getRequestMethod() == 'POST'
+					&& (string)$this->getRefererUrl() == (string)$this->getRequestUrl();
 		}
 
 		// </editor-fold>
@@ -335,7 +335,8 @@ namespace red\web\http
 				
 				$instance->setRequestUrl($fullRequestUrl);
 				$instance->setRequestMethod($info['REQUEST_METHOD']);
-				$instance->setRedirectUrL($extract('REDIRECT_Url'));
+				$instance->setRedirectUrL($extract('REDIRECT_URL'));
+				$instance->setRefererUrl($extract('HTTP_REFERER'));
 				$instance->setHostName($extract('HTTP_HOST'));
 				$instance->setUserAgent($extract('HTTP_USER_AGENT'));
 				$instance->setRemoteAddress($extract('REMOTE_ADDR'));

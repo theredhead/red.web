@@ -11,18 +11,35 @@ namespace demo\pages
 	use red\web\ui\controls\CellClickedEventArgument;
 	use red\EventArgument;
 	
+	class DemonstrationException extends \Exception
+	{
+		
+	}
+	
 	class Hello extends BasePage
 	{	
+		/**
+		 * event handler, triggered when btnHello is clicked
+		 * 
+		 * @param Button $sender
+		 * @param EventArgument $argument 
+		 */
 		private function onBtnHello_clicked(Button $sender, EventArgument $argument)
 		{
+			// add a simple alert to the page
 			$this->alert("You clicked me!");
 		}
 
+		/**
+		 * event handler, triggered when btnCrash is clicked
+		 *
+		 * @param Button $sender
+		 * @param EventArgument $argument 
+		 */
 		private function onBtnCrash_clicked(Button $sender, EventArgument $argument)
 		{
-			$this->alert("You clicked me!");
-
-			throw new \Exception('You asked for it...');
+			// crash this request
+			throw new DemonstrationException('You asked for it...');
 		}
 	}
 }

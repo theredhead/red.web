@@ -56,3 +56,15 @@ function language($newLanguages=null)
 	}
 	return $result;
 }
+
+/**
+ * Get the distance between two values
+ *
+ * @param integer $a
+ * @param integer $b 
+ * @return integer
+ */
+function distance($a, $b)
+{
+	return abs($a - $b);
+}

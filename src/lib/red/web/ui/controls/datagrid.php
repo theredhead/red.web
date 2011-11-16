@@ -3,6 +3,7 @@
 namespace red\web\ui\controls
 {
 	use \red\EventArgument;
+	use \red\Convert;
 	use \red\data\SortDescriptor;
 	use \red\web\ui\html\HtmlTableRow;
 	use \red\web\ui\html\HtmlTableCell;
@@ -38,7 +39,6 @@ namespace red\web\ui\controls
 		public function __construct(TableColumn $column)
 		{
 			$this->setColumn($column);
-			$this->setAutoSetSelectedIndexOnCellClick(true);
 			parent::__construct();
 		}
 	}
@@ -194,7 +194,7 @@ namespace red\web\ui\controls
 		 */
 		public function doesAutoSetSelectedIndexOnCellClick()
 		{
-			return isset($this->state['autoSel']) ? true : false;
+			return $this->state['autoSel'] == 'on';
 		}
 
 		/**
@@ -202,14 +202,9 @@ namespace red\web\ui\controls
 		 */
 		public function setAutoSetSelectedIndexOnCellClick($newAutoSetSelectedIndexOnCellClick)
 		{
-			if ($newAutoSetSelectedIndexOnCellClick)
-			{
-				$this->state['autoSel'] = 'on';
-			}
-			else
-			{
-				unset($this->state['autoSel']);
-			}
+			$this->state['autoSel'] = (Convert::toBoolean($newAutoSetSelectedIndexOnCellClick))
+					? 'on'
+					: 'off';
 		}
 		// </editor-fold>
 		
@@ -230,6 +225,7 @@ namespace red\web\ui\controls
 			parent::__construct();
 			// share css styles with red.web.ui.controls.Table
 			$this->addCssClass('Table');
+			$this->setAutoSetSelectedIndexOnCellClick(false);
 		}
 
 		// <editor-fold defaultstate="collapsed" desc="State Properties">
@@ -324,7 +320,7 @@ namespace red\web\ui\controls
 		 */
 		protected function headerClicked(TableColumn $column)
 		{
-			if ($column->allowsSorting())
+			if ($column->isSortable())
 			{
 				$sortCol = $this->getSortColumn();
 

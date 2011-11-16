@@ -152,32 +152,37 @@ namespace red\web\ui\controls
 				static::fail('Pageable control "%s" not found!', $this->getFor());
 			}
 			
+			// get some numbers handy we'll be working with.
 			$maxButtons		= $this->getMaximumNumberOfPageButtons();
 			$range			= floor($maxButtons / 2);
 			$numPages		= ceil($control->getNumberOfItems() / $control->getPageSize());
 			$startIx		= max($control->getCurrentPageIndex() - $range, 0);
 			$stopIx			= min($control->getCurrentPageIndex() + $range, $numPages);
+			$currentPageIx  = $control->getCurrentPageIndex();
+			$bigStep		= $maxButtons;
 			
+			// make sure we'll display as much buttons as we're allowed to
+			// and that all targets are valid.
+			// expand to the left first...
 			while(($stopIx - $startIx) < $maxButtons && $startIx > 0)
 			{
 				$startIx --;
 			}
+			// then to the right if needed.
 			while(($stopIx - $startIx) < $maxButtons && $stopIx < $numPages -1)
 			{
 				$stopIx ++;
 			}
-			
-			$currentPageIx  = $control->getCurrentPageIndex();
-			$bigStep		= $maxButtons;
 
-			// @TODO: first, previous, next, last
+			// buttons for previous and next page
 			$btnPrev	 = $this->createTriggerToButton('←', max($currentPageIx-1, 0));
 			$btnNext	 = $this->createTriggerToButton('→', min($currentPageIx+1, $numPages-1));
 
+			// buttons for first and last page
 			$btnFirst	 = $this->createTriggerToButton('↖', 0);
 			$btnLast	 = $this->createTriggerToButton('↘', $numPages-1);
 
-			// if there are more pages to see than buttons on screen, create the big jump buttons
+			// if there are more pages to see than buttons on screen, create the bigstep buttons
 			if ($bigStep < $numPages)
 			{
 				$btnBigRev	 = $this->createTriggerToButton('⇞', max($currentPageIx - $bigStep, 0));
@@ -187,6 +192,7 @@ namespace red\web\ui\controls
 			$this->appendChild($btnFirst);
 			isset($btnBigRev) and $this->appendChild($btnBigRev);
 			$this->appendChild($btnPrev);
+			// add the refular buttons
 			for ($pageIx = $startIx; $pageIx < $stopIx; $pageIx ++)
 			{
 				$button = $this->createTriggerToButton(''.($pageIx+1), $pageIx);

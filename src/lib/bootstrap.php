@@ -78,8 +78,8 @@ function bootstrap_exception_handler_var_dump($var, $nesting=0)
 	$clickable = function($name, $val) {
 		$id = uniqid();
 
-		$result  = sprintf('<dt style="cursor: pointer; outline: solid 1px gray;" onclick="document.getElementById(\'_dump_%s\').style.display=document.getElementById(\'_dump_%s\').style.display == \'none\' ? \'block\' : \'none\'; return false;">%s<dt>',$id, $id, $name);
-		$result .= sprintf('<dd id="_dump_%s" style="white-space: nowrap; display: none;">%s<dd>', $id, $val);
+		$result  = sprintf('<dt style="cursor: pointer; outline: solid 1px gray;" onclick="document.getElementById(\'_dump_%s\').style.display=document.getElementById(\'_dump_%s\').style.display == \'none\' ? \'block\' : \'none\'; return false;">%s</dt>',$id, $id, $name);
+		$result .= sprintf('<dd id="_dump_%s" style="white-space: nowrap; display: none;">%s</dd>', $id, $val);
 		
 		return $result;
 	};

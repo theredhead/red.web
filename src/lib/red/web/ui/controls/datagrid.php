@@ -7,7 +7,13 @@ namespace red\web\ui\controls
 	use \red\web\ui\html\HtmlTableRow;
 	use \red\web\ui\html\HtmlTableCell;
 	use \red\web\ui\html\HtmlTableHeaderCell;
-	
+
+	/**
+	 * The event argument used to indicate a header cell was clicked.
+	 * 
+	 * Contains a reference to the column the header that was clicked belongs 
+	 * to in the Column property.
+	 */
 	class HeaderClickedEventArgument extends EventArgument
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property TableColumn Column">
@@ -32,10 +38,19 @@ namespace red\web\ui\controls
 		public function __construct(TableColumn $column)
 		{
 			$this->setColumn($column);
+			$this->setAutoSetSelectedIndexOnCellClick(true);
 			parent::__construct();
 		}
 	}
 
+	/**
+	 * The event argument used to indicate a header cell was clicked.
+	 * 
+	 * Contains a reference to the column the cell that was clicked belongs 
+	 * to in the Column property, a reference to the DataItem that was in the
+	 * cell that got clicked in the DataItem property and the row index the 
+	 * cell that got clicked is inside of in the RowIndex property .
+	 */
 	class CellClickedEventArgument extends EventArgument
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property TableColumn Column">
@@ -173,17 +188,47 @@ namespace red\web\ui\controls
 			$this->notifyListenersOfEvent(self::EV_SELECTEDINDEX_CHANGED, new EventArgument());
 		}
 		// </editor-fold>
+		// <editor-fold defaultstate="collapsed" desc="Property boolean AutoSetSelectedIndexOnCellClick">
+		/**
+		 * @return boolean
+		 */
+		public function doesAutoSetSelectedIndexOnCellClick()
+		{
+			return isset($this->state['autoSel']) ? true : false;
+		}
 
+		/**
+		 * @param boolean $newAutoSetSelectedIndexOnCellClick
+		 */
+		public function setAutoSetSelectedIndexOnCellClick($newAutoSetSelectedIndexOnCellClick)
+		{
+			if ($newAutoSetSelectedIndexOnCellClick)
+			{
+				$this->state['autoSel'] = 'on';
+			}
+			else
+			{
+				unset($this->state['autoSel']);
+			}
+		}
+		// </editor-fold>
+		
+		/**
+		 * IPublishEvents::getPublishedEvents
+		 *
+		 * @return array
+		 */
 		public function getPublishedEvents()
 		{
 			return array(self::EV_CELL_CLICKED
 						,self::EV_HEADERCELL_CLICKED
 						,self::EV_SELECTEDINDEX_CHANGED);
 		}
-
+		
 		public function __construct()
 		{
 			parent::__construct();
+			// share css styles with red.web.ui.controls.Table
 			$this->addCssClass('Table');
 		}
 
@@ -223,6 +268,12 @@ namespace red\web\ui\controls
 		}
 		// </editor-fold>
 
+		/**
+		 * Gets called whenever a header cell got created during buildControl
+		 *
+		 * @param HtmlTableHeaderCell $cell
+		 * @param TableColumn $column 
+		 */
 		protected function headerCellCreated(HtmlTableHeaderCell $cell, TableColumn $column)
 		{
 			$sortCol = $this->getSortColumn();
@@ -238,6 +289,13 @@ namespace red\web\ui\controls
 						self::EV_HEADERCELL_CLICKED, $this->findIndexByColumn($column)));
 		}
 
+		/**
+		 * Gets called whenever a data cell got created during buildControl
+		 *
+		 * @param HtmlTableCell $cell
+		 * @param TableColumn $column
+		 * @param integer $rowIndex 
+		 */
 		protected function cellCreated(HtmlTableCell $cell, TableColumn $column, $rowIndex)
 		{
 			$cell->setAttribute('onclick', 
@@ -245,6 +303,12 @@ namespace red\web\ui\controls
 						self::EV_CELL_CLICKED, $rowIndex .':'. $this->findIndexByColumn($column)));
 		}
 
+		/**
+		 * Gets called whenever a row got created during buildControl
+		 *
+		 * @param HtmlTableRow $row
+		 * @param type $rowIndex 
+		 */
 		protected function rowCreated(HtmlTableRow $row, $rowIndex)
 		{
 			if ($this->getSelectedIndex() !== null && $rowIndex == $this->getSelectedIndex())
@@ -253,28 +317,42 @@ namespace red\web\ui\controls
 			}
 		}
 
+		/**
+		 * propagates the EV_HEADERCELL_CLICKED event
+		 *
+		 * @param TableColumn $column 
+		 */
 		protected function headerClicked(TableColumn $column)
 		{
-			$sortCol = $this->getSortColumn();
-			
-			if ($sortCol !== null && $sortCol->isSameInstance($column))
+			if ($column->allowsSorting())
 			{
-				$this->setSortDirection($this->getSortDirection() == 'DESC' ? 'ASC' : 'DESC');
+				$sortCol = $this->getSortColumn();
+
+				if ($sortCol !== null && $sortCol->isSameInstance($column))
+				{
+					$this->setSortDirection($this->getSortDirection() == 'DESC' ? 'ASC' : 'DESC');
+				}
+				else
+				{
+					$this->setSortColumn($column);
+				}
+				$this->getDelegate()->noteSortDescriptorChanged($this->getSortDescriptor());
 			}
-			else
-			{
-				$this->setSortColumn($column);
-			}
-			$this->getDelegate()->noteSortDescriptorChanged($this->getSortDescriptor());
 			$this->notifyListenersOfEvent(self::EV_HEADERCELL_CLICKED,
 					new HeaderClickedEventArgument($column));
 		}
 
+		/**
+		 * propagates the EV_CELL_CLICKED event
+		 *
+		 * @param TableColumn $column
+		 * @param type $rowIndex 
+		 */
 		protected function cellClicked(TableColumn $column, $rowIndex)
 		{
 			$valueObject = $this->getDelegate()->objectValueForTableColumnAtRowIndex($this, $column, $rowIndex);
 			
-			if (true) // TODO: make this optional
+			if ($this->doesAutoSetSelectedIndexOnCellClick())
 			{
 				$this->setSelectedIndex($rowIndex);
 			}
@@ -283,6 +361,12 @@ namespace red\web\ui\controls
 					new CellClickedEventArgument($column, $rowIndex, $valueObject));
 		}
 		
+		/**
+		 * called by the framework when a postback event occured for this control
+		 *
+		 * @param string $eventName
+		 * @param string $eventArgument 
+		 */
 		protected function notePostbackEvent($eventName, $eventArgument)
 		{
 			switch($eventName)
@@ -302,12 +386,6 @@ namespace red\web\ui\controls
 					parent::notePostbackEvent($eventName, $eventArgument);
 					break;
 			}
-		}
-		
-		public function preRender()
-		{
-			parent::preRender();
-//			$this->getPage()->log('[%s sorted %s %s]', $this, $this->getSortColumn()->getKey(), $this->getSortDirection());
 		}
 	}
 }

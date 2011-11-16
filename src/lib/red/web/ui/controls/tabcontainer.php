@@ -50,6 +50,12 @@ namespace red\web\ui\controls
 			$this->state['active'] = $this->findIndexByTab($tab);
 		}
 
+		/**
+		 * Get the TabPage in the $index-th position in this TabContainer
+		 *
+		 * @param integer $index
+		 * @return TabPage
+		 */
 		protected function findTabByIndex($index)
 		{
 			$tabs = $this->getTabs();
@@ -57,6 +63,12 @@ namespace red\web\ui\controls
 					: static::fail('Not found');
 		}
 
+		/**
+		 * Get a TabPages' position in this TabContainer
+		 *
+		 * @param TabPage $tab
+		 * @return integer 
+		 */
 		protected function findIndexByTab(TabPage $tab)
 		{
 			$tabs = $this->getTabs();
@@ -74,9 +86,7 @@ namespace red\web\ui\controls
 			static::fail('That\'s not one of mine!');
 		}
 		// </editor-fold>
-
-		
-		// </editor-fold>
+	
 		// <editor-fold defaultstate="collapsed" desc="Property array Tabs">
 		private $tabs = null;
 
@@ -112,7 +122,14 @@ namespace red\web\ui\controls
 		{
 			parent::__construct('ul');
 		}
-		
+
+		/**
+		 * gets called by the framework when a postback event is recieved that
+		 * references this control.
+		 *
+		 * @param type $eventName
+		 * @param type $argument 
+		 */
 		protected function notePostbackEvent($eventName, $argument)
 		{
 			if ($eventName == self::EV_TABBUTTON_CLICKED)
@@ -122,6 +139,10 @@ namespace red\web\ui\controls
 			}
 		}
 		
+		/**
+		 * called by the page to notfy this control that it is about to be 
+		 * rendered, so it can finish up its internal markup
+		 */
 		public function preRender()
 		{
 			$this->getPage()->registerStyleSheet('/css/tabs.css');

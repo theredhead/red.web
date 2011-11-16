@@ -203,6 +203,17 @@ namespace red\web\ui\controls
 		}
 		// </editor-fold>
 
+		public function __construct()
+		{
+			parent::__construct('table');
+			$this->preBuildControl();
+		}
+
+		/**
+		 * Get the number of items this table will provide access to
+		 *
+		 * @return integer
+		 */
 		public function getNumberOfItems()
 		{
 			$delegate = $this->getDelegate();
@@ -215,12 +226,12 @@ namespace red\web\ui\controls
 			return 0;
 		}
 		
-		public function __construct()
-		{
-			parent::__construct('table');
-			$this->preBuildControl();
-		}
-		
+		/**
+		 * expand logical properties from the template
+		 *
+		 * @param type $name
+		 * @param type $value 
+		 */
 		public function setAttribute($name, $value)
 		{
 			switch(strtolower($name))
@@ -269,6 +280,10 @@ namespace red\web\ui\controls
 			return $this->getOwnerDocument();
 		}
 		
+		/**
+		 * called by the page to give this table a chance to finish up its
+		 * internal markup
+		 */
 		public function preRender()
 		{
 			parent::preRender();
@@ -287,6 +302,13 @@ namespace red\web\ui\controls
 			}
 		}
 
+		/**
+		 * called by the page when a postback event occurs that references this
+		 * control
+		 *
+		 * @param type $eventName
+		 * @param type $eventArgument 
+		 */
 		protected function notePostbackEvent($eventName, $eventArgument)
 		{
 			parent::notePostbackEvent($eventName, $eventArgument);
@@ -294,11 +316,22 @@ namespace red\web\ui\controls
 
 		// </editor-fold>
 
+		/**
+		 * IBindable::canBindTo
+		 *
+		 * @param ITableDatasourceDelegate $dataItem
+		 * @return type 
+		 */
 		public function canBindTo($dataItem)
 		{
 			return $dataItem instanceof ITableDatasourceDelegate;
 		}
 		
+		/**
+		 * IBindable::bind
+		 *
+		 * @param ITableDatasourceDelegate $dataItem 
+		 */
 		public function bind($dataItem)
 		{
 			$this->canBindTo($dataItem) or $this->fail('Cannot bind to %s', typeid($dataItem));
@@ -306,7 +339,18 @@ namespace red\web\ui\controls
 			$this->buildControl();
 			$this->isBound = true;
 		}
+		/**
+		 * flag indicating wether this table has been databound
+		 *
+		 * @var boolean
+		 */
 		protected $isBound = false;
+		
+		/**
+		 * See if this table is databound
+		 *
+		 * @return type 
+		 */
 		public function isBound()
 		{
 			return $this->isBound;
@@ -314,7 +358,18 @@ namespace red\web\ui\controls
 		
 		
 		// <editor-fold defaultstate="collapsed" desc="Datasource delegate">
+		/**
+		 *
+		 * @var ITableDatasourceDelegate
+		 */
 		protected $delegate = null;
+
+		/**
+		 * Get the delegate responsible for maintaining the data associated 
+		 * with this table
+		 *
+		 * @return ITableDatasourceDelegate
+		 */
 		protected function getDelegate()
 		{
 			if ($this->delegate === null)
@@ -329,7 +384,18 @@ namespace red\web\ui\controls
 		}
 		// </editor-fold>
 		// <editor-fold defaultstate="collapsed" desc="Columns">
+		/**
+		 * the columns inside this table
+		 *
+		 * @var \red\xml\XMLNodeList
+		 */
 		protected $columns = null;
+		
+		/**
+		 * Get the columns that are used to render this table
+		 *
+		 * @return \red\xml\XMLNodeList
+		 */
 		public function getColumns()
 		{
 			if ($this->columns === null)
@@ -345,6 +411,11 @@ namespace red\web\ui\controls
 		protected $body;
 		protected $foot;
 		
+		/**
+		 * gets called early on in the init step of the request handling
+		 * so that the table may find or create the child controls it depends 
+		 * on for certain events
+		 */
 		protected function preBuildControl()
 		{
 			$this->head = $this->appendChild(new HtmlTableHead());
@@ -354,7 +425,16 @@ namespace red\web\ui\controls
 			$this->preBuildTableFooter();
 		}
 	
+		/**
+		 * A flag indicating wether this control has been built fully
+		 *
+		 * @var boolean
+		 */
 		protected $isBuilt = false;
+		
+		/**
+		 * build the controls' internal markup
+		 */
 		public function buildControl()
 		{
 			$columns = $this->getColumns();
@@ -416,7 +496,13 @@ namespace red\web\ui\controls
 				}
 			}
 		}
-
+		
+		/**
+		 * Get the TableColumn at the $index-th position in this table
+		 *
+		 * @param integer $index
+		 * @return TableColumn
+		 */
 		protected function findColumnByIndex($index)
 		{
 			$columns = $this->getColumns();
@@ -424,6 +510,12 @@ namespace red\web\ui\controls
 					: static::fail('Column not found');
 		}
 
+		/**
+		 * Get the index inside this table for $column
+		 *
+		 * @param TableColumn $column
+		 * @return int 
+		 */
 		protected function findIndexByColumn(TableColumn $column)
 		{
 			$columns = $this->getColumns();
@@ -441,14 +533,33 @@ namespace red\web\ui\controls
 			static::fail('That\'s not one of mine!');
 		}
 
+		/**
+		 * gets called whenever a header cell is created inside buildControl
+		 *
+		 * @param HtmlTableHeaderCell $cell
+		 * @param TableColumn $column 
+		 */
 		protected function headerCellCreated(HtmlTableHeaderCell $cell, TableColumn $column)
 		{
 		}
 
+		/**
+		 * gets called whenever a data cell is created inside buildControl
+		 *
+		 * @param HtmlTableCell $cell
+		 * @param TableColumn $column
+		 * @param type $rowIndex 
+		 */
 		protected function cellCreated(HtmlTableCell $cell, TableColumn $column, $rowIndex)
 		{
 		}
 
+		/**
+		 * Gets called whenever a row is created inside buildControl
+		 *
+		 * @param HtmlTableRow $row
+		 * @param type $rowIndex 
+		 */
 		protected function rowCreated(HtmlTableRow $row, $rowIndex)
 		{
 		}
@@ -476,6 +587,10 @@ namespace red\web\ui\controls
 			return $row;
 		}
 		
+		/**
+		 * allows the table to attach the pager so it can register events during
+		 * the init phase of request processing. (later would be too late)
+		 */
 		protected function preBuildTableFooter()
 		{
 			$row = $this->foot->appendChild(new HtmlTableRow());
@@ -492,8 +607,13 @@ namespace red\web\ui\controls
 			}
 		}
 		
+		/**
+		 * build the table footer during buildControl.
+		 */
 		protected function buildTableFooter()
 		{
+			// we have to do this here because diring the preBuild phase
+			// we don't know how many columns there may end up being.
 			$cell = $this->getPager()->getParentNode();
 			if ($cell instanceof HtmlTableCell)
 			{

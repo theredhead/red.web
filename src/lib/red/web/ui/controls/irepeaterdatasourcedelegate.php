@@ -11,6 +11,8 @@ namespace red\web\ui\controls
 	interface IRepeaterDatasourceDelegate
 	{
 		/**
+		 * Get the DataItems in position $rowIndex this delegate manages for $repeater
+		 * 
 		 * @param Repeater $repeater
 		 * @param integer $rowIndex
 		 * @return integer
@@ -18,6 +20,8 @@ namespace red\web\ui\controls
 		public function objectValueForRepeaterAtRowIndex(Repeater $repeater, $rowIndex);
 			
 		/**
+		 * Get the number of DataItems this delegate manages for $repeater
+		 * 
 		 * @param Repeater $repeater
 		 * @return integer
 		 */

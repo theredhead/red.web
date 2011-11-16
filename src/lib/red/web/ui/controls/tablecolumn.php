@@ -101,7 +101,27 @@ namespace red\web\ui\controls
 		}
 
 		// </editor-fold>
+		// <editor-fold defaultstate="collapsed" desc="Property boolean Sortable">
+		private $isSortable = true;
 
+		/**
+		 * @return string
+		 */
+		public function isSortable()
+		{
+			return $this->isSortable == true;
+		}
+
+		/**
+		 * @param string $newIsSortable
+		 */
+		public function setSortable($newIsSortable)
+		{
+			$this->isSortable = $newIsSortable == true;
+		}
+		// </editor-fold>
+
+		
 		/**
 		 * @param mixed $value
 		 */
@@ -123,6 +143,9 @@ namespace red\web\ui\controls
 					break;
 				case 'key' :
 					$this->setKey($value);
+					break;
+				case 'sortable' :
+					$this->setSortable($value);
 					break;
 				default:
 					parent::setAttribute($name, $value);

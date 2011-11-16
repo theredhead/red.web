@@ -36,8 +36,15 @@ namespace red\web\ui\controls
 		}
 	}
 	
+	/**
+	 * Pager represents a simple control that can manage the interaction
+	 * between an IPagable control and its viewport based on user interaction
+	 */
 	class Pager extends BaseControl
 	{
+		/**
+		 * the event this control exposes
+		 */
 		const EV_PAGE_TO = 'PageTo';
 
 		// <editor-fold defaultstate="collapsed" desc="Property integer MaximumNumberOfPageButtons">
@@ -70,6 +77,11 @@ namespace red\web\ui\controls
 			return $this->for;
 		}
 
+		/**
+		 * Get the control (IPagable) that this pager operates on
+		 *
+		 * @return type 
+		 */
 		public function getForControl()
 		{
 			if ($this->forControl == null)
@@ -108,6 +120,12 @@ namespace red\web\ui\controls
 			$this->registerEventListener('PagerButtonClicked', 'onPagerButtonClicked', $this);
 		}
 		
+		/**
+		 * expand logical properties from the template.
+		 *
+		 * @param string $name
+		 * @param string $value 
+		 */
 		public function setAttribute($name, $value)
 		{
 			switch(strtolower($name))
@@ -121,6 +139,10 @@ namespace red\web\ui\controls
 			}
 		}
 
+		/**
+		 * Gets called by the page to allow this control to fixup its internal
+		 * markup.
+		 */
 		public function preRender()
 		{
 			parent::preRender();
@@ -175,6 +197,14 @@ namespace red\web\ui\controls
 			$this->appendChild($btnLast);
 		}
 		
+		/**
+		 * Create a button used inside this pager that will trigger the 
+		 * EV_PAGE_TO event on the server when pushed in the client.
+		 *
+		 * @param MBString $label
+		 * @param integer $toPageIndex
+		 * @return Button 
+		 */
 		protected function createTriggerToButton($label, $toPageIndex)
 		{
 			$label instanceof MBString or $label = MBString::withString($label);
@@ -193,6 +223,12 @@ namespace red\web\ui\controls
 			return $button;
 		}
 		
+		/**
+		 * gets called whenever there is a postback event for this control
+		 *
+		 * @param type $eventName
+		 * @param type $eventArgument 
+		 */
 		public function notePostbackEvent($eventName, $eventArgument)
 		{
 			switch($eventName)

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ctl="\red\web\ui\controls" xmlns:data="\demo\data" xmlns:abbu="\red\addressbook\controls">
+	<head>
+		<title>Hello, World!</title>
+		<style type="text/css">
+		table:not(.Table) tr,
+		table:not(.Table) tr td, 
+		table:not(.Table) tr th {
+			outline: solid 1px rgba(127,127,127,.001);
+		}
+
+		table.AddressBook td {
+			border: none;
+		}
+		table.AddressBook {
+			width: 100%;
+		}
+		table.AddressBook td.left,
+		table.AddressBook td.right {
+			width: 50%;
+			padding: 1em;
+		}
+		.AddressBook .EntityList,
+		.AddressBook .EntityDetail {
+			background: white;
+		}
+		.AddressBook .EntityList {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			box-shadow:none;
+		}
+		td.searchbar {
+			height: 48px;
+		}
+		td.right input[type=text] {
+			margin: 0;
+			font-size: 1em;
+			padding: 0;
+			display: block;
+			width: 100%;
+			border-width: 1px;
+		}
+		.toolbar {
+			height: 48px;
+		}
+		.toolbar button {
+			text-align: center;
+		}
+		</style>
+	</head>
+	<body>
+		<ctl:Form>
+			
+		<abbu:AddressbookControl />
+		</ctl:Form>
+	</body>
+</html>

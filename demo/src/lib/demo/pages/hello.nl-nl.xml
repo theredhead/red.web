@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ctl="\red\web\ui\controls" xmlns:data="\demo\data">
+	<head>
+		<title>Hallo, Wereld!</title>
+	</head>
+	<body>
+		<ctl:Form action="/?language=nl-nl">
+			
+			<ctl:TabContainer>
+				<ctl:TabPage labelText="Hallo">
+
+					<h1>Hallo, Wereld!</h1>
+					<p>
+						Een simpele pagina met wat demonstraties en tests.
+					</p>
+					
+					<ctl:Button id="btnHello" caption=" (Apple logo) drie bytes aan UTF-8"/>
+					<p>
+						Deze pagina is er ook <a href="/">in het engels.</a>
+					</p>
+					
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Tabel">
+			
+					<h2>Tabel</h2>
+					<p>
+						Deze tabel beheert zelf zijn eigenschappen, net als alle andere widgets. Ook wordt pagineren
+						mogelijk gemaakt.
+					</p>
+					<ctl:Table caption="SQLITE_MASTER" pageSize="5">
+						<data:TestDatasource />
+						<ctl:RowIndicatorColumn />
+						<ctl:TableColumn key="type" headerText="Type" />
+						<ctl:TableColumn key="name" headerText="Name" />
+						<ctl:TableColumn key="sql" headerText="SQL" />
+					</ctl:Table>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="DataGrid">
+					
+					<h2>DataGrid</h2>
+					<p>
+						Het DataGrid lijkt heel veel op de tabel in de voorgaande tab maar het is ook sorteerbaar
+						en in staat om verschillende gebeurtenissen af te handelen. de opmaak is verder
+						identiek aan de tabel.
+					</p>
+					<ctl:DataGrid id="DataGrid1" caption="SQLITE_MASTER" pageSize="5">
+						<data:TestDatasource />
+						<ctl:RowIndicatorColumn />
+						<ctl:TableColumn key="type" headerText="Soort" />
+						<ctl:TableColumn key="name" headerText="Naam" />
+						<ctl:TableColumn key="sql" headerText="SQL" />
+					</ctl:DataGrid>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Vinkvakjes">
+					
+					<h2>Een tabel met vinkvakjes</h2>
+					<p>
+						Alleen hier om te laten zien dat ook vinkvakjes geheel automatisch hun waarde bijhouden
+					</p>
+					<table>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+					</table>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Tekstvakken">
+
+					<h2>Tekstvakken</h2>
+					<p>
+						Deze pagina laat een paar primitieve widgets zien
+					</p>
+					<dl>
+						<dt>Textvak</dt>
+						<dd><ctl:Textbox /></dd>
+
+						<dt>Meerdere regels</dt>
+						<dd><ctl:Textbox multipleline="true" rows="5" cols="40" /></dd>
+
+						<dt>Wachtwoord textvak</dt>
+						<dd><ctl:PasswordTextbox /></dd>
+					</dl>
+					
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Genest">
+					<h2>Ja...</h2>
+					<ctl:TabContainer>
+						<ctl:TabPage labelText="You can">
+							<h2>Inderdaad</h2>
+							<p>
+								Omdat alles een eigen object is, van het kleinste html element tot de meest
+								ingewikkelde widgets, is er niets dat je tegenhoud om meerdere TabContainers 
+								in elkaar te stoppen.
+							</p>
+						</ctl:TabPage>
+						<ctl:TabPage labelText="Another nested page">
+							<h2>Hoewel...</h2>
+							<p>
+								Ik zou het alleen niet aanraden.
+							</p>
+							<ctl:TabContainer>
+								<ctl:TabPage labelText="You can">
+									<h2>Indeed</h2>
+									<p>
+										Omdat alles een eigen object is, van het kleinste html element tot de meest
+										ingewikkelde widgets, is er niets dat je tegenhoud om meerdere TabContainers 
+										in elkaar te stoppen.
+									</p>
+								</ctl:TabPage>
+								<ctl:TabPage labelText="Nog een geneste tab">
+									<h2>Hoewel..</h2>
+									<p>
+										Ik zou het alleen niet aanraden.
+									</p>
+										<ctl:TabContainer>
+											<ctl:TabPage labelText="You can">
+												<h2>Inderdaad</h2>
+												<p>
+													Omdat alles een eigen object is, van het kleinste html element tot de meest
+													ingewikkelde widgets, is er niets dat je tegenhoud om meerdere TabContainers 
+													in elkaar te stoppen.
+												</p>
+											</ctl:TabPage>
+											<ctl:TabPage labelText="Another nested page">
+												<h2>Echt?...</h2>
+												<p>
+													Het begint een beetje raar te worden...
+												</p>
+											</ctl:TabPage>
+										</ctl:TabContainer>
+								</ctl:TabPage>
+							</ctl:TabContainer>
+						</ctl:TabPage>
+					</ctl:TabContainer>
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Emoji">
+
+					<h2>Dit is een test tab</h2>
+					
+					<ctl:Button id="btnCrash">Crash</ctl:Button>
+
+				</ctl:TabPage>
+
+			</ctl:TabContainer>
+		</ctl:Form>
+	</body>
+</html>

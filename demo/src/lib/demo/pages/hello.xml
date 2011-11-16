@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ctl="\red\web\ui\controls" xmlns:data="\demo\data">
+	<head>
+		<title>Hello, World!</title>
+	</head>
+	<body>
+		<ctl:Form action="/">
+			
+			<ctl:TabContainer>
+				<ctl:TabPage labelText="Hello">
+
+					<h1>Hello, World!</h1>
+					<p>
+						A simple page with some demonstrations/tests.
+					</p>
+					
+					<ctl:Button id="btnHello" caption=" (Apple logo) is three bytes of UTF-8"/>
+					
+					<p>
+						This page is also available <a href="/?language=nl-nl">in dutch.</a>
+					</p>
+					
+					<ctl:Button id="btnCrash">Crash</ctl:Button>
+					
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Table">
+			
+					<h2>Table</h2>
+					<p>
+						This table manages its own state as do all the controls, and it allows pagind when necesary.
+					</p>
+					<ctl:Table caption="SQLITE_MASTER" pageSize="5">
+						<data:TestDatasource />
+						<ctl:RowIndicatorColumn />
+						<ctl:TableColumn key="type" headerText="Type" />
+						<ctl:TableColumn key="name" headerText="Name" />
+						<ctl:TableColumn key="sql" headerText="SQL" />
+					</ctl:Table>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="DataGrid">
+					
+					<h2>DataGrid</h2>
+					<p>
+						This DataGrid is very similar to the Table on the previous tab, but it is also sortable 
+						and able to generate some events. Markup is otherwise identical to the Table.
+					</p>
+					<ctl:DataGrid id="DataGrid1" caption="SQLITE_MASTER" pageSize="5">
+						<data:TestDatasource />
+						<ctl:RowIndicatorColumn />
+						<ctl:TableColumn key="type" headerText="Type" />
+						<ctl:TableColumn key="name" headerText="Name" />
+						<ctl:TableColumn key="sql" headerText="SQL" />
+					</ctl:DataGrid>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Checkboxes">
+					
+					<h2>A table with checkboxes</h2>
+					<p>
+						Just here to prove that state is maintained for checkboxes as well.
+					</p>
+					<table>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+						<tr>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+							<td><ctl:Checkbox /></td>
+						</tr>
+					</table>
+
+				</ctl:TabPage>
+				<ctl:TabPage labelText="TextBoxes">
+
+					<h2>Textboxes</h2>
+					<p>
+						This page shows some different types of primitive textboxes.
+					</p>
+					<dl>
+						<dt>Textbox</dt>
+						<dd><ctl:Textbox /></dd>
+
+						<dt>Multiple lines</dt>
+						<dd><ctl:Textbox multipleline="true" rows="5" cols="40" /></dd>
+
+						<dt>Password textbox</dt>
+						<dd><ctl:PasswordTextbox /></dd>
+					</dl>
+					
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Nested">
+					<h2>Yes...</h2>
+					<ctl:TabContainer>
+						<ctl:TabPage labelText="You can">
+							<h2>Indeed</h2>
+							<p>
+								Since everything is a distinct object, from basic html tags to intricate controls,
+								There is nothing stopping you from nesting multiple TabContainers.
+							</p>
+						</ctl:TabPage>
+						<ctl:TabPage labelText="Another nested page">
+							<h2>Although..</h2>
+							<p>
+								I wouldn't recommend it in most cases.
+							</p>
+							<ctl:TabContainer>
+								<ctl:TabPage labelText="You can">
+									<h2>Indeed</h2>
+									<p>
+										Since everything is a distinct object, from basic html tags to intricate controls,
+										There is nothing stopping you from nesting multiple TabContainers.
+									</p>
+								</ctl:TabPage>
+								<ctl:TabPage labelText="Another nested page">
+									<h2>Although..</h2>
+									<p>
+										I wouldn't recommend it in most cases.
+									</p>
+										<ctl:TabContainer>
+											<ctl:TabPage labelText="You can">
+												<h2>Indeed</h2>
+												<p>
+													Since everything is a distinct object, from basic html tags to intricate controls,
+													There is nothing stopping you from nesting multiple TabContainers.
+												</p>
+											</ctl:TabPage>
+											<ctl:TabPage labelText="Another nested page">
+												<h2>Really?...</h2>
+												<p>
+													It's getting silly.
+												</p>
+											</ctl:TabPage>
+										</ctl:TabContainer>
+								</ctl:TabPage>
+							</ctl:TabContainer>
+						</ctl:TabPage>
+					</ctl:TabContainer>
+				</ctl:TabPage>
+				<ctl:TabPage labelText="Emoji">
+
+					<h2>This is a test page</h2>
+
+				</ctl:TabPage>
+
+			</ctl:TabContainer>
+		</ctl:Form>
+	</body>
+</html>

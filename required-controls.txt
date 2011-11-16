@@ -1,0 +1,37 @@
+Required controls
+	Abstract:
+		TemplateControl
+
+	Forms:
+		Form
+		Textbox
+		MultilineTextbox
+		PasswordTextbox
+		Checkbutton
+		Table
+		Pager
+		Datepicker
+		Button
+		ToggleButton
+		RadioButton
+			RadioGroup
+		Dropdownlist
+		Combobox
+		Autocomplete
+		Image
+		Repeater
+		Disclosable
+		ScrollPane
+		SpinButton
+
+	Fancy:
+		SplitView
+		ProgressIndicator
+		LevelIndicator & ProgressBar
+		Slider
+		PopupButton
+		StarRating
+		TabView & TabPage
+		Carousel
+		BreadCrumbPath
+		PopOver

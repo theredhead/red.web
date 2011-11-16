@@ -1,0 +1,224 @@
+README.
+=======
+
+This document is set up as follows:
+	Licensing information
+	About the framework
+	Style Guidelines
+		Classes
+		Methods
+		Properties and fields
+	Future goals
+
+Licensing information.
+======================
+
+The source code to the framework is provided to you free of charge and you may
+do with it as you see fit. This includes copying, altering, deploying, etc.
+
+By using any of the code provided in any way, you accept full responsibility
+for anything you do with it.
+
+Commercial support may be available in the future but the license will always
+remain open.
+
+The original author reserves the right to switch out the license to a proper
+opensource license in the future.
+
+About the framework.
+====================
+
+Hello and thanks for your interest in my little pet project!
+
+This framework is built from the ground up to provide a toolkit that meets
+these requirements:
+
+- make the safer, faster, better way to do something the easiest way to do it.
+	- make it easy to do data access with prepared statements that prevent
+	  sql injection.
+
+- provide total localization and internationalization support
+
+- declarative programming where possible
+	- make the no code way to handle user generated events a complete
+	  no brainer by using easy to remember conventions
+
+- seperation of controller logic from view code
+	- make it incredibly difficult to put controller logic in a view while
+	  making it incredibly easy to do databinding to views
+
+- provide a very productive environment for producing highly specialized
+  solutions. you can still do kitchen sink stuff, but the real power is in the
+  expandability
+	- standard form controls, including some fancy stuff with a solid base
+	  that can be used to build entire applications in a single tag or just
+	  allow you to build your own special type of button or textbox.
+
+- provide the core for a web based IDE for the web (my dream project)
+	- build a web application where the application can be designed
+	  using a point and click UI that lets the designer do mockups that the
+	  programmer can just attach code to where needed
+
+- provide a standard way to "compile" all code and resources required for an
+  application into one file to make deploys pushbutton easy
+
+- high code quality standards
+	- make it easy to assert that documentation is available on all key 
+	  elements of code during development (classes, properties, methods)
+	- use modern, namespaced objec oriented code following clear guidelines
+	  and taking cues from the some of the best ideas out there including
+	  Apples' Cocoa and Microsofts System.Web.Forms (without getting into the
+	  religious thing of who does what best, they are both pretty awesome in
+	  their own way).
+	- think global, act in local scope
+
+* note that when I say faster, I mean development time, not execution speed.
+
+
+Style guidelines.
+=================
+
+1. Naming your entities.
+	Classes
+		All class names are PascalCased (words contracted with each initial 
+		letter capitalised)
+		
+		Never shall the word 'public' be followed by whitespace and a dollar
+		sign. (no public fields, ever. period.) this still applies if you
+		want to put the word 'static' in between.
+
+	Methods
+		All method names are camelCased (words are contracted with the first
+		letter of each word capitalized, except the first word.)
+		
+		Method parameters (argument names)
+		Parameters shall be camelCased and typehinted where possible.
+		They shall be mentioned in the methods' docblock using the @param
+		annotation.
+
+		Methods can contain variables, they too shall be named in camelCase.
+		since methods inside methods are by definition private API, no mention
+		of them is required, nor wanted in a methods docblock, but you should
+		get into the habit of declaring them.
+		
+		Example code:
+
+namespace examples
+{
+	use \DateTime;
+	use red\Object;
+
+	/**
+	 * Person represents a real-world person
+	 */
+	class Person extends Object;
+	{
+		/**
+		 * Holds this persons' birthdate
+		 *
+		 * @var DateTime
+		 */
+		private $birthDate = null;
+	
+		/**
+		 * Get the number representing the years between this Persons' date of
+		 * birth and today.
+		 *
+		 * @return integer 
+		 */
+		public function getYearsOfAge()
+		{
+			// sanity check, require a birth date to be available
+			$valid = assert($this->getBirthDate() instanceof DateTime);
+			
+			// set a default value
+			$result = 0;
+			if ($valid)
+			{
+				$now = new DateTime();
+				$interval = $now->diff($this->getBirthDate(), true);
+				$result = $interval->y
+			}
+			
+			// more sanity checking
+			assert('$result > -1');
+			return $result;
+		}
+
+		/**
+		 * Determine if this person is 18y or older
+		 *
+		 * @return boolean
+		 */
+		public function isOverEighteen()
+		{
+			return $this->getYearsOfAge() >= 18;
+		}
+	}
+}		
+#EOF
+
+	This sample code shows how to use docblock, naming convention for classes,
+	methods, fields and property accessors. It is not meant to be considered
+	working code, the sample would get too long for this document.
+	
+	Working example code will be provided as part of the framework.
+
+	Properties and fields
+		Fields (instance variables that are not publicly visible)
+		
+			Fields may be either private or protected. We're outlawing public
+			even if php supports that notion.
+			Field names shall be camelCased just like method names
+		
+		Properties (Instance variables or concrete pieces of instance logic
+		that are externally available through getters and/or setters)
+		
+		a propperty accessor can be either a getter or a setter and will have
+		the following traits:
+			
+			Getters:
+				the first word in the camelCased method name shall be 'get'
+				for all properties that do not denote a non-nullable boolean,
+				a situation where the first word shall be 'is'.
+				
+				Examples on a class Person:
+				-----------------------------------------------
+				| Property name        | getter accessor name |
+				|=============================================|
+				| string Firstname     | getFirstName()       |
+				| boolean OverEighteen | isOverEighteen()     |
+				| integer Age          | getYearsOfAge()      |
+				-----------------------------------------------
+
+			Setters
+			the first word in the camelCased method name shall be 'get'
+			for all properties.
+			
+				Examples on a class Person:
+				------------------------------------------------------------
+				| Property name        | getter accessor name              |
+				|==========================================================|
+				| string Firstname     | setFirstName(MBString $firstName) |
+				| boolean OverEighteen | setBirthDate(DateTime $date)      |
+				| integer Age          | setBirthDate(DateTime $date)      |
+				------------------------------------------------------------
+				the last two are obviously tricky in that the getters don't
+				just pass around instance information but contain actual logic
+				that works with the instance data.
+
+Future goals.
+=============
+
+The eventual goal of this project is to create a web application to build web
+applications, until such time however, there are smaller goals to achieve.
+
+- working demonstration project "Addressbook" that exposes the frameworks
+  built in address book
+- support many "standard" controls from buttons and textboxes to carousels
+  and popovers
+- provide support for framework native request handling to supply framework
+  resources
+- provide theming support
+- provide phar support
+- build a framework documentation website on this framework.

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div  xmlns:red="red\web\ui\controls" xmlns:htm="red\web\ui\html" xmlns:abbu="red\addressbook\controls">
+	<h1><red:StaticText id="txtDisplayName" /></h1>
+	<hr />
+	<dl>
+		<dt>Lastname</dt>
+		<dd><red:StaticText id="txtLastname" /></dd>
+		
+		<dt>Firstname</dt>
+		<dd><red:StaticText id="txtFirstname" /></dd>
+
+		<dt>Firstname</dt>
+		<dd><red:StaticText id="txtFirstname" /></dd>
+		
+		<dt></dt>
+		<dd></dd>
+
+		<dt></dt>
+		<dd></dd>
+	</dl>
+</div>

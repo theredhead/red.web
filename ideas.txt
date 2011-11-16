@@ -1,0 +1,32 @@
+-- defines datatypes that can be used for fields. like int, string, email, date, etc.
+DataType
+	ValidatorClassName
+	EditControlClass
+	ViewControlClass
+
+-- defines entities
+Class
+	Name
+	Description
+
+-- defines properties of entities
+Field
+	-> Class
+	-> DataType
+	Name
+	Description
+
+-- describes instances	
+Instance
+	-> Class
+	Name
+	Description
+
+-- describes values for fields of an instance
+Property
+	-> Instance
+	-> Field
+	-> Value
+
+
+

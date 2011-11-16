@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table class="AddressBook" xmlns:ctl="\red\web\ui\controls" xmlns:abbu="\red\addressbook\controls" border="1">
+	<tr>
+		<td class="left">
+			<ctl:Repeater id="cardList">
+				<abbu:PeopleDatasource id="datasource" />				
+				<ItemTemplate>
+					<abbu:PersonListItem />
+				</ItemTemplate>
+			</ctl:Repeater>
+		</td>
+		<td class="right">
+			<abbu:CardDetailView id="cardDetail" />
+		</td>
+	</tr>
+	<tr class="toolbar">
+		<td class="left">
+			<ctl:Button disabled="disabled"><img src="/img/addressbook/list.png" /></ctl:Button>
+			<ctl:Button><img src="/img/addressbook/card.png" /></ctl:Button>
+			<ctl:Button style="float: right;"><img src="/img/addressbook/plus.png" /></ctl:Button>
+		</td>
+		<td class="right">
+			<ctl:Button id="btnEdit">Bewerken</ctl:Button>
+			<ctl:Button id="btnDone">Klaar</ctl:Button>
+			<ctl:Button id="btnShare">Delen</ctl:Button>
+		</td>
+	</tr>
+</table>

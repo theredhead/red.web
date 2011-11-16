@@ -1,0 +1,111 @@
+@media screen {
+	/* begin of simple reset */
+	a img {
+		border: none;
+	}
+	/* end of simple reset */
+	
+	html {
+		background: rgb(222,222,222);
+		min-height: expression(window.innerHeight);
+	}
+	body {
+		min-height: expression(window.innerHeight);
+		font-family: 'Helvetica', sans-serif;
+		width: 80%;
+		min-width: 768px;
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 2em;
+		background: rgb(250,250,250);
+		border-left: inset 1px rgb(127,127,127);
+		border-right: inset 1px rgb(127,127,127);
+		box-shadow: 0 0 16px rgb(255,255,255);
+	}
+	
+	h1, h2, h3, h4, h5 {
+		text-shadow: 1px 3px 10px rgba(127, 127, 127, .5);
+	}
+	
+	table {
+		border-collapse: collapse;
+		border-	spacing: 0;
+	}
+	table, tr, td, th {
+		vertical-align : top;
+		text-align: left;
+		margin: 0;
+		padding: 0;
+	}
+	
+	span.null-representation {
+		color: gray;
+		font-style: italic;
+	}
+	
+	.selected {
+		background-color : rgba(0, 64, 196, .5) !important;
+		color: rgb(255, 255, 255) !important;
+		text-shadow: 0 0 2px rgba(127, 127, 127, 1) !important;
+	}
+	.Repeater>ul {
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0; padding: 0;
+	}
+	.Repeater>ul>li
+	{
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0; padding: 0;
+	}
+	.Repeater>ul>li:nth-child(odd) {
+		background: rgb(247, 250, 255);
+	}
+	.Repeater>ul>li:not(:last-child) {
+		line-height: 1.5em;
+		width: 100%;
+		border-bottom: solid 1px rgb(200,200,200);
+	}
+	.PersonListItem {
+		cursor: default;
+	}
+	.PersonListItem .Gravatar {
+		margin: 4px;
+	}
+	.PersonListItem .StaticText.title {
+		font-weight: bold;
+		color : rgb(64,64,64);
+	}
+	.PersonListItem .StaticText.subtitle {
+		color : rgb(127,127,127);
+	}
+
+	.selected .PersonListItem .StaticText.title {
+		font-weight: bold;
+		color : rgb(255,255,255);
+	}
+	.selected .PersonListItem .StaticText.subtitle {
+		color : rgb(220,220,220);
+		text-shadow: none;
+	}
+
+	
+  dl {
+    padding: 0.5em;
+  }
+  dt {
+    float: left;
+    clear: left;
+    width: 100px;
+    text-align: right;
+    font-weight: normal;
+    color: rgb(164,164,164);
+  }
+  dt:after {
+    content: ":";
+  }
+  dd {
+    margin: 0 0 0 110px;
+    padding: 0 0 0.5em 0;
+  }}

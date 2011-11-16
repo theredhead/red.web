@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div class="Person" xmlns:red="\red\web\ui\controls">
+	<red:Gravatar type="identicon" size="32" rating="pg" />
+	<div style="display: inline-block;">
+		<red:StaticText add-class="title" bindTo="getDisplayName" /><br />
+		<red:StaticText add-class="subtitle" BindTo="getCardSubTitle" />
+	</div>
+</div>

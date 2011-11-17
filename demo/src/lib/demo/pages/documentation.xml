@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ctl="\red\web\ui\controls" xmlns:api="\red\web\ui\controls\apidoc">
+	<head>
+		<title>Documentation</title>
+	</head>
+	<body>
+		<ctl:Form action="/documentation">
+			<api:Documentor id="documentor" />
+		</ctl:Form>
+	</body>
+</html>

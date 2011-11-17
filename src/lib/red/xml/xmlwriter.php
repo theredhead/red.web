@@ -159,7 +159,17 @@ namespace red\xml
 				if ($this->elementContainsExactlyOneTextNode($element))
 				{
 					$this->writeOpenTag($element);
-					$this->writeText($element->getFirstChild());
+//					$firstChild = $element->getFirstChild();
+//					// this sucks...
+//					if ($firstChild instanceof XMLLiteral)
+//					{
+//						$this->writeLiteral($firstChild);
+//					}
+//					else if ($firstChild instanceof XMLText)
+//					{
+//						$this->writeText($firstChild);					
+//					}
+					$this->writeElementContent($element);
 					$this->writeCloseTag($element);
 	// 				$this->append($this->newlineChar);
 				}
@@ -312,9 +322,8 @@ namespace red\xml
 			$this->indent ++;
 			foreach($element->getChildNodes() as $child)
 			{				
-				$child->normalize($this);
-
 				$this->indent();
+				$child->normalize($this);
 				
 				if ($child instanceof XMLElement)
 				{

@@ -87,28 +87,13 @@ namespace red\web\ui\controls
 		protected function resolveTemplateInLanguage($language)
 		{
 			$dir = dirname($this->getReflector()->getFileName());
-			$fileNameParts = array(basename($this->getReflector()->getFileName(), '.php'), $language ,'xml');
-			$fileName = implode('.', array_filter($fileNameParts, function($val) {return $val !== null;}));
-			return $dir . DIRECTORY_SEPARATOR . $fileName;
-		}
 
-		/**
-		 * Create an instance of the control this was called on, pre loading it from its associated
-		 * template.
-		 * 
-		 * This method accepts a variable number of languages in the order preferred, 
-		 * or an array in the first position containing the language codes in order
-		 * of preference.
-		 * 
-		 * @param array|va_arg[string] $languagePref
-		 * @return TemplateControl
-		 */
-		static public function withTemplate()
-		{
-			$reflector = new \ReflectionClass(get_called_class());
-			$instance = $reflector->newInstance();
-			$instance->loadTemplate();
-			return $instance;
+			$fileName	= strtolower($this->getReflector()->getShortName())
+						. (strlen($language) > 0
+								? '.' . $language . '.xml'
+								: '.xml');
+			
+			return $dir . DIRECTORY_SEPARATOR . $fileName ;
 		}
 		
 		/**
@@ -120,6 +105,8 @@ namespace red\web\ui\controls
 		{
 			$languages = language();
 			array_push($languages, null);
+
+			$tried = array();
 			foreach($languages as $language)
 			{
 				$template =	$this->resolveTemplateInLanguage($language);
@@ -127,10 +114,12 @@ namespace red\web\ui\controls
 				{
 					break;
 				}
+				array_push($tried, !empty($language) ? $language : '<default>');
 			}
 			if (!file_exists($template))
 			{
-				static::fail('Template file for "%s" not found in languages: %s', get_called_class(), implode('', language()));
+				static::fail('Template file for "%s" not found in languages: %s', 
+						get_called_class(), implode(', ', $tried));
 			}
 
 			$this->clear();
@@ -148,8 +137,10 @@ namespace red\web\ui\controls
 		 */
 		public function copy()
 		{
-			$copy = new static($this->getTagName());
-
+			$copy = new static();
+			
+			trace('copy of %s results in %s', typeid($this), typeid($copy));
+			
 			foreach($this->attributes as $attribute)
 			{
 				$copy->setAttribute($attribute->getName(), $attribute->getValue());

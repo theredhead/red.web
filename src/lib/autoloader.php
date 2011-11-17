@@ -22,6 +22,10 @@ function red_web_framework_class_loader($fullyQualifiedClassName)
 			require_once $fullPath;
 			$result = true;
 		}
+		else
+		{
+//			printf("Framework loader:<code>%s</code> not found in <code>%s</code><br/>", $fullyQualifiedClassName, $fullPath);
+		}
 	}
 
 	return $result;

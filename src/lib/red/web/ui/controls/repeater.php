@@ -62,10 +62,61 @@ namespace red\web\ui\controls
 			$this->setDataItem($dataItem);
 		}
 	}
+	
+	class RepeaterItemCreatedEventArgument extends EventArgument
+	{
+		// <editor-fold defaultstate="collapsed" desc="Property mixed RepeatedItem">
+		private $repeatedItem = null;
 
+		/**
+		 * @return integer
+		 */
+		public function getRepeatedItem()
+		{
+			return $this->repeatedItem;
+		}
+
+		/**
+		 * @param mixed $newRepeatedItem
+		 */
+		private function setRepeatedItem(HtmlListItem $newRepeatedItem)
+		{
+			$this->repeatedItem = $newRepeatedItem;
+		}
+		// </editor-fold>
+		// <editor-fold defaultstate="collapsed" desc="Property mixed DataItem">
+		private $dataItem = null;
+
+		/**
+		 * @return mixed
+		 */
+		public function getDataItem()
+		{
+			return $this->dataItem;
+		}
+
+		/**
+		 * @param mixed $newDataItem
+		 */
+		public function setDataItem($newDataItem)
+		{
+			$this->dataItem = $newDataItem;
+		}
+		// </editor-fold>
+
+		public function __construct(HtmlListItem $repeatedItem, $dataItem)
+		{
+			parent::__construct();
+			$this->setRepeatedItem($repeatedItem);
+			$this->setDataItem($dataItem);
+		}
+	}
+
+	
 	class Repeater extends BaseControl implements IBindable
 	{
 		const EV_ITEM_CLICKED = 'ItemClicked';
+		const EV_ITEM_CREATED = 'ItemCreated';
 		const EV_SELECTEDINDEX_CHANGED = 'SelectedIndexChanged';
 		
 		// <editor-fold defaultstate="collapsed" desc="Property boolean AutoPostback">
@@ -226,7 +277,6 @@ namespace red\web\ui\controls
 		}
 		// </editor-fold>
 
-		
 		// <editor-fold defaultstate="collapsed" desc="Datasource delegate">
 		/**
 		 * @var IRepeaterDatasourceDelegate
@@ -243,10 +293,6 @@ namespace red\web\ui\controls
 			if ($this->delegate === null)
 			{
 				$this->delegate = $this->findFirst(function($o){return $o instanceof IRepeaterDatasourceDelegate;});
-			}
-			if ($this->delegate === null)
-			{
-				static::fail('No IRepeaterDatasourceDelegate found');
 			}
 			return $this->delegate;
 		}
@@ -270,8 +316,9 @@ namespace red\web\ui\controls
 		 */
 		public function bind($dataItem)
 		{
+			assert($dataItem instanceof IRepeaterDatasourceDelegate);
 			$this->canBindTo($dataItem) or $this->fail('Cannot bind to %s', typeid($dataItem));
-			$this->setDelegate($dataItem);
+			$this->delegate = $dataItem;
 			$this->buildControl();
 			$this->isBound = true;
 		}
@@ -334,6 +381,8 @@ namespace red\web\ui\controls
 		protected function buildItems(HtmlTag $template, HtmlTag $emptyTemplate=null)
 		{
 			$delegate = $this->getDelegate();
+			assert($delegate instanceof IRepeaterDatasourceDelegate);
+
 			$numberOfItems = $delegate->numberOfRowsInRepeater($this);
 			
 			$list = $this->appendchild(new HtmlUnorderedList());
@@ -384,6 +433,10 @@ namespace red\web\ui\controls
 			{
 				$item->appendChild($child->copy());
 			}
+
+			$this->notifyListenersOfEvent(self::EV_ITEM_CREATED, 
+					new RepeaterItemCreatedEventArgument($item, $dataItem));
+
 			$binder->bind($item);
 			return $item;
 		}
@@ -437,6 +490,10 @@ namespace red\web\ui\controls
 		{
 			if (! $this->isBuilt)
 			{
+				if ($this->getDelegate() === null)
+				{
+					static::fail('No IRepeaterDatasourceDelegate found');
+				}
 				$this->buildControl();
 			}
 			parent::preRender();

@@ -14,6 +14,18 @@ namespace red\web\ui
 	
 	abstract class WebPage extends XHTMLDocument
 	{
+		const LIFECYCLE_STATE_NONE = 0;
+		const LIFECYCLE_STATE_INIT = 1;
+		const LIFECYCLE_STATE_POSTBACK = 2;
+		const LIFECYCLE_STATE_LOAD = 3;
+		const LIFECYCLE_STATE_RENDER = 4;
+		
+		private $currentLifecycleState = self::LIFECYCLE_STATE_NONE;
+		protected function currentLifecycleState()
+		{
+			return $this->currentLifecycleState;
+		}
+		
 		/**
 		 * Represents the event where the page was initialized 
 		 * and all controls are created. At this point state from 
@@ -206,6 +218,11 @@ namespace red\web\ui
 		}
 		// </editor-fold>
 		
+		protected function isTraceEnabled()
+		{
+			return isset($_REQUEST['trace']);
+		}
+		
 		/**
 		 * Clear this page.
 		 * 
@@ -349,7 +366,7 @@ namespace red\web\ui
 		/**
 		 * triggers the WebPage::EV_PAGE_INIT event 
 		 */
-		protected function init()
+		protected function init(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
 			// @todo: move this logic to the template loading inside WebPageReader
 			$reflector = new \ReflectionObject($this);
@@ -376,7 +393,7 @@ namespace red\web\ui
 		/**
 		 * triggers the WebPage::EV_PAGE_LOAD event 
 		 */
-		protected function load()
+		protected function load(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
 			$this->notifyListenersOfEvent(self::EV_PAGE_LOAD, new \red\	EventArgument());
 		}
@@ -386,13 +403,21 @@ namespace red\web\ui
 		 */
 		final public function processRequest(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
-			$this->init();
+			$this->log('Entering INIT state') . PHP_EOL;
+			$this->currentLifecycleState = self::LIFECYCLE_STATE_INIT;
+			$this->init($request, $response);
 			if ($request->isPostback())
 			{
+				$this->log('Entering POSTBAKC state');
+				$this->currentLifecycleState = self::LIFECYCLE_STATE_POSTBACK;
 				$this->notePostback($request);
 			}
-			$this->load();
+			$this->log('Entering LOAD state');
+			$this->currentLifecycleState = self::LIFECYCLE_STATE_LOAD;
+			$this->load($request, $response);
 
+			$this->log('Entering RENDER state');
+			$this->currentLifecycleState = self::LIFECYCLE_STATE_RENDER;
 			$this->preRender();
 
 			$this->addStateFieldToForms();
@@ -421,7 +446,12 @@ namespace red\web\ui
 				? (string)$msg
 				: call_user_func_array('sprintf', func_get_args());
 
-			$this->registerStartupScript(sprintf('if(typeof console != "undefined"){console.log("%s");};', htmlspecialchars($msg)));
+			$this->registerStartupScript(sprintf('if(typeof console != "undefined"){console.log("%s");};', addslashes($msg)));
+			
+			if($this->isTraceEnabled())
+			{
+				trace($msg);
+			}
 		}
 
 		/**

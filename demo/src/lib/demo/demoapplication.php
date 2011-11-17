@@ -26,11 +26,15 @@ namespace demo
 			switch($path)
 			{
 				case '/addressbook' :
-					$page = \demo\pages\AddressBook::withTemplate();
+					$page = new pages\AddressBook();
+					break;
+
+				case '/documentation' :
+					$page = new pages\Documentation();
 					break;
 
 				default :
-					$page = \demo\pages\Hello::withTemplate();
+					$page = new pages\Hello();
 					break;
 			}
 

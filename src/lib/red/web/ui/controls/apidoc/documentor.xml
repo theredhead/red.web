@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns:ctl="\red\web\ui\controls" xmlns:api="\red\web\ui\controls\apidoc">
+
+	<h1><ctl:StaticText id="txtClassName" /></h1>
+
+	<ctl:Repeater id="rptMethods">
+		<HeaderTemplate>
+			<h2>Methods</h2>
+		</HeaderTemplate>
+		<ItemTemplate>
+			<api:MethodHeader />
+		</ItemTemplate>
+	</ctl:Repeater>
+
+<!--	<ctl:Repeater id="rptProperties">
+		<HeaderTemplate>
+			<h2>Fields</h2>
+		</HeaderTemplate>
+		<ItemTemplate>
+			@item
+		</ItemTemplate>
+	</ctl:Repeater>-->
+</div>

@@ -56,14 +56,79 @@ namespace red\web\ui\controls
 		{
 			static $counter = 0;
 			
-			$string instanceof MBString or $string = MBString::withString($string);
+			assert($string instanceof MBString or $string = MBString::withString($string));
 			
 			$result = $string->replace('@item', ''.$this->getDataItem());
 			$result = $result->replace('@dump', print_r($this->getDataItem(), true));
+
+			$pattern = '~\{([^\}]+?)\}~';
+			$matches = array();
+			$count = preg_match_all($pattern, $string->toString(), $matches, PREG_SET_ORDER, 0);
+			if ($count > 0)
+			{
+				foreach($matches as $match)
+				{
+					$placeholder = $match[0];
+					$propertyPath = $match[1];
+					trace($propertyPath);
+					$result = $result->replace($placeholder, $this->extractPropertyPath($propertyPath));
+				}
+			}
+			
 			
 			return $result;
 		}
 		
+		protected function extractPropertyPath($propertyPath)
+		{
+			$dataItem = $this->GetDataItem();
+			$path = explode('.', $propertyPath);
+			$instance = $dataItem;
+			$done = false;
+			$result = sprintf('[Not found in %s: %s]', typeid($dataItem), $propertyPath);
+
+			while(count($path) > 0 && ! $done)
+			{
+				$propertyName = array_shift($path);
+//				trace(__METHOD__ . ' >> ' .$propertyName);
+				if (is_array($instance))
+				{
+					if (isset($instance[$propertyName]))
+					{
+						$instance = $instance[$propertyName];
+					}
+					else
+					{
+						break;
+					}
+				}
+				else if (is_object($instance))
+				{
+					$reflector = new \ReflectionObject($instance);
+					if ($reflector->hasMethod($propertyName))
+					{
+						$method = $reflector->getMethod($propertyName);
+						$instance = $method->invoke($instance);
+					}
+					else if($reflector->hasProperty($propertyName))
+					{
+						$property = $reflector->getProperty($propertyName);
+						$instance = $property->getValue($instance);
+					}
+					else
+					{
+						break;
+					}
+				}
+				
+				if (count($path) === 0)
+				{
+					$result = $instance;
+				}
+			}
+
+			return $result;
+		}
 		/**
 		 * For internal use. (could be overridden in subclass)
 		 * 

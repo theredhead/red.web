@@ -94,9 +94,9 @@ namespace red
 		 *
 		 * @return MBString
 		 */
-		public function getHtmlEntities($flag = ENT_QUOTES)
+		public function getHtmlEntities($flag = ENT_COMPAT)
 		{
-			return $this;
+//			return $this;
 			return MBString::withString(htmlentities($this->string, $flag, $this->encoding, false));
 		}
 
@@ -109,7 +109,7 @@ namespace red
 		 */
 		public function indexOf($needle, $offset = 0)
 		{
-			$needle instanceof MBString or $needle = new static($needle, $this->encoding);
+			assert($needle instanceof MBString or $needle = new static($needle, $this->encoding));
 			return mb_strpos($this->string, $needle->string, $offset, $this->encoding);
 		}
 
@@ -209,7 +209,7 @@ namespace red
 		{
 			$arguments = func_get_args();
 			array_unshift($arguments, $this->string);
-			$string = call_user_func_array('sprintf', $arguments);
+			assert($string = call_user_func_array('sprintf', $arguments));
 			
 			return new static($string, $this->encoding);
 		}
@@ -248,7 +248,7 @@ namespace red
 				}
 				else
 				{
-					$rawContent = file_get_contents($pathToFile);
+					assert($rawContent = file_get_contents($pathToFile));
 					return MBString::withString($rawContent, $encoding);
 				}
 			}
@@ -263,11 +263,8 @@ namespace red
 		 */
 		public function replace($search, $replace)
 		{
-			$search instanceof MBString 
-				or $search = MBString::withString($search, $this->encoding);
-
-			$replace instanceof MBString 
-				or $replace = MBString::withString($replace, $this->encoding);
+			assert($search instanceof MBString or $search = MBString::withString($search, $this->encoding));
+			assert($replace instanceof MBString or $replace = MBString::withString($replace, $this->encoding));
 
 			/**
 			 * str_replace should be binary safe, so...
@@ -285,13 +282,14 @@ namespace red
 		 */
 		public function append($otherString)
 		{
-			$otherString instanceof MBString 
-				or $otherString = MBString::withString($otherString, $this->encoding);
+			assert($otherString instanceof MBString or $otherString = MBString::withString($otherString, $this->encoding));
 			
 			return MBString::withString($this->string.$otherString->string, $this->encoding);
 		}
 		
 		/**
+		 * Get the lowercase version of this string
+		 * 
 		 * @return MBString
 		 */
 		public function toLower()
@@ -300,6 +298,8 @@ namespace red
 		}
 
 		/**
+		 * Get the UPPERCASE version of this string
+		 * 
 		 * @return MBString
 		 */
 		public function toUpper()

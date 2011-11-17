@@ -68,3 +68,14 @@ function distance($a, $b)
 {
 	return abs($a - $b);
 }
+
+/**
+ * @param type $va_arg 
+ */
+function trace($message)
+{
+	if(isset($_REQUEST['trace']))
+	{
+		printf("%s\n", func_num_args() == 1 ? $message : call_user_func_array('sprintf', func_get_args()));
+	}
+}

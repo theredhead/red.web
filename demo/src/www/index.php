@@ -30,7 +30,7 @@ function demo_app_class_loader($fullyQualifiedClassName)
 	}
 	else
 	{
-		throw new ErrorException(sprintf("<code>%s</code> not found in <code>%s</code><br/>", $fullyQualifiedClassName, $absolutePath));
+//		throw new ErrorException(sprintf("<code>%s</code> not found in <code>%s</code><br/>", $fullyQualifiedClassName, $absolutePath));
 	}
 
 	return $result;

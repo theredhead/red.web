@@ -232,6 +232,15 @@ namespace red\xml
 		}
 		
 		/**
+		 * See if this element has attributes
+		 *
+		 * @return boolean
+		 */
+		public function hasAttributes()
+		{
+			return count($this->getAttributes()) > 0;
+		}
+		/**
 		 * remove an attribute by name
 		 * 
 		 * @param string $name 

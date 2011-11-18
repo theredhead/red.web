@@ -30,10 +30,16 @@ namespace demo\pages
 					: 'red.Object';
 			
 			$typename = NAMESPACE_SEPARATOR . str_replace('.', NAMESPACE_SEPARATOR, $typeId);
-			
-			$reflector = new ReflectionClass($typename);
-			
-			$this->documentor->bind($reflector);
+		
+			try
+			{
+				$reflector = new ReflectionClass($typename);
+				$this->documentor->bind($reflector);
+			}
+			catch(\ReflectionException $ex)
+			{
+				
+			}
 		}
 	}
 }

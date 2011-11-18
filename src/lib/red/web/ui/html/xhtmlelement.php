@@ -55,8 +55,9 @@ namespace red\web\ui\html
 		 * @param \MBString $className
 		 * @return booleab
 		 */
-		public function hasCssClass(MBString $className)
+		public function hasCssClass($className)
 		{
+			assert($className instanceof MBString or $className = MBString::withString($className));
 			return isset($this->cssClasses[$className->toString()]);
 		}
 		
@@ -80,8 +81,8 @@ namespace red\web\ui\html
 		 */
 		public function getElementsByClassName($className)
 		{
-			return $this->findAll(function(XMLNode $node) use ($className) {
-				return $node instanceof XMLElement && $node->hasCssClass($className);
+			return $this->findAll(function(\red\xml\XMLNode $node) use ($className) {
+				return $node instanceof \red\xml\XMLElement && $node->hasCssClass($className);
 			});
 		}
 

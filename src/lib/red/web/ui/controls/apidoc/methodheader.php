@@ -44,8 +44,15 @@ namespace red\web\ui\controls\apidoc
 		{
 			assert($dataItem instanceof ReflectionMethod);
 			$this->setDatasource($dataItem);
-			$this->txtMethodName->setText($dataItem->getName());
-			$this->rptParameters->bind($this);
+			// $this->txtMethodName->setText($dataItem->getName());
+//			$this->rptParameters->bind($this);
+			
+			if (! $dataItem->isUserDefined())
+			{
+				$dlMemberDetails = $this->getElementsByClassName('member-details')->first();
+				$dlMemberDetails->clear();
+			}
+			
 			$this->isBound = true;
 		}
 		
@@ -113,7 +120,7 @@ namespace red\web\ui\controls\apidoc
 		
 		public function canBindTo($dataItem)
 		{
-			return $dataItem instanceof Documentor;
+//			return $dataItem instanceof Documentor;
 			return $dataItem instanceof \ReflectionMethod;
 		}
 

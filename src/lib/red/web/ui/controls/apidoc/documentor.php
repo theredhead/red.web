@@ -91,8 +91,8 @@ namespace red\web\ui\controls\apidoc
 		
 		protected function assertReflectionDataGathered()
 		{
-			assert(is_array($this->methods) or $this->methods = $this->getDatasource()->getMethods());
-			assert(is_array($this->properties) or $this->properties = $this->getDatasource()->getProperties());
+			is_array($this->methods) or $this->methods = $this->getDatasource()->getMethods();
+			is_array($this->properties) or $this->properties = $this->getDatasource()->getProperties();
 		}
 		
 		/**

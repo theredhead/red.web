@@ -276,6 +276,29 @@ namespace red\web\ui\controls
 			$this->emptyTemplate = $newEmptyTemplate;
 		}
 		// </editor-fold>
+		// <editor-fold defaultstate="collapsed" desc="Property HtmlTag NoDataTemplate">
+		private $noDataTemplate = null;
+
+		/**
+		 * @return HtmlTag
+		 */
+		public function getNoDataTemplate()
+		{
+			if($this->noDataTemplate === null)
+			{
+				$this->noDataTemplate = $this->findFirstElementByLocalName('NoDataTemplate', false, false);
+			}
+			return $this->noDataTemplate;
+		}
+
+		/**
+		 * @param HtmlTag $newItemTemplate
+		 */
+		public function setNoDataTemplate(HtmlTag $newNoDataTemplate)
+		{
+			$this->noDataTemplate = $newNoDataTemplate;
+		}
+		// </editor-fold>
 
 		// <editor-fold defaultstate="collapsed" desc="Datasource delegate">
 		/**
@@ -347,6 +370,7 @@ namespace red\web\ui\controls
 			$header = $this->getHeaderTemplate();
 			$footer = $this->getFooterTemplate();
 			$empty = $this->getEmptyTemplate();
+			$nodata = $this->getNoDataTemplate();
 			$template = $this->getItemTemplate();
 			
 			$this->clear();
@@ -358,8 +382,22 @@ namespace red\web\ui\controls
 					$this->appendChild($child);
 				}
 			}
-
-			$this->buildItems($template, $empty);
+			
+			if ($delegate instanceof IRepeaterDatasourceDelegate && $delegate->numberOfRowsInRepeater($this) > 0)
+			{
+				$this->buildItems($template, $empty);
+			}
+			else if ($nodata instanceof HtmlTag)
+			{
+				foreach($nodata->getChildNodes() as $child)
+				{
+					$this->appendChild($child);
+				}
+			}
+			else
+			{
+				self::fail('No valid datasource delegate, nor a NoDataTemplate were found.');
+			}
 
 			if ($footer && $footer->hasChildren())
 			{
@@ -490,10 +528,6 @@ namespace red\web\ui\controls
 		{
 			if (! $this->isBuilt)
 			{
-				if ($this->getDelegate() === null)
-				{
-					static::fail('No IRepeaterDatasourceDelegate found');
-				}
 				$this->buildControl();
 			}
 			parent::preRender();

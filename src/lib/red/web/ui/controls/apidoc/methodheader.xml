@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns:ctl="\red\web\ui\controls" xmlns:api="\red\web\ui\controls\apidoc">
-	<h3>{getName}</h3>
-	<pre>		{getDocComment}</pre>
-	<dl>
+	<h3>{getDeclaringClass.getShortName}.{getName}</h3>
+	<p>
+		This method takes {getNumberOfParameters} parameters, {getNumberOfRequiredParameters} are required.
+	</p>
+	<dl class="member-details">
 		<dt>Declared in</dt>
-		<dd>{getDeclaringClass.getName}</dd>
+		<dd><a href="/documentation?class={getDeclaringClass.getName}">{getDeclaringClass.getName}</a></dd>
 		
 		<dt>File</dt>
-		<dd>{getDeclaringClass.getFilename}, lines {getStartLine} ro {getEndLine}</dd>
+		<dd>{getDeclaringClass.getFilename}, lines {getStartLine} to {getEndLine}</dd>
+		
+		<dt>export</dt>
+		<dd><pre>@item</pre></dd>
 	</dl>
 </div>

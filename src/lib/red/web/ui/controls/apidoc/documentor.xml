@@ -10,14 +10,24 @@
 		<ItemTemplate>
 			<api:MethodHeader />
 		</ItemTemplate>
+		<NoDataTemplate>
+			<p>
+				No methods available.
+			</p>
+		</NoDataTemplate>
 	</ctl:Repeater>
 
-<!--	<ctl:Repeater id="rptProperties">
+	<ctl:Repeater id="rptProperties">
 		<HeaderTemplate>
 			<h2>Fields</h2>
 		</HeaderTemplate>
 		<ItemTemplate>
 			@item
 		</ItemTemplate>
-	</ctl:Repeater>-->
+		<NoDataTemplate>
+			<p>
+				No properties available.
+			</p>
+		</NoDataTemplate>
+	</ctl:Repeater>
 </div>

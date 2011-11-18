@@ -107,8 +107,15 @@ namespace red\web\ui\controls
 					$reflector = new \ReflectionObject($instance);
 					if ($reflector->hasMethod($propertyName))
 					{
-						$method = $reflector->getMethod($propertyName);
-						$instance = $method->invoke($instance);
+						try
+						{
+							$method = $reflector->getMethod($propertyName);
+							$instance = $method->invoke($instance);
+						}
+						catch(\Exception $ex)
+						{
+							return $ex->getMessage();
+						}
 					}
 					else if($reflector->hasProperty($propertyName))
 					{
@@ -123,7 +130,9 @@ namespace red\web\ui\controls
 				
 				if (count($path) === 0)
 				{
-					$result = $instance;
+					$result = is_bool($instance)
+							? ($instance ? 'true' : 'false')
+							: $instance;
 				}
 			}
 
@@ -144,7 +153,14 @@ namespace red\web\ui\controls
 			{
 				$node->setTextContent($this->expandString($node->getTextContent()));
 			}
-			else if ($node instanceof IBindable && ! $node->isBound())
+			if ($node instanceof HtmlTag && $node->hasAttributes())
+			{
+				foreach($node->getAttributes() as $attribute)
+				{
+					$node->setAttribute($attribute->getName(), $this->expandString($attribute->getValue()));
+				}
+			}
+			if ($node instanceof IBindable && ! $node->isBound())
 			{
 				$dataItem = $this->getDataItem();
 				if ($node->canBindTo($dataItem))

@@ -1,0 +1,74 @@
+<?xml version="1.0" standalone="yes" encoding="UTF-8"?>
+<!--
+	What I'm trying to do here is find a neat declarative way to define a
+	combination of a database schema and class tree that can be generated
+	by a parser.
+
+	Input: XML
+	Output: SQL DDL & PHP Code
+
+	Things I'm not sure about yet include the way to generate foreign
+	keys and check constraints. I think they both need implementation in
+	the DDL and the PHP code.
+
+	This example file should declare objects in a projects' base namespace
+	that are transparently stored in an auto generated sqlite DataStore
+	inside the app-data folder.
+
+	If I do this nicely I can have key/value observing controls and save
+	the developer a whole lot of time and effort designing for small to
+	medium applications. If I get it great, it could boost medium to large
+	scale enterprise application productivity as well as soon as other
+	DataStore engines are implemented.
+
+	Classes generated would provide validation for their properties based
+	on StorageType, and therefor be extendible to user defined types as
+	well (as long as the type is serializable it could be wrapped)
+
+	Retrieving and storing objects should be utterly transparent but I'm
+	still gathering ideas on how to do it.
+
+	Since the entire schema would be generated, I'd add a few columns
+	under water to keep track of audit data. Every database would auto-
+	magically be versioned a-la wiki.
+-->
+<Entities name="AdddressBook">
+    <Entity name="Person" Key="Name,Middlename,Surname,Maidenname">
+        <Property name="Displayname" storageType="red.MBString" />
+	    <Property name="Name" storageType="red.MBString" required="true" />
+	    <Property name="Middlename" storageType="red.MBString" required="true" />
+        <Property name="Surname" storageType="red.MBString" required="true" />
+        <Property name="Maidenname" storageType="red.MBString" required="false" />
+	    <Property name="Gender" storageType="red.MBString" required="false" />
+        <Property name="Birthday" storageType="red.DateTime" required="false" />
+        <Property name="Anniversary" storageType="red.DateTime" required="false" />
+
+	    <Relation name="Addresses" type="hasMany" required="false" toEntity="Address" />
+	    <Relation name="PhoneNumbers" type="hasMany" required="false" toEntity="PhoneNumber" />
+	    <Relation name="EmailAddresses" type="hasMany" required="false" toEntity="EmailAddress" />
+
+		<Relation name="Father" type="hasOne" required="false" toEntity="Person" />
+	    <Relation name="Mother" type="hasOne" required="false" toEntity="Person" />
+	    <Relation name="Children" type="hasMany" required="false" toEntity="Person" />
+    </Entity>
+	<Entity name="Address">
+		<Property name="StreetLine1" required="true" storageType="red.MBString" />
+		<Property name="StreetLine2" required="false" storageType="red.MBString" />
+		<Property name="PostalCode" required="false" storageType="red.MBString" />
+		<Property name="State" required="false" storageType="red.MBString" />
+		<Property name="Region" required="false" storageType="red.MBString" />
+
+		<Relation name="Country" type="hasOne" required="false" toEntity="Country" />
+	</Entity>
+	<Entity name="EmailAddress">
+		
+	</Entity>
+	<Entity name="PhoneNumber">
+
+	</Entity>
+	<Entity name="Country" Key="Name">
+		<Property name="Name" required="true" storageType="red.MBString" />
+		<Property name="IsoCode" required="false" storageType="red.MBString" />
+	</Entity>
+</Entities>
+

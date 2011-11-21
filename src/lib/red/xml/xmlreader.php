@@ -9,6 +9,7 @@ namespace red\xml
 	use \DOMText;
 	use \DOMComment;
 	use \DOMCData;
+	use \DOMCdataSection;
 	
 	class XMLReader extends \red\Object
 	{
@@ -51,6 +52,10 @@ namespace red\xml
 			if ($node instanceof DOMElement)
 			{
 				$result = $this->parseElement($node, $ownerDocument);
+			}
+			else if ($node instanceof DOMCdataSection)
+			{
+				$result = $ownerDocument->createCDataSection($node->nodeValue);
 			}
 			else if ($node instanceof DOMText)
 			{

@@ -4,8 +4,17 @@
 		<title>Hello, World!</title>
 	</head>
 	<body>
+		<a style="margin: -2em; float: right;" href="https://github.com/theredhead/red.web">
+			<ctl:Image id="imgForkMe" imageHref="/img/forkme.png" alt="Fork me on github!"/>
+		</a>
+
 		<ctl:Form action="/">
-			
+			<div>
+				<ctl:Image id="imgLogo" imageHref="/img/logo.png" style="display: block; margin: 2em auto;"/>
+			</div>
+
+			<br />
+
 			<ctl:TabContainer>
 				<ctl:TabPage labelText="Hello">
 

@@ -72,6 +72,17 @@ namespace red\xml
 		}
 
 		/**
+		 * Create an XMLCDataSection with content
+		 *
+		 * @param $textContent
+		 * @return XMLCDataSection
+		 */
+		public function createCDataSection($textContent)
+		{
+			return new XMLCDataSection($textContent);
+		}
+
+		/**
 		 * Create a literal node suitable for use in this document
 		 *
 		 * @param string $literalContent

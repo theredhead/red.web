@@ -142,7 +142,7 @@ namespace red\xml
 			$result = false;
 			if ($element->hasChildren() && $element->getChildNodes()->count() == 1)
 			{
-				$result = $element->getFirstChild() instanceof XMLText;
+				$result = typeid($element->getFirstChild()) == 'red.xml.XMLText';
 			}
 			return $result;
 		}
@@ -331,6 +331,10 @@ namespace red\xml
 					{
 						$this->writeElement($child);
 					}
+				}
+				else if ($child instanceof XMLCDataSection)
+				{
+					$this->writeCDataSection($child);
 				}
 				else if ($child instanceof XMLLiteral)
 				{

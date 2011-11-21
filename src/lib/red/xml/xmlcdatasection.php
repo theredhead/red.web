@@ -4,7 +4,7 @@ namespace red\xml
 {
 	use red\MBString;
 
-	class XMLCDataSection extends XMLText
+	class XMLCDataSection extends XMLLiteral
 	{
 	}
 }

@@ -160,8 +160,6 @@ namespace red\web\ui\controls
 					$img = imagecreatefromstring(file_get_contents($realPath));
 					$this->setHeight(imagesy($img));
 					$this->setWidth(imagesx($img));
-
-					parent::setAttribute('src', $this->getImageHref());
 				}
 				else
 				{
@@ -173,8 +171,10 @@ namespace red\web\ui\controls
 				$this->setAttribute('onclick', $this->createClientEventTrigger(self::EV_CLICKED, null));
 			}
 
+			parent::setAttribute('src', $this->getImageHref());
 			parent::setAttribute('height', (string)$this->getHeight());
 			parent::setAttribute('width', (string)$this->getWidth());
+
 			parent::preRender();
 		}
 	}

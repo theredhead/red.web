@@ -41,7 +41,27 @@ namespace red\web\ui
 		 */
 		const EV_PAGE_LOAD = 'PageLoad';
 
-		
+		/**
+		 * @var \red\web\http\HttpApplication
+		 */
+		private $application;
+
+		/**
+		 * @return \red\web\http\HttpApplication
+		 */
+		public function getApplication()
+		{
+			return $this->application;
+		}
+
+		/**
+		 * @param \red\web\http\HttpApplication $application
+		 */
+		protected function setApplication($application)
+		{
+			$this->application = $application;
+		}
+
 		/**
 		 * Keeps the childcontrols linked and findable, even when there is no property declared.
 		 * (used for auto event wiring)
@@ -471,10 +491,12 @@ namespace red\web\ui
 			$this->registerStartupScript(sprintf('alert("%s");', htmlspecialchars($msg)));
 		}
 		
-		public function __construct()
+		public function __construct(\red\web\http\HttpApplication $application)
 		{
 			parent::__construct(MBString::withString('html'));
-			
+
+			$this->setApplication($application);
+
 			$this->setDocumentType(MBString::withString('<!DOCTYPE html>'));
 			$this->head = $this->appendChild(new HtmlHead());
 			$this->body = $this->appendChild(new HtmlBody());

@@ -13,7 +13,9 @@ function red_web_framework_class_loader($fullyQualifiedClassName)
 	$parts = explode(NAMESPACE_SEPARATOR, $fullyQualifiedClassName);
 	$relativePath = strtolower(implode(DIRECTORY_SEPARATOR, $parts)) . '.php';
 
-	foreach(explode(PATH_SEPARATOR, ini_get('include_path')) as $baseDir)
+	//foreach(explode(PATH_SEPARATOR, ini_get('include_path')) as $baseDir)
+
+	$baseDir = dirname(__FILE__);
 	{
 		$fullPath = realpath($baseDir) . DIRECTORY_SEPARATOR . $relativePath;
 		

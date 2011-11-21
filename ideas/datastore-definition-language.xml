@@ -29,8 +29,8 @@
 	still gathering ideas on how to do it.
 
 	Since the entire schema would be generated, I'd add a few columns
-	under water to keep track of audit data. Every database would auto-
-	magically be versioned a-la wiki.
+	under water to keep track of audit meta data. Every database would
+	automagically have records be versioned a-la wiki (in a separate db).
 -->
 <Entities name="AdddressBook">
     <Entity name="Person" Key="Name,Middlename,Surname,Maidenname">

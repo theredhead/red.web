@@ -26,15 +26,15 @@ namespace demo
 			switch($path)
 			{
 				case '/addressbook' :
-					$page = new pages\AddressBook();
+					$page = new pages\AddressBook($this);
 					break;
 
 				case '/documentation' :
-					$page = new pages\Documentation();
+					$page = new pages\Documentation($this);
 					break;
 
 				default :
-					$page = new pages\Hello();
+					$page = new pages\Hello($this);
 					break;
 			}
 

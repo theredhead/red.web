@@ -9,6 +9,9 @@
 			<ctl:TabContainer>
 				<ctl:TabPage labelText="Hello">
 
+					<ctl:Image id="imgScreenshot" imageHref="/img/screen-640.png" />
+
+
 					<h1>Hello, World!</h1>
 					<p>
 						A simple page with some demonstrations/tests.

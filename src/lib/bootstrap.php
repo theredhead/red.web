@@ -285,9 +285,10 @@ function bootstrap_exception_handler_var_dump($var, $nesting=0)
 	
 	return $result;
 }
-
-set_exception_handler('bootstrap_exception_handler');
-
+if (php_sapi_name() != 'cli')
+{
+	set_exception_handler('bootstrap_exception_handler');
+}
 
 
 date_default_timezone_set('Europe/Amsterdam');

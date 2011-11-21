@@ -164,6 +164,17 @@ namespace red
 		}
 
 		/**
+		 * See if there are listeners for a given $eventName
+		 *
+		 * @param $eventName
+		 * @return bool
+		 */
+		public function hasEventListeners($eventName)
+		{
+			return isset($this->listeners[$eventName]) && count($this->listeners[$eventName]) > 0;
+		}
+
+		/**
 		 * Remove a previously registered handler
 		 * 
 		 * @param type $eventName

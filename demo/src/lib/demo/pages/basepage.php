@@ -11,9 +11,9 @@ namespace demo\pages
 	{
 		const CSS_MAIN_STYLESHEET = '/css/main.css';
 		
-		public function __construct()
+		public function __construct(\red\web\http\HttpApplication $application)
 		{
-			parent::__construct();
+			parent::__construct($application);
 			$this->registerStyleSheet(static::CSS_MAIN_STYLESHEET);
 			$this->registerClientScript('/js/events.js');
 			$this->loadTemplate();

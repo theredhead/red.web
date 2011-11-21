@@ -4,6 +4,11 @@ namespace red\web\http
 {
 	abstract class HttpApplication extends \red\Object
 	{
+		public function mapPath($virtualPath)
+		{
+			return realpath($_SERVER['DOCUMENT_ROOT']) . DIRECTORY_SEPARATOR . $virtualPath;
+		}
+
 		abstract public function processRequest(HttpRequest $request, HttpResponse $response);
 		
 		static public function start()

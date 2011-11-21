@@ -2,20 +2,21 @@
 
 namespace demo\pages
 {
-	use red\Object;
-	use red\web\ui\html\HtmlText;
-	use red\web\ui\WebPage;
 	use red\web\ui\controls\Button;
-	use red\web\ui\controls\DataGrid;
-	use red\web\ui\controls\HeaderClickedEventArgument;
-	use red\web\ui\controls\CellClickedEventArgument;
 	use red\EventArgument;
-	
+	use red\web\ui\controls\Image;
+
+	/**
+	 * This exception is thrown when the "crash" button is clicked.
+	 */
 	class DemonstrationException extends \Exception
 	{
-		
 	}
 	
+	/**
+	 * Hello contains the code required to respond to events activated by the
+	 * user in the UI
+	 */
 	class Hello extends BasePage
 	{	
 		/**
@@ -31,16 +32,27 @@ namespace demo\pages
 		}
 
 		/**
-		 * event handler, triggered when btnCrash is clicked
+		 * Event handler, triggered when btnCrash is clicked
 		 *
 		 * @param Button $sender
 		 * @param EventArgument $argument 
+		 * @throws DemonstrationException
 		 */
 		private function onBtnCrash_clicked(Button $sender, EventArgument $argument)
 		{
 			// crash this request
 			throw new DemonstrationException('You asked for it...');
 		}
+
+		/**
+		 * @param \red\web\ui\controls\Image $sender
+		 * @param \red\EventArgument $argument
+		 * @return void
+		 */
+//		private function onImgScreenshot_clicked(Image $sender, EventArgument $argument)
+//		{
+//			$this->alert("You clicked the image!");
+//		}
 	}
 }
 

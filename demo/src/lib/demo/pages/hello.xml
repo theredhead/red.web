@@ -8,7 +8,7 @@
 			<ctl:Image id="imgForkMe" imageHref="/img/forkme.png" alt="Fork me on github!"/>
 		</a>
 
-		<ctl:Form action="/">
+		<ctl:Form>
 			<div>
 				<ctl:Image id="imgLogo" imageHref="/img/logo.png" style="display: block; margin: 2em auto;"/>
 			</div>
@@ -23,17 +23,49 @@
 
 					<h1>Hello, World!</h1>
 					<p>
-						A simple page with some demonstrations/tests.
+						Hello and welcome to the demonstration page of the <code>red.web</code>
+						framework for php.
 					</p>
-					
-					<ctl:Button id="btnHello" caption=" (Apple logo) is three bytes of UTF-8"/>
-					
+					<p>
+						On these tabs you'll find a few widgets to play with that demonstrate the
+						way this framework allows you to build web pages with hardly any code.
+					</p>
+					<p>
+						In fact... the only code in this pages' class file is the event handling
+						for the two buttons you see on this page and amounts to a mere handful of
+						lines of code.
+					</p>
+					<p>
+						The code does not change when you change the language, since that's just
+						view information.
+					</p>
+
+					<ul>
+						<li>
+							<p>
+								<ctl:Button id="btnHello" caption=" (Apple logo) is three bytes of UTF-8"/>
+								<br />
+								Clicking this button triggers the <code>onBtnHello_Clicked</code> handler. It
+								does this without the need for glue code because autowiring of events is
+								enabled.
+							</p>
+						</li>
+						<li>
+							<p>
+								<ctl:Button id="btnCrash">Show me an error page!</ctl:Button>
+								<br />
+								This button triggers the <code>onBtnCrash_Clicked</code> handler which trows
+								an exception so you can see what kind of information you can expect to see on
+								a developers error page.
+							</p>
+						</li>
+					</ul>
+
 					<p>
 						This page is also available <a href="/?language=nl-nl">in dutch.</a>
 					</p>
-					
-					<ctl:Button id="btnCrash">Crash</ctl:Button>
-					
+
+
 				</ctl:TabPage>
 				<ctl:TabPage labelText="Table">
 			

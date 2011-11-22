@@ -4,21 +4,64 @@
 		<title>Hallo, Wereld!</title>
 	</head>
 	<body>
-		<ctl:Form action="/?language=nl-nl">
-			
+		<a style="margin: -2em; float: right;" href="https://github.com/theredhead/red.web">
+			<ctl:Image id="imgForkMe" imageHref="/img/forkme.png" alt="Fork me on github!"/>
+		</a>
+
+		<ctl:Form>
+			<div>
+				<ctl:Image id="imgLogo" imageHref="/img/logo.png" style="display: block; margin: 2em auto;"/>
+			</div>
+
 			<ctl:TabContainer>
 				<ctl:TabPage labelText="Hallo">
 
+					<ctl:Image id="imgScreenshot" imageHref="/img/screen-640.png" />
+
 					<h1>Hallo, Wereld!</h1>
 					<p>
-						Een simpele pagina met wat demonstraties en tests.
+						Hallo en welkom op de demonstratie pagina voor het <code>red.web</code>
+						php framework.
 					</p>
-					
-					<ctl:Button id="btnHello" caption=" (Apple logo) drie bytes aan UTF-8"/>
 					<p>
-						Deze pagina is er ook <a href="/">in het engels.</a>
+						Op deze tabs vind je een paar widgets om mee te spelen die de manier laten
+						zien waarop dit framework jou toestaat om vrijwel zonder code pagina's te
+						bouwen.
 					</p>
-					
+					<p>
+						In feite... De enige code in de definitie van deze pagina bestaat uit de
+						event handlers van de twee knoppen die je op deze pagina ziet en bestaat uit
+						slechts een handjevol regels.
+					</p>
+					<p>
+						De code veranderd niet als je een andere taal kiest, dat is tenslotte enkel
+						weergave informatie.
+					</p>
+
+					<ul>
+						<li>
+							<p>
+								<ctl:Button id="btnHello" caption=" (Apple logo) is three bytes of UTF-8"/>
+								<br />
+								Als je op deze knop klikt gaat de <code>onBtnHello_Clicked</code> handler af.
+								Dit gebeurt automatisch en zonder enige lijm code want event handlers worden
+								automatisch gekoppeld and de objecten waarvoor ze bedoeld zijn.
+							</p>
+						</li>
+						<li>
+							<p>
+								<ctl:Button id="btnCrash">Show me an error page!</ctl:Button>
+								<br />
+								Deze knop stuurt <code>onBtnCrash_Clicked</code> aan. Die gooit een exception
+								zodat je te zien krijgt wat je kunt verwachten van een fout pagina.
+							</p>
+						</li>
+					</ul>
+
+					<p>
+						Deze pagina is er oop <a href="/?language=en-us">in het Engels.</a>
+					</p>
+
 				</ctl:TabPage>
 				<ctl:TabPage labelText="Tabel">
 			

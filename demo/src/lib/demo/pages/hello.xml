@@ -13,8 +13,6 @@
 				<ctl:Image id="imgLogo" imageHref="/img/logo.png" style="display: block; margin: 2em auto;"/>
 			</div>
 
-			<br />
-
 			<ctl:TabContainer>
 				<ctl:TabPage labelText="Hello">
 

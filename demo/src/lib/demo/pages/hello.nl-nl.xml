@@ -16,7 +16,7 @@
 			<ctl:TabContainer>
 				<ctl:TabPage labelText="Hallo">
 
-					<ctl:Image id="imgScreenshot" imageHref="/img/screen-640.png" />
+					<ctl:Image style="float: right;" id="imgScreenshot" imageHref="/img/screen-640.png" />
 
 					<h1>Hallo, Wereld!</h1>
 					<p>
@@ -38,6 +38,8 @@
 						weergave informatie.
 					</p>
 
+					<hr style="border: none; color: transparent; clear: both;"/>
+
 					<ul>
 						<li>
 							<p>
@@ -57,10 +59,6 @@
 							</p>
 						</li>
 					</ul>
-
-					<p>
-						Deze pagina is er oop <a href="/?language=en-us">in het Engels.</a>
-					</p>
 
 				</ctl:TabPage>
 				<ctl:TabPage labelText="Tabel">

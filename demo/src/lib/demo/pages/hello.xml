@@ -187,10 +187,24 @@
 						</ctl:TabPage>
 					</ctl:TabContainer>
 				</ctl:TabPage>
-				<ctl:TabPage labelText="Emoji">
+				<ctl:TabPage labelText="Themes and language">
+					<dl>
+						<dt>Theme</dt>
+						<dd>
+							<ctl:DropdownList id="selTheme">
+								<ctl:DropdownItem value="default">Default</ctl:DropdownItem>
+								<ctl:DropdownItem value="red">RED</ctl:DropdownItem>
+							</ctl:DropdownList>
+						</dd>
 
-					<h2>This is a test page</h2>
-
+						<dt>Language</dt>
+						<dd>
+							<ctl:DropdownList id="selLanguage">
+								<ctl:DropdownItem value="en-us">English</ctl:DropdownItem>
+								<ctl:DropdownItem value="nl-nl">Dutch</ctl:DropdownItem>
+							</ctl:DropdownList>
+						</dd>
+					</dl>
 				</ctl:TabPage>
 
 			</ctl:TabContainer>

@@ -1,0 +1,82 @@
+ul.TabContainer {
+	display: block;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	background-color: rgba(255,255,255,.75);
+	border-radius: 8px;
+	box-shadow:  inset 2px 2px 8px rgba(127,127,127,.5)
+				,2px 2px 8px rgba(127,127,127,.25);
+}
+
+ul.TabContainer>li:first-child {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	display: block;
+}
+
+ul.TabContainer li.TabPage {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: none;
+
+	padding: 1em;
+	border-radius: .5em;
+}
+ul.TabContainer li.TabPage.ActiveTab {
+	display: block;
+}
+
+ul.TabContainer>li:first-child>ul.TabButtonBar {
+	list-style-type:none;
+	display: block;
+	width: auto;
+	padding: 0;
+	text-align: center;
+	margin:auto;
+	position: relative;
+	top: -12px;
+	/* box-shadow: inset -2px -2px 8px rgba(127,127,127,.125); */
+}
+
+
+
+
+ul.TabContainer>li:first-child>ul.TabButtonBar>li {
+	background: rgb(196, 196, 196);
+	background: -webkit-gradient(linear, left top, left bottom,
+		from(rgb(255, 255, 255)), to(rgb(245, 245, 245)),
+		color-stop(0.25, rgb(250, 250, 250)),
+		color-stop(0.5, rgb(246, 246, 246)),
+		color-stop(0.75, rgb(240, 240, 240)));
+
+	cursor: pointer;
+	box-top-shadow: inset -2px -2px 8px rgba(127,127,127,.125);
+	border-radius: 4px;
+	display: inline-block;
+	margin: 0;
+	padding: .25em .5em;
+}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li {
+	border-top: solid 1px rgba(127,127,127,.5);
+	border-bottom: solid 1px rgba(127,127,127,.5);
+	border-left: solid 1px rgba(127,127,127,.25);
+}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:first-child {
+	border-left: solid 1px rgba(127,127,127,.5);
+}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:last-child {
+	border-right: solid 1px rgba(127,127,127,.5);
+}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:hover {
+	background: rgba(0, 32, 96, .5);
+	color: rgba(255, 255, 255, 1);
+	text-shadow: 0 0 2px rgba(127, 127, 127, 1);
+}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li.ActiveTab{
+	background: rgb(0, 64, 196);
+	color: rgba(255, 255, 255, 1);
+	text-shadow: 0 0 2px rgba(127, 127, 127, 1);
+}

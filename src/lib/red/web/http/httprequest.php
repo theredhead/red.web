@@ -14,7 +14,7 @@ namespace red\web\http
 		private $requestUrl = null;
 
 		/**
-		 * @return Url
+		 * @return \red\web\URL
 		 */
 		public function getRequestUrl()
 		{

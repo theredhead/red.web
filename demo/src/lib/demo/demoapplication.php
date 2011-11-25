@@ -9,6 +9,34 @@ namespace demo
 	 */
 	class DemoApplication extends \red\web\http\HttpApplication
 	{
+		public function __construct()
+		{
+			session_start();
+			parent::__construct();
+
+			language($this->getLanguage());
+		}
+
+		public function setTheme($theme)
+		{
+			$_SESSION['theme'] = $theme;
+		}
+
+		public function getTheme()
+		{
+			return isset($_SESSION['theme']) ? $_SESSION['theme'] : 'default';
+		}
+
+		public function setLanguage($language)
+		{
+			$_SESSION['lang'] = $language;
+			language($language);
+		}
+		public function getLanguage()
+		{
+			return isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en-us' ;
+		}
+
 		/**
 		 * 
 		 *
@@ -17,11 +45,6 @@ namespace demo
 		 */
 		public function processRequest(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
-			if (isset($_REQUEST['language']))
-			{
-				language($_REQUEST['language']);
-			}
-
 			$path = $request->getRequestUrl()->getPathAsString();
 			switch($path)
 			{

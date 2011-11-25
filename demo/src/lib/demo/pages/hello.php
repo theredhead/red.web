@@ -3,6 +3,7 @@
 namespace demo\pages
 {
 	use red\web\ui\controls\Button;
+	use \red\web\ui\controls\DropdownList;
 	use red\EventArgument;
 	use red\web\ui\controls\Image;
 
@@ -12,13 +13,31 @@ namespace demo\pages
 	class DemonstrationException extends \Exception
 	{
 	}
-	
+
 	/**
 	 * Hello contains the code required to respond to events activated by the
 	 * user in the UI
 	 */
 	class Hello extends BasePage
-	{	
+	{
+		/**
+		 * @var DropdownList
+		 */
+		protected $selTheme;
+
+		/**
+		 * @var DropdownList
+		 */
+		protected $selLanguage;
+
+		protected function load(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
+		{
+			parent::load($request, $response);
+			$this->selTheme->setSelectedValue($this->getApplication()->getTheme(), false);
+			$this->selLanguage->setSelectedValue($this->getApplication()->getLanguage(), false);
+		}
+
+
 		/**
 		 * event handler, triggered when btnHello is clicked
 		 * 
@@ -42,6 +61,20 @@ namespace demo\pages
 		{
 			// crash this request
 			throw new DemonstrationException('You asked for it...');
+		}
+
+
+		private function onSelTheme_SelectedIndexChanged(DropdownList $sender, EventArgument $argument)
+		{
+			$this->getApplication()->setTheme($sender->getSelectedItem()->getValue());
+		}
+
+		private function onSelLanguage_SelectedIndexChanged(DropdownList $sender, EventArgument $argument)
+		{
+			$this->getApplication()->setLanguage($sender->getSelectedItem()->getValue());
+			// by the time execution has reached here, many templates are already loaded.
+			// therefor we'll have to redirect to the page again.
+			$this->alert('Your settings will be applied fully upon reload.');
 		}
 
 		/**

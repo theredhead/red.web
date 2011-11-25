@@ -3,16 +3,19 @@
 namespace red\web\ui\controls
 {
 	use \red\EventArgument;
+	use \red\web\ui\IThemable;
 
 	class ActiveTabChangedEventArgument extends EventArgument
 	{
 		
 	}
 
-	class TabContainer extends BaseControl
+	class TabContainer extends BaseControl implements IThemable
 	{
 		const EV_TABBUTTON_CLICKED = 'TabButtonClicked';
-		
+
+
+
 		// <editor-fold defaultstate="collapsed" desc="Property boolean RequirePostbackForTabChange">
 		private $requirePostbackForTabChange = true;
 
@@ -145,8 +148,6 @@ namespace red\web\ui\controls
 		 */
 		public function preRender()
 		{
-			$this->getPage()->registerStyleSheet('/css/tabs.css');
-			
 			$this->addCssClass('TabContainer');
 
 			$tabs = $this->getTabs();
@@ -190,6 +191,16 @@ namespace red\web\ui\controls
 			}
 			
 			parent::preRender();
+		}
+
+		/**
+		 * get an array of resource types to try and register.
+		 *
+		 * @return array
+		 */
+		static public function getThemeResourceTypes()
+		{
+			return array('css');
 		}
 	}
 }

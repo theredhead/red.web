@@ -14,6 +14,7 @@ namespace red\web\ui\controls
 	use \red\web\ui\html\HtmlText;
 	use \red\web\http\HttpRequest;
 	use \red\EventArgument;
+	use \red\web\ui\IThemable;
 	
 	require_once 'red/web/ui/html/elements.php';
 	
@@ -22,7 +23,7 @@ namespace red\web\ui\controls
 		
 	}
 
-	class Table extends BaseControl implements IPageable, IBindable
+	class Table extends BaseControl implements IPageable, IBindable, IThemable
 	{
 		const EV_PAGEINDEX_CHANGED = 'PageIndexChanged';
 
@@ -287,9 +288,6 @@ namespace red\web\ui\controls
 		public function preRender()
 		{
 			parent::preRender();
-
-			// @TODO: (IControl)$this->getThemeResource('table.css') ???
-			$this->getPage()->registerStyleSheet('/css/table.css');
 
 			// if the table has not been built manually, do it automatically last minute.
 			if (! $this->isBuilt)
@@ -622,6 +620,15 @@ namespace red\web\ui\controls
 		}
 
 		// </editor-fold>
+		/**
+		 * get an array of resource types to try and register.
+		 *
+		 * @return array
+		 */
+		static public function getThemeResourceTypes()
+		{
+			return array('css');
+		}
 	}
 }
 

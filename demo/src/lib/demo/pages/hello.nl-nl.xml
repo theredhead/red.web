@@ -190,12 +190,25 @@
 						</ctl:TabPage>
 					</ctl:TabContainer>
 				</ctl:TabPage>
-				<ctl:TabPage labelText="Emoji">
 
-					<h2>Dit is een test tab</h2>
-					
-					<ctl:Button id="btnCrash">Crash</ctl:Button>
+				<ctl:TabPage labelText="Themas en taal">
+					<dl>
+						<dt>Themea</dt>
+						<dd>
+							<ctl:DropdownList id="selTheme">
+								<ctl:DropdownItem value="default">Standaard</ctl:DropdownItem>
+								<ctl:DropdownItem value="red">Rood</ctl:DropdownItem>
+							</ctl:DropdownList>
+						</dd>
 
+						<dt>Taal</dt>
+						<dd>
+							<ctl:DropdownList id="selLanguage">
+								<ctl:DropdownItem value="en-us">Engels</ctl:DropdownItem>
+								<ctl:DropdownItem value="nl-nl">Nederlands</ctl:DropdownItem>
+							</ctl:DropdownList>
+						</dd>
+					</dl>
 				</ctl:TabPage>
 
 			</ctl:TabContainer>

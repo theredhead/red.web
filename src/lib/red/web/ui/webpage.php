@@ -19,7 +19,7 @@ namespace red\web\ui
 		const LIFECYCLE_STATE_POSTBACK = 2;
 		const LIFECYCLE_STATE_LOAD = 3;
 		const LIFECYCLE_STATE_RENDER = 4;
-		
+
 		private $currentLifecycleState = self::LIFECYCLE_STATE_NONE;
 		protected function currentLifecycleState()
 		{
@@ -120,6 +120,72 @@ namespace red\web\ui
 			$this->head->getTitleElement()->setText($title);
 		}
 		// </editor-fold>
+
+		/**
+		 * Register external theme resources in the current theme for a key. a key will usually be
+		 * a typeId (fully qualified class name with periods instead the usual NAMESPACE_SEPARATOR
+		 * 
+		 * @param $typeId
+		 * @return void
+		 */
+		protected function registerThemeResources($typeId)
+		{
+			$reflector = new \ReflectionClass(str_replace('.', NAMESPACE_SEPARATOR, $typeId));
+			if ($reflector->implementsInterface('\\red\\web\\ui\\IThemable'))
+			{
+				$method = $reflector->getMethod('getThemeResourceTypes');
+				if ($method->getDeclaringClass()->getName() == $reflector->getName())
+				{
+					$resourceTypes = $method->invoke(null);
+					foreach($resourceTypes as $resourceType)
+					{
+						$this->registerThemeResource($typeId, $resourceType);
+					}
+				}
+
+				$this->registerThemeResources(str_replace(NAMESPACE_SEPARATOR, '.', $reflector->getParentClass()->getName()));
+			}
+			else
+			{
+				// @todo: decide whether to crash and burn or try adding just css or...
+			}
+		}
+
+		/**
+		 * @param $typeId
+		 * @param $resourceType
+		 * @return void
+		 */
+		protected function themeResourceExists($typeId, $resourceType)
+		{
+			return null !== $this->getApplication()->getThemeResourcePath($typeId . '.' . $resourceType);
+		}
+
+		/**
+		 * @param $typeId
+		 * @param $resourceType
+		 * @return void
+		 */
+		protected function registerThemeResource($typeId, $resourceType)
+		{
+			$resourceFullName = $typeId . '.' . $resourceType;
+			$theme = $this->getApplication()->getTheme();
+
+			switch(strtolower($resourceType))
+			{
+				case 'css' :
+					$this->registerStylesheet(
+							 '!theme-css/'.$resourceFullName . '?theme=' . $theme
+							,$resourceFullName);
+					break;
+				case 'js' :
+					$this->registerClientScript(
+							 '!theme-js/'.$resourceFullName . '?theme=' . $theme
+							,$resourceFullName);
+					break;
+			}
+		}
+
 		// <editor-fold defaultstate="collapsed" desc="ClientScript management">
 		/**
 		 * @var ScriptManager
@@ -662,9 +728,22 @@ namespace red\web\ui
 		 */
 		public function preRender()
 		{
+			$types = array();
 			foreach($this->getAllControls() as $control)
 			{
+				$typeId = typeid($control);
+				$types[$typeId] = $typeId;
 				$control->preRender();
+
+			}
+			foreach($types as $typeId)
+			{
+				$this->registerThemeResources($typeId);
+
+				if ($control instanceof IThemable)
+				{
+					$this->registerThemeResources($typeId);
+				}
 			}
 		}
 	}

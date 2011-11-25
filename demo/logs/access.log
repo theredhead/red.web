@@ -1797,3 +1797,9 @@
 127.0.0.1 - - [25/Nov/2011:08:04:51 +0100] "POST / HTTP/1.1" 200 30267
 127.0.0.1 - - [25/Nov/2011:08:04:52 +0100] "GET /!theme-css/red.web.ui.controls.TabContainer.css?theme=default HTTP/1.1" 200 2025
 127.0.0.1 - - [25/Nov/2011:08:04:52 +0100] "GET /!theme-css/red.web.ui.controls.Table.css?theme=default HTTP/1.1" 200 2907
+127.0.0.1 - - [25/Nov/2011:08:21:16 +0100] "GET /addressbook HTTP/1.1" 200 26147
+127.0.0.1 - - [25/Nov/2011:08:21:48 +0100] "GET /addressbook HTTP/1.1" 200 30497
+127.0.0.1 - - [25/Nov/2011:08:22:15 +0100] "GET /addressbook HTTP/1.1" 200 5813
+127.0.0.1 - - [25/Nov/2011:08:22:16 +0100] "GET /img/addressbook/list.png HTTP/1.1" 200 3251
+127.0.0.1 - - [25/Nov/2011:08:22:16 +0100] "GET /img/addressbook/card.png HTTP/1.1" 200 2907
+127.0.0.1 - - [25/Nov/2011:08:22:16 +0100] "GET /img/addressbook/plus.png HTTP/1.1" 200 2950

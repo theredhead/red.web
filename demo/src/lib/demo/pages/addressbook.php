@@ -3,8 +3,9 @@
 namespace demo\pages
 {
 	use \red\EventArgument;
-	use \red\web\ui\WebPage;
 	use \red\addressbook\AddressBook as Addresses;
+	use \red\web\http\HttpApplication;
+	use \red\web\ui\WebPage;
 	use \red\web\ui\html\HtmlTag;
 	use \red\web\ui\html\HtmlText;
 	use \red\web\ui\controls\DataGrid;
@@ -12,9 +13,9 @@ namespace demo\pages
 
 	class AddressBook extends BasePage
 	{
-		public function __construct()
+		public function __construct(HttpApplication $application)
 		{
-			parent::__construct();
+			parent::__construct($application);
 			$this->registerEventListener(WebPage::EV_PAGE_INIT, 'onPageInit', $this);
 		}
 		

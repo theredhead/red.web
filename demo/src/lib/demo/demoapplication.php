@@ -60,6 +60,10 @@ namespace demo
 					$page = new pages\Tests($this);
 					break;
 
+				case '/finder' :
+					$page = new pages\Finder($this);
+					break;
+
 				default :
 					$page = new pages\Hello($this);
 					break;

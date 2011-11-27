@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:red="red.web.ui.controls">
+	<head>
+		<title>DirectoryBrowser</title>
+	</head>
+	<body>
+		<red:Form>
+
+			<red:DirectoryBrowser id="finder" root="~/" allowUpload="true" allowDownload="true">
+				
+			</red:DirectoryBrowser>
+
+		</red:Form>
+	</body>
+</html>

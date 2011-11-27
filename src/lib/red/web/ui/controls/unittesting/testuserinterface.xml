@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns:red="red\web\ui\controls">
+	<h1><red:StaticText id="hdrStatusText" text="Run Unit tests" /></h1>
+
+	<table class="layout-helper">
+		<tr>
+			<td class="west">
+				<red:Container tagName="ul" id="listContainer" class="testables-list">
+				</red:Container>
+			</td>
+			<td class="east">
+				<red:Container tagName="ul" id="resultContainer" class="result-list">
+
+				</red:Container>
+			</td>
+		</tr>
+	</table>
+
+	<div style="text-align: right;">
+		<red:Button id="btnRunSelectedTests">Run selected</red:Button>
+	</div>
+</div>

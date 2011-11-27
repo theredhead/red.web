@@ -89,23 +89,4 @@
 		color : rgb(220,220,220);
 		text-shadow: none;
 	}
-
-	
-  dl {
-    padding: 0.5em;
-  }
-  dt {
-    float: left;
-    clear: left;
-    width: 100px;
-    text-align: right;
-    font-weight: normal;
-    color: rgb(164,164,164);
-  }
-  dt:after {
-    content: ":";
-  }
-  dd {
-    margin: 0 0 0 110px;
-    padding: 0 0 0.5em 0;
-  }}
+}

@@ -4,7 +4,7 @@ namespace red\web\ui\controls
 {
 	class Checkbox extends InputControl
 	{
-		public function getChecked()
+		public function isChecked()
 		{
 			return $this->getValue() == 'checked';
 		}
@@ -23,7 +23,7 @@ namespace red\web\ui\controls
 			parent::preRender();
 			$this->unsetAttribute('value');
 
-			if ($this->getChecked())
+			if ($this->isChecked())
 			{
 				$this->setAttribute('checked', 'checked');
 			}

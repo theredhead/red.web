@@ -37,8 +37,6 @@ namespace demo
 			return isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en-us' ;
 		}
 
-
-
 		/**
 		 * 
 		 *
@@ -56,6 +54,10 @@ namespace demo
 
 				case '/documentation' :
 					$page = new pages\Documentation($this);
+					break;
+
+				case '/tests' :
+					$page = new pages\Tests($this);
 					break;
 
 				default :

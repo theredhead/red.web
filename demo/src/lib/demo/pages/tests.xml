@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:ctl="\red\web\ui\controls" xmlns:data="\demo\data" xmlns:test="\red\web\ui\controls\unittesting">
+	<head>
+		<title>Unit Tests</title>
+	</head>
+	<body>
+		<ctl:Form>
+
+			<test:TestUserInterface id="theUi" />
+
+		</ctl:Form>
+	</body>
+</html>

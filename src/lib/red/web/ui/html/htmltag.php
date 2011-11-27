@@ -7,7 +7,7 @@ namespace red\web\ui\html
 	
 	class HtmlTag extends XHTMLElement
 	{
-		public function __construct($tagName)
+		public function __construct($tagName='div')
 		{
 			parent::__construct($tagName);
 		}

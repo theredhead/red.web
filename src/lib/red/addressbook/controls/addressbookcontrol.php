@@ -6,11 +6,12 @@ namespace red\addressbook\controls
 	use \red\web\ui\controls\Repeater;
 	use \red\web\ui\controls\TemplateControl;
 	use red\web\ui\controls\Button;
-	
+	use \red\web\ui\IThemable;
+
 	/**
 	 * TemplateControl
 	 */
-	class AddressbookControl extends TemplateControl
+	class AddressbookControl extends TemplateControl implements IThemable
 	{
 		/**
 		 * @var PeopleDatasource
@@ -90,6 +91,23 @@ namespace red\addressbook\controls
 			$this->btnDone->setVisible($editable);
 
 			parent::preRender();
+		}
+
+		/**
+		 * get an array of resource types to try and register.
+		 *
+		 * array should hold filename extensions to register as values
+		 *
+		 * example:
+		 *  return array('css', 'js');
+		 *
+		 *
+		 *
+		 * @return array
+		 */
+		static public function getThemeResourceTypes()
+		{
+			return array('css');
 		}
 	}
 }

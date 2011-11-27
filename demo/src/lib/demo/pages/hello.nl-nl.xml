@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns:ctl="red.web.ui.controls" xmlns:data="\demo\data">
+<html xmlns:ctl="red.web.ui.controls" xmlns:data="demo.data">
 	<head>
 		<title>Hallo, Wereld!</title>
 	</head>

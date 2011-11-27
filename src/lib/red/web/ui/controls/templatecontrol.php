@@ -23,7 +23,8 @@ namespace red\web\ui\controls
 			if (mb_strpos($tagName, ':') > 0)
 			{
 				list($prefix, $className) = explode(':', $tagName);
-				$namespace = $originalElement->lookupNamespaceUri($prefix);
+
+				$namespace = str_replace('.', NAMESPACE_SEPARATOR, $originalElement->lookupNamespaceUri($prefix));
 				$fullyQualifiedClassName = $namespace . NAMESPACE_SEPARATOR . $className;
 				
 				$result = new $fullyQualifiedClassName();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div xmlns:red="red\web\ui\controls">
+<div xmlns:red="red.web.ui.controls">
 	<h1><red:StaticText id="hdrStatusText" text="Run Unit tests" /></h1>
 
 	<table class="layout-helper">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<div  xmlns:red="red\web\ui\controls" xmlns:htm="red\web\ui\html" xmlns:abbu="red\addressbook\controls">
+<div xmlns:red="red.web.ui.controls" xmlns:htm="red.web.ui.html" xmlns:abbu="red.addressbook.controls">
 	<h1><red:StaticText id="txtDisplayName" /></h1>
 	<hr />
 	<dl>

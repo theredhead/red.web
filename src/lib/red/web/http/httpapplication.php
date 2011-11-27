@@ -105,30 +105,42 @@ namespace red\web\http
 			$path = $request->getRequestUrl()->getPath();
 			$action = array_shift($path);
 			$action = substr($action, 1);
+
 			switch($action)
 			{
 				case 'theme-css' :
-					$resource = array_shift($path);
-					$resourcePath = $this->getThemeResourcePath($resource);
-					if (file_exists($resourcePath) && is_readable($resourcePath))
+
+					foreach($path as $resource)
 					{
-						$response->setHeader('Content-type', 'text/css; charset=UTF-8');
-						$response->write(file_get_contents($resourcePath));
-						$response->send();
-						exit;
+						$resourcePath = $this->getThemeResourcePath($resource . '.css');
+						if (file_exists($resourcePath) && is_readable($resourcePath))
+						{
+							$response->writeLn(sprintf('/* -----8<----- %s -----8<----- */', $resource));
+							$response->write(file_get_contents($resourcePath));
+							$response->writeLn(sprintf('/* -----8<----- %s -----8<----- */', $resource));
+						}
 					}
+
+					$response->setHeader('Content-type', 'text/css; charset=UTF-8');
+					$response->send();
+					exit;
 					break;
 
 				case 'theme-js' :
-					$resource = array_shift($path);
-					$resourcePath = $this->getThemeResourcePath($resource);
-					if (file_exists($resourcePath) && is_readable($resourcePath))
+					foreach($path as $resource)
 					{
-						$response->setHeader('Content-type', 'text/javascript; charset=UTF-8');
-						$response->write(file_get_contents($resourcePath));
-						$response->send();
-						exit;
+						$resourcePath = $this->getThemeResourcePath($resource . '.js');
+						if (file_exists($resourcePath) && is_readable($resourcePath))
+						{
+							$response->writeLn(sprintf('/* -----8<----- %s -----8<----- */', $resource));
+							$response->write(file_get_contents($resourcePath));
+							$response->writeLn(sprintf('/* -----8<----- %s -----8<----- */', $resource));
+						}
 					}
+
+					$response->setHeader('Content-type', 'text/javascript; charset=UTF-8');
+					$response->send();
+					exit;
 					break;
 			}
 		}

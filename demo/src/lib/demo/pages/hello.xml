@@ -190,6 +190,7 @@
 						<dd>
 							<ctl:DropdownList id="selTheme">
 								<ctl:DropdownItem value="default">Default</ctl:DropdownItem>
+								<ctl:DropdownItem value="simple">Simple</ctl:DropdownItem>
 								<ctl:DropdownItem value="red">RED</ctl:DropdownItem>
 							</ctl:DropdownList>
 						</dd>

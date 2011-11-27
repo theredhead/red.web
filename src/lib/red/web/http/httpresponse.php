@@ -120,6 +120,19 @@ namespace red\web\http
 			}
 			echo $this->getOutputBuffer();
 		}
+
+		/**
+		 * Redirect to a url.
+		 *
+		 * @param $url
+		 * @param int $responseCode
+		 * @return void
+		 */
+		public function redirect($url, $responseCode=303)
+		{
+			header('Location: '.$url, $responseCode);
+			exit;
+		}
 	}
 }
 

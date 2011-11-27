@@ -1,0 +1,34 @@
+table.Table {
+	border : outset 1px;
+	border-collapse: separate;
+	border-spacing: 1px;
+}
+table.Table th, table.Table td {
+	text-align: left;
+	vertical-align: top;
+}
+
+table.Table th {
+	white-space: nowrap;
+	padding: 3px;
+	font-weight: bold;
+}
+
+table.Table td {
+	border: inset 1px;
+}
+
+
+table.Table thead tr th.SortIndicator {
+	background: rgb(222, 222, 222) !important;
+}
+
+table.Table thead tr th.SortIndicator.ASC:after {
+	float: right;
+	content: '△';
+}
+table.Table thead tr th.SortIndicator.DESC:after {
+	display: block;
+	float: right;
+	content: '▽';
+}

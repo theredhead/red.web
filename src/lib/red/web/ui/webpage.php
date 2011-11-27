@@ -20,6 +20,34 @@ namespace red\web\ui
 		const LIFECYCLE_STATE_LOAD = 3;
 		const LIFECYCLE_STATE_RENDER = 4;
 
+		/**
+		 * @var \red\web\http\HttpRequest
+		 */
+		protected $currentRequest;
+
+		/**
+		 * @return \red\web\http\HttpRequest
+		 */
+		protected function getCurrentRequest()
+		{
+			return $this->currentRequest;
+		}
+
+		/**
+		 * @var \red\web\http\HttpResponse
+		 */
+		protected $currentResponse;
+
+		/**
+		 * @return \red\web\http\HttpResponse
+		 */
+		protected function getCurrentResponse()
+		{
+			return $this->currentResponse;
+		}
+
+
+
 		private $currentLifecycleState = self::LIFECYCLE_STATE_NONE;
 		protected function currentLifecycleState()
 		{
@@ -152,6 +180,13 @@ namespace red\web\ui
 		}
 
 		/**
+		 * Holds a register of threme resource types with typeIds that want them registered.
+		 *
+		 * @var array
+		 */
+		private $themeResources = array();
+
+		/**
 		 * @param $typeId
 		 * @param $resourceType
 		 * @return void
@@ -168,22 +203,28 @@ namespace red\web\ui
 		 */
 		protected function registerThemeResource($typeId, $resourceType)
 		{
-			$resourceFullName = $typeId . '.' . $resourceType;
-			$theme = $this->getApplication()->getTheme();
+//			$resourceFullName = $typeId . '.' . $resourceType;
+//			$theme = $this->getApplication()->getTheme();
+//
+//			switch(strtolower($resourceType))
+//			{
+//				case 'css' :
+//					$this->registerStylesheet(
+//							 '/!theme-css/'.$resourceFullName . '?theme=' . $theme
+//							,$resourceFullName);
+//					break;
+//				case 'js' :
+//					$this->registerClientScript(
+//							 '/!theme-js/'.$resourceFullName . '?theme=' . $theme
+//							,$resourceFullName);
+//					break;
+//			}
 
-			switch(strtolower($resourceType))
+			if (!isset($this->themeResources[$resourceType]))
 			{
-				case 'css' :
-					$this->registerStylesheet(
-							 '!theme-css/'.$resourceFullName . '?theme=' . $theme
-							,$resourceFullName);
-					break;
-				case 'js' :
-					$this->registerClientScript(
-							 '!theme-js/'.$resourceFullName . '?theme=' . $theme
-							,$resourceFullName);
-					break;
+				$this->themeResources[$resourceType] = array();
 			}
+			array_push($this->themeResources[$resourceType], $typeId);
 		}
 
 		// <editor-fold defaultstate="collapsed" desc="ClientScript management">
@@ -489,6 +530,9 @@ namespace red\web\ui
 		 */
 		final public function processRequest(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
+			$this->currentRequest = $request;
+			$this->currentResponse = $response;
+
 			$this->log('Entering INIT state') . PHP_EOL;
 			$this->currentLifecycleState = self::LIFECYCLE_STATE_INIT;
 			$this->init($request, $response);
@@ -743,6 +787,15 @@ namespace red\web\ui
 				if ($control instanceof IThemable)
 				{
 					$this->registerThemeResources($typeId);
+				}
+			}
+			foreach($this->themeResources as $type => $resourcesToRegister)
+			{
+				switch($type)
+				{
+					case 'css' :
+						$this->registerStylesheet('/!theme-css/' . implode('/', array_unique($resourcesToRegister)));
+						break;
 				}
 			}
 		}

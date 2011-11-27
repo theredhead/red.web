@@ -74,7 +74,8 @@ namespace demo\pages
 			$this->getApplication()->setLanguage($sender->getSelectedItem()->getValue());
 			// by the time execution has reached here, many templates are already loaded.
 			// therefor we'll have to redirect to the page again.
-			$this->alert('Your settings will be applied fully upon reload.');
+//			$this->alert('Your settings will be applied fully upon reload.');
+			$this->getCurrentResponse()->redirect($this->getCurrentRequest()->getRequestUrl());
 		}
 
 		/**

@@ -37,6 +37,8 @@ namespace demo
 			return isset($_SESSION['lang']) ? $_SESSION['lang'] : 'en-us' ;
 		}
 
+
+
 		/**
 		 * 
 		 *

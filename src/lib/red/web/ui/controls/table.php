@@ -16,7 +16,7 @@ namespace red\web\ui\controls
 	use \red\EventArgument;
 	use \red\web\ui\IThemable;
 	
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/../html/elements.php';
 	
 	class CurrentPageIndexChangedEventArg extends EventArgument
 	{

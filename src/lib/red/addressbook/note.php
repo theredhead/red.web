@@ -4,7 +4,7 @@ namespace red\addressbook
 {
 	use red\Object;
 
-	class Note extends Objext
+	class Note extends Object
 	{
 		
 	}

@@ -4,7 +4,7 @@ namespace red\addressbook
 {
 	use red\Object;
 
-	class PhoneNumberInfo extends Objext
+	class PhoneNumberInfo extends Object
 	{
 		
 	}

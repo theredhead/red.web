@@ -10,7 +10,7 @@ namespace red\web\ui
 	use red\web\ui\html\HtmlTitle;
 	use red\web\ui\WebPageReader;
 
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/html/elements.php';
 	
 	abstract class WebPage extends XHTMLDocument
 	{

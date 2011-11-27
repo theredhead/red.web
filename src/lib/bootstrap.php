@@ -1,5 +1,7 @@
 <?php
 
+define('REDWEB_BOOTSTRAP_FILE', __FILE__);
+
 /**
  * Guarantee a de41bug const is defined everywhere. 
  */

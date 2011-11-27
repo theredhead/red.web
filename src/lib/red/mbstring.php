@@ -67,7 +67,7 @@ namespace red
 		 * 
 		 * @param string $aString
 		 * @param string $encoding one of the ENCODING_... consts
-		 * @return MSTring
+		 * @return MBString
 		 */
 		static public function withString($aString, $encoding = self::ENCODING_UTF8)
 		{
@@ -286,7 +286,20 @@ namespace red
 			
 			return MBString::withString($this->string.$otherString->string, $this->encoding);
 		}
-		
+
+		/**
+		 * prepend a string to this string
+		 *
+		 * @param MBString $otherString
+		 * @return MBString
+		 */
+		public function prepend($otherString)
+		{
+			assert($otherString instanceof MBString or $otherString = MBString::withString($otherString, $this->encoding));
+
+			return MBString::withString($otherString->string.$this->string, $this->encoding);
+		}
+
 		/**
 		 * Get the lowercase version of this string
 		 * 

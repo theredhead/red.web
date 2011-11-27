@@ -1,0 +1,32 @@
+UnitTest
+========
+
+The unittest tool runs tests and presents findings as xml.
+
+Usage:
+------
+	php -q unittest.php -test <some-typeId> [-test <...> ...]
+or:
+	php -q unittest.php -dir <some-directory>
+
+Commandline options:
+--------------------
+	-t or -test : add an ITestable typeId to test
+	-d or -dir : add a directory to scan for ITestables
+
+How it works:
+-------------
+1. Loop over every `ITestable` typeId given as argument to the
+   `-test` option or collected from a `-dir` option on the
+   commandline
+2. Loop over every test method in the ITestable class
+3. Write a small php file to the systems temp dir that starts
+   loads up the framework and executes one test method on a
+   fresh instance of the test class.
+4. run the generated stub and collect output from the child
+   process' commandline
+5. present all results as xml on stdout
+6. return an exitcode representing the number of failed tests.
+
+Note that the exitcode represents the number of failed tests,
+not the number of failed assertions.

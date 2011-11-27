@@ -4,8 +4,6 @@ namespace tools
 {
 	use red\cli\CommandLineTool;
 
-	require_once '../bootstrap.php';
-
 	class TestTool extends CommandLineTool
 	{
 		protected $input;
@@ -73,5 +71,7 @@ namespace tools
 		}
 	}
 
-	CommandLineTool::run(new TestTool());
+	// this line should not be in here because class files inside lib should
+	// never have side effects when included.
+	// CommandLineTool::run(new TestTool());
 }

@@ -13,7 +13,7 @@ namespace red\web\ui\controls
 	use \red\web\ui\html\HtmlText;
 	use \red\web\http\HttpRequest;
 	
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/../html/elements.php';
 	
 	/**
 	 * TableColumn is suitable for rendering strings and other scalars.

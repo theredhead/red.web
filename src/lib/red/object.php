@@ -44,7 +44,7 @@ namespace red
 		}
 		
 		/**
-		 * @return ReflectionClass
+		 * @return \ReflectionClass
 		 */
 		public function getReflector()
 		{
@@ -215,7 +215,7 @@ namespace red
 			{
 				foreach($this->listeners[$eventName] as $handler)
 				{
-					$handler($this, clone $eventArg);
+					call_user_func($handler, $this, clone $eventArg);
 				}
 			}
 		}

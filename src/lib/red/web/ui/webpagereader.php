@@ -9,7 +9,7 @@ namespace red\web\ui
 	use \red\web\ui\html\HtmlTag;
 	
 	
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/html/elements.php';
 	
 	class WebPageReader extends XMLReader
 	{

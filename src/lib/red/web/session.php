@@ -98,7 +98,7 @@ namespace red\web
 		abstract protected function getConnection();
 		// </editor-fold>
 
-		protected function __construct($connection)
+		public function __construct($connection)
 		{
 			parent::__construct();
 			$this->setConnection($connection);

@@ -2,7 +2,7 @@
 
 namespace red\web\ui\controls
 {
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/../html/elements.php';
 
 	use red\xml\XMLReader;
 	use \red\web\ui\html\HtmlTag;

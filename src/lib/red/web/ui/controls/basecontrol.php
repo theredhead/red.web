@@ -4,7 +4,7 @@ namespace red\web\ui\controls
 {
 	use red\MBString;
 	
-	require_once 'red/web/ui/html/elements.php';
+	require_once dirname(__FILE__) . '/../html/elements.php';
 	
 	abstract class BaseControl extends \red\web\ui\html\HtmlTag implements IControl, IStateful
 	{

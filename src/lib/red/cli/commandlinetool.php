@@ -65,7 +65,16 @@ namespace red\cli
 
 			try
 			{
-				$tool->main($argv);
+				$exitCode = $tool->main($argv);
+				if ($exitCode === null)
+				{
+					$exitCode = 0;
+				}
+				if (! is_integer($exitCode))
+				{
+					static::fail('main did not return void or an integer.');
+				}
+				exit($exitCode);
 			}
 			catch(\Exception $ex)
 			{
@@ -73,6 +82,7 @@ namespace red\cli
 				printf("%s\n\n", str_repeat("=", strlen(get_class($ex))));
 				printf("%s\n\n", $ex->getMessage());
 				printf("%s\n\n", $ex->getTraceAsString());
+				exit(1);
 			}
 		}
 	}

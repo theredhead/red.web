@@ -62,7 +62,7 @@ namespace red\web\ui\controls
 		 * @param type $name
 		 * @param type $value 
 		 */
-		protected function setAttribute($name, $value)
+		public function setAttribute($name, $value)
 		{
 			switch(strtolower($name))
 			{

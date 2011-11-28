@@ -27,7 +27,16 @@ namespace red\web\ui\controls
 		 * The display mode value used when one isn't explicitly set.
 		 */
 		const DEFAULT_DISPLAY_MODE = self::DISPLAYMODE_ICONS;
-		
+
+		/**
+		 * @return \red\web\ui\controls\IDirectoryBrowserDelegate
+		 */
+		public function getDatasource()
+		{
+			return parent::getDatasource();
+		}
+
+
 		// <editor-fold defaultstate="collapsed" desc="State property string DisplayMode">
 		/**
 		 * Get the current display mode
@@ -86,6 +95,14 @@ namespace red\web\ui\controls
 		 */
 		protected function selectedIndexChanged()
 		{
+			$item = $this->getDatasource()->getFilesystemItemAtIndex($this->getSelectedIndex());
+
+			if ($item->isDir())
+			{
+				$dir = $this->getDatasource()->getCurrentDirectory();
+				$this->getDatasource()->setCurrentDirectory($dir . DIRECTORY_SEPARATOR . $item->getBasename());
+			}
+
 			$this->notifyListenersOfEvent(self::EV_SELECTEDINDEX_CHANGED, new EventArgument());
 		}
 
@@ -215,6 +232,8 @@ namespace red\web\ui\controls
 			}
 
 			$icon->setAttribute('src', sprintf('http://www.stdicon.com/%s?default=http://www.stdicon.com/application/octet-stream', $type));
+
+			$icon->setAttribute('alt', $file->getBasename());
 
 			$label = new HtmlTag('span');
 			$label->appendChild(new HtmlText($file->getBasename()));

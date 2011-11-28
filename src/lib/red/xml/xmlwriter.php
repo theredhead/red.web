@@ -321,43 +321,55 @@ namespace red\xml
 		{
 			$this->indent ++;
 			foreach($element->getChildNodes() as $child)
-			{				
-				$this->indent();
-				$child->normalize($this);
-				
-				if ($child instanceof XMLElement)
-				{
-					if ($child->isVisible())
-					{
-						$this->writeElement($child);
-					}
-				}
-				else if ($child instanceof XMLCDataSection)
-				{
-					$this->writeCDataSection($child);
-				}
-				else if ($child instanceof XMLLiteral)
-				{
-					$this->writeLiteral($child);
-				}
-				else if ($child instanceof XMLText)
-				{
-					$this->writeText($child);
-				}
-				else if ($child instanceof XMLComment)
-				{
-					$this->writeComment($child);
-				}
-				else if ($child instanceof XMLCDataSection)
-				{
-					$this->writeCDataSection($child);
-				}
-				else
-				{
-					static::fail('Unsupported node type encountered: "%s"', typeid($child));
-				}
+			{
+				$this->writeNode($child);
 			}
 			$this->indent --;
+		}
+
+		/**
+		 * Write out any supported type of node.
+		 * 
+		 * @param XMLNode $node
+		 * @return void
+		 */
+		protected function writeNode(XMLNode $node)
+		{
+			$this->indent();
+			$node->normalize($this);
+
+			if ($node instanceof XMLElement)
+			{
+				if ($node->isVisible())
+				{
+					$this->writeElement($node);
+				}
+			}
+			else if ($node instanceof XMLCDataSection)
+			{
+				$this->writeCDataSection($node);
+			}
+			else if ($node instanceof XMLLiteral)
+			{
+				$this->writeLiteral($node);
+			}
+			else if ($node instanceof XMLText)
+			{
+				$this->writeText($node);
+			}
+			else if ($node instanceof XMLComment)
+			{
+				$this->writeComment($node);
+			}
+			else if ($node instanceof XMLCDataSection)
+			{
+				$this->writeCDataSection($node);
+			}
+			else
+			{
+				static::fail('Unsupported node type encountered: "%s"', typeid($node));
+			}
+
 		}
 
 		/**
@@ -393,7 +405,7 @@ namespace red\xml
 		 * @param XMLElement $root
 		 * @return type 
 		 */
-		public function write(XMLElement $root)
+		public function write(XMLNode $root)
 		{
 			$this->clear();
 			$root->normalize($this);
@@ -405,7 +417,9 @@ namespace red\xml
 				}
 				$this->writeDoctype($root);
 			}
-			$this->writeElement($root);
+
+			$this->writeNode($root);
+
 			return $this->getString();
 		}
 	}

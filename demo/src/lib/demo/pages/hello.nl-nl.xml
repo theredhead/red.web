@@ -188,7 +188,25 @@
 						</ctl:TabPage>
 					</ctl:TabContainer>
 				</ctl:TabPage>
+				<ctl:TabPage labelText="Markdown">
+					<ctl:StaticText markdown="true">
 
+Dit is een pagina opgemaakt met ![John Gruber](http://a3.twimg.com/profile_images/546338003/gruber-sxsw-final_normal.png)[Markdown](https://github.com/michelf/php-markdown/)
+=============================================================================================================================================================================
+
+Markdown is een doeltreffende manier voor schrijvenrs (niet perse ontwikkelaars) om textuele inhoud op te maken.
+Oorspronkelijk is markdown geschreven in (ik geloof) perl, door John Gruber die we allemaal kennen van [daringfireball](http://daringfireball.net).
+
+Ik heb bij lange na niet voldoende kennis van markdown om er een leuk stukje over te schrijven maar ik realiseer me wel dat
+het feitelijk onmogelijk is om een framework te publiceren dat er geen goede ondersteuning voor bied.
+
+In plaats van zelf het wiel opnieuw uit te vinden heb ik ervoor gekozen om een bijzonder goed gewaardeerde implementatie van
+een markdown parser van iemand anders gebruikt, die door [Michel Fortin](http://michelf.com/projects/php-markdown/extra/)
+
+Deze `TabPage` bevat één enkele `red.web.ui.controls.StaticText` control met de`isMarkDown` vlag op `true` gezet.
+
+					</ctl:StaticText>
+				</ctl:TabPage>
 				<ctl:TabPage labelText="Themas en taal">
 					<dl>
 						<dt>Themea</dt>

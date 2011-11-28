@@ -7,20 +7,67 @@ namespace red\web\ui\controls
 	
 	class StaticText extends BindableControl
 	{
-		public function __construct($text = '')
+		public function __construct($text = null)
 		{
 			parent::__construct('span');
-			$this->text = MBString::withString($text);
+
+			if ($text !== null)
+			{
+				$this->text = MBString::withString(''.$text);
+			}
 		}
 		
 		// <editor-fold defaultstate="collapsed" desc="Property MBString Text">
 		private $text = null;
 
 		/**
+		 * Set whether this text should be considered MarkDown
+		 *
+		 *  @see http://daringfireball.net/projects/markdown/
+		 *  @see http://michelf.com/projects/php-markdown/extra/
+		 *
+		 * @param $isMarkdown
+		 * @return void
+		 */
+		public function setIsMarkdown($isMarkdown)
+		{
+			$this->state['md'] = \red\Convert::toBoolean($isMarkdown);
+		}
+
+		/**
+		 * Get a flag indicating whether this text is transformed through
+		 * the \red\text\MarkdownTransformer before rendering.
+		 *
+		 * @return boolean
+		 */
+		public function isMarkdown()
+		{
+			return \red\Convert::toBoolean($this->state['md']);
+		}
+
+		/**
 		 * @return MBString
 		 */
 		public function getText()
 		{
+			if ($this->text === null)
+			{
+				if ($this->hasChildren())
+				{
+					$writer = new \red\xml\XMLWriter();
+					foreach($this->getChildNodes() as $child)
+					{
+						$writer->write($child);
+					}
+
+					$this->text = $writer->getString();
+					unset($writer);
+				}
+				else
+				{
+					$this->text = MBString::defaultValue();
+				}
+			}
 			return $this->text;
 		}
 
@@ -35,10 +82,11 @@ namespace red\web\ui\controls
 			{
 				static::fail('Empty text set!');
 			}
-			
+
 //			printf("[%s setText: '%s']<br />\n", $this, $newText);
 			$this->text = $newText;
 		}
+		
 		// </editor-fold>
 		// <editor-fold defaultstate="collapsed" desc="Property string BindTo">
 		private $string = null;
@@ -136,6 +184,7 @@ namespace red\web\ui\controls
 					}
 				}
 //				printf("[%s bound to %s using %s resulted in '%s']\n<br />", $this, typeid($dataItem), $this->getBindTo(), $text);
+
 				$this->setText($text);
 			}
 		}
@@ -156,6 +205,11 @@ namespace red\web\ui\controls
 				case 'text':
 					$this->setText($value);
 					break;
+				case 'ismarkdown':
+				case 'markdown':
+					$this->setIsMarkdown(\red\Convert::toBoolean($value));
+					break;
+
 				default:
 					parent::setAttribute($name, $value);
 					break;
@@ -167,9 +221,22 @@ namespace red\web\ui\controls
 		 */
 		public function normalize()
 		{
+			$text = $this->getText();
+
 			$this->clear();
+			if ($this->isMarkdown())
+			{
+				$transformer = new \red\text\MarkdownTransformer();
+				$text = $transformer->transform($text);
+				$this->clear();
+				$this->appendChild(new \red\web\ui\html\HtmlLiteral($text));
+			}
+			else
+			{
+				$this->appendChild(new HtmlText($text));
+			}
+
 			parent::normalize();
-			$this->appendChild(new HtmlText($this->text));
 		}
 	}
 }

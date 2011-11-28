@@ -24,7 +24,13 @@ namespace demo\pages
 			if(! is_array($this->files))
 			{
 				$this->files = array();
-				$iterator = glob($this->getRootDirectory() . DIRECTORY_SEPARATOR . '*');
+				$dir = $this->getRootDirectory();
+				if ($this->getCurrentDirectory() != '')
+				{
+					$dir .= DIRECTORY_SEPARATOR . $this->getCurrentDirectory();
+				}
+
+				$iterator = glob($dir . DIRECTORY_SEPARATOR . '*');
 				foreach($iterator as $file)
 				{
 					array_push($this->files, new SplFileObject($file));
@@ -53,14 +59,15 @@ namespace demo\pages
 			return $this->rootDirectory;
 		}
 
+		protected $currentDirectory = '';
 		public function getCurrentDirectory()
 		{
-			return $this->rootDirectory;
+			return $this->currentDirectory;
 		}
 
 		public function setCurrentDirectory($newValue)
 		{
-			// TODO: Implement setCurrentDirectory() method.
+			$this->currentDirectory = $newValue;
 		}
 	}
 

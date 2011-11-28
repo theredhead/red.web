@@ -7,6 +7,11 @@ namespace red\web\ui\controls
 	 */
 	interface IDirectoryBrowserDelegate
 	{
+		/**
+		 * @abstract
+		 * @param $index
+		 * @return \SplFileInfo
+		 */
 		public function getFilesystemItemAtIndex($index);
 				
 		public function numberOfItemsInView();

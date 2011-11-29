@@ -30,9 +30,13 @@ namespace tests
 			assert(Convert::toBoolean(0) === false);
 			assert(Convert::toBoolean(2) === false);
 			assert(Convert::toBoolean('yes') === true);
+			assert(Convert::toBoolean('no') === false);
 			assert(Convert::toBoolean('on') === true);
+			assert(Convert::toBoolean('off') === false);
 			assert(Convert::toBoolean('true') === true);
+			assert(Convert::toBoolean('false') === false);
 			assert(Convert::toBoolean('1') === true);
+			assert(Convert::toBoolean('0') === false);
 
 			assert(Convert::toBoolean(new TestBool(1)) === true);
 			assert(Convert::toBoolean(new TestBool(2)) === true);

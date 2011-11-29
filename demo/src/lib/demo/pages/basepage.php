@@ -14,6 +14,7 @@ namespace demo\pages
 		public function __construct(\red\web\http\HttpApplication $application)
 		{
 			parent::__construct($application);
+//			$this->registerClientScript(ScriptManager::CDN_URL_JQUERY);
 			$this->registerStyleSheet(static::CSS_MAIN_STYLESHEET);
 			$this->registerClientScript('/js/events.js');
 			$this->loadTemplate();

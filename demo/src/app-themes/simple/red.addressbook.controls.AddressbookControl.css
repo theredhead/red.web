@@ -1,0 +1,18 @@
+.CardDetailView dl {
+  padding: 0.5em;
+}
+.CardDetailView dt {
+  float: left;
+  clear: left;
+  width: 100px;
+  text-align: right;
+  font-weight: normal;
+  color: rgb(164,164,164);
+}
+.CardDetailView dt:after {
+  content: ":";
+}
+.CardDetailView dd {
+  margin: 0 0 0 110px;
+  padding: 0 0 0.5em 0;
+}

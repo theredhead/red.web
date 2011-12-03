@@ -1,70 +1,12 @@
-ul.TabContainer {
-	display: block;
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-
-ul.TabContainer>li:first-child {
-	list-style-type:none;
-	z-index: 10;
-	margin: -1px 0;
-	padding:0;
-	display: block;
-	width: 100%;
-	border-left: solid 1px white !important;
-	border-bottom: solid 1px black !important;
-	border-right: solid 1px white !important;
-}
-
-ul.TabContainer li.TabPage {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	display: none;
-	border: solid 1px black;
-}
-ul.TabContainer li.TabPage.ActiveTab {
-	display: block;
-}
-
-ul.TabContainer>li:first-child>ul.TabButtonBar {
-	list-style-type:none;
-	display: block;
-	width: auto;
-	margin: 0 0 -1px 0;
-	padding: 0;
-	text-align: left;
-	border-bottom: solid 1px rgb(127,127,127);
-}
-
-
-ul.TabContainer>li:first-child>ul.TabButtonBar>li {
-	background: rgb(196, 196, 196);
-	cursor: pointer;
-	display: inline-block;
-	margin: 0;
-	padding: 3px 6px;
-}
-ul.TabContainer>li:first-child>ul.TabButtonBar>li {
-	border: inset 1px;
-}
-ul.TabContainer>li:first-child>ul.TabButtonBar>li:first-child {
-	border-left: solid 1px rgba(127,127,127,.5);
-}
-ul.TabContainer>li:first-child>ul.TabButtonBar>li:last-child {
-	border-right: solid 1px rgba(127,127,127,.5);
-}
-ul.TabContainer>li:first-child>ul.TabButtonBar>li:hover {
-	background: rgba(0, 32, 96, .5);
-	color: rgba(255, 255, 255, 1);
-}
-ul.TabContainer>li:first-child>ul.TabButtonBar>li.ActiveTab{
-	z-index: 10;
-	background: rgb(255, 255, 255);
-	color: rgb(32, 32, 32);
-	border: outset 2px;
-	border-bottom: none;
-	margin-bottom: -1px;
-	padding: 6px 3px;
-}
+ul.TabContainer{display:block;list-style-type:none;margin:0;padding:0;background-color:#ffffff;border:solid 1px darkgray;}
+ul.TabContainer>li:first-child{list-style-type:none;margin:0;padding:0;display:block;}
+ul.TabContainer li.TabPage{list-style-type:none;margin:0;padding:0;display:none;padding:1em;}
+ul.TabContainer li.TabPage.ActiveTab{display:block;}
+ul.TabContainer>li:first-child>ul.TabButtonBar{list-style-type:none;display:block;width:auto;padding:0;text-align:center;margin:auto;position:relative;top:-12px;}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li{background:#c4c4c4;cursor:pointer;display:inline-block;margin:0;padding:.25em .5em;}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li{border-top:solid 1px #7f7f7f;border-bottom:solid 1px #7f7f7f;border-left:solid 1px #7f7f7f;}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:first-child{border-left:solid 1px rgba(127, 127, 127, 0.5);}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:last-child{border-right:solid 1px rgba(127, 127, 127, 0.5);}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:not(.ActiveTab):hover{background:#1369e0;color:#ffffff;}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li:not(.ActiveTab):active{background:#1347e0;color:#ffffff;}
+ul.TabContainer>li:first-child>ul.TabButtonBar>li.ActiveTab{color:#ffffff;background:#0040c0;}

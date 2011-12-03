@@ -9,7 +9,7 @@ namespace red\web\ui\controls
 		
 	}
 
-	class Button extends BaseControl implements IPublishEvents
+	class Button extends BaseControl implements IPublishEvents, \red\web\ui\IThemable
 	{
 		const EV_CLICKED = 'Clicked';
 		
@@ -107,5 +107,22 @@ namespace red\web\ui\controls
 		{
 			parent::__construct('button');
 		}
-	}
+
+        /**
+         * get an array of resource types to try and register.
+         *
+         * array should hold filename extensions to register as values
+         *
+         * example:
+         *  return array('css', 'js');
+         *
+         *
+         *
+         * @return array
+         */
+        static public function getThemeResourceTypes()
+        {
+            return array('css');
+        }
+    }
 }

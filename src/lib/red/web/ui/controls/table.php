@@ -463,10 +463,16 @@ namespace red\web\ui\controls
 			foreach($this->getColumns() as $ix => $column)
 			{
 				$cell = $row->appendChild(new HtmlTableHeaderCell());
-				$cell->appendChild(new HtmlText($column->getHeaderText()));
+				$cell->appendChild($this->buildHeaderCellForColumn($column));
 				$this->headerCellCreated($cell, $column);
 			}
 		}
+
+        protected function buildHeaderCellForColumn(TableColumn $column)
+        {
+     		return new HtmlText($column->getHeaderText());
+        }
+
 		/**
 		 * Build the body
 		 * 

@@ -30,10 +30,20 @@ namespace red\web\ui\html
 			while($node = $node->getParentNode());
 			return '/'.implode('/', $path);
 		}
-		
+
+
+        private $clientId = null;
+
+        /**
+         * @return string
+         */
 		public function getClientId()
 		{
-			return str_replace('/', '_', $this->getUniqueId());
+            if ($this->clientId === null)
+            {
+                $this->clientId = str_replace('/', '_', $this->getUniqueId());
+            }
+			return $this->clientId;
 		}
 		
 		/**

@@ -1,0 +1,120 @@
+@import "theme-defaults.less";
+
+table.Table {
+	font-size: .9em;
+	margin: 16px;
+	border-spacing: 0;
+	border-collapse: collapse;
+	outline: solid 1px lightgray;
+	font-family: 'Helvetica',  sans-serif;
+}
+
+table.Table thead th.Sortable {
+  &:hover {
+    .shiny(lighten(spin(@accentColor, -5%), 20%), spin(@accentColor, -5%));
+    color: @accentText;
+  }
+  &:active {
+    .shiny(lighten(spin(@accentColor, 5%), 20%), spin(@accentColor, 5%));
+    color: @accentText;
+  }
+}
+
+table.Table thead tr th.SortIndicator {
+	color: @accentText;
+	.themeShiny();
+}
+
+table.Table thead tr th.SortIndicator.ASC:after {
+	float: right;
+	content: '△';
+}
+table.Table thead tr th.SortIndicator.DESC:after {
+	display: block;
+	float: right;
+	content: '▽';
+}
+
+table.Table caption {
+	font-family: 'Helvetica',  sans-serif;
+	vertical-align: top;
+	text-align: left;
+	text-transform: capitalize;
+	font-weight: normal;
+	line-height: 1.75em;
+
+	color: @accentText;
+	padding: 1px 2px;
+
+	.themeShiny();
+}
+
+table.Table thead, table.Table tfoot {
+	font-family: 'Helvetica',  sans-serif;
+	text-transform: capitalize;
+	font-weight: normal;
+	line-height: 1.25em;
+}
+table.Table thead {
+	cursor: default;
+}
+
+table.Table thead th {
+	vertical-align: top;
+	text-align: left;
+	font-weight: normal;
+	color: rgb(64, 64, 64);
+	padding: 1px 2px;
+}
+
+table.Table thead th:not(:last-child) {
+	border-right: inset 1px rgba(127, 127, 127, .125);
+}
+
+table.Table tbody {
+	font-weight: normal;
+}
+
+table.Table tbody tr {
+	background: rgb(255, 255, 255);
+}
+table.Table tbody tr:nth-child(odd) {
+	background: rgb(247, 250, 255);
+}
+
+table.Table tbody tr td {
+	color: rgb(96, 96, 96);
+	vertical-align: top;
+	text-align: left;
+	padding: 1px 2px;
+}
+
+table.Table>tbody>tr.selected>td {
+	background-color : rgba(0, 64, 196, .5) !important;
+	color: rgb(255, 255, 255) !important;
+}
+
+table.Table tbody td:not(:last-child) {
+	border-right: solid 1px rgb(127, 127, 127);
+}
+
+table.Table tbody tr td span.RowIndicator {
+	display: block;
+	color: rgb(150, 150, 150);
+	min-width: 2em;
+	text-align: right;
+	float: right;
+	margin-right: .25em;
+}
+
+table.Table tfoot .Pager {
+  margin: .25em;
+  button.Button {
+    line-height: 1.25em;
+    width: 1.75em;
+    text-align: center;
+    display: inline-block;
+    margin-right: .25em;
+    padding: .45em;
+  }
+}

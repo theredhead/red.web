@@ -1,0 +1,24 @@
+@accentColor: fadeout(saturate(rgb(0, 64, 192), 25%), 25%);
+@accentText:  rgb(0, 0, 0);
+
+@accentColor: rgb(255, 0, 0);
+@accentText:  rgb(255, 255, 255);
+
+@textColor: lighten(-.5 * @accentColor, 200%);
+
+.shiny(@colorFrom: rgba(127,127,127, .25), @colorTo: rgba(127,127,127, .75)) {
+  background: (@colorFrom + @colorTo) / 2;
+  background: -webkit-gradient(
+      linear,
+      left top, left bottom,
+      color-stop(0, @colorFrom),
+      color-stop(.025, lighten(@colorFrom, 40%)),
+      color-stop(.5, lighten(@colorTo, 30%)),
+      color-stop(1, @colorTo)
+  ) !important;
+}
+
+.themeShiny()
+{
+  .shiny(lighten(@accentColor, 10%), darken(@accentColor, 10%));
+}

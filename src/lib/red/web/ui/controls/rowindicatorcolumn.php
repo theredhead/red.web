@@ -25,9 +25,10 @@ namespace red\web\ui\controls
 			parent::__construct();
 			$this->setHeaderText('');
 			$this->setKey('ROWID');
+            $this->setSortable(false);
 		}
 
-		public function buildCellContent($value)
+        public function buildCellContent($value)
 		{
 			$span = new HtmlTag('span');
 			$span->addCssClass('RowIndicator');

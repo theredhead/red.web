@@ -1,0 +1,65 @@
+
+table.layout-helper {
+	width: 100%;
+	min-height: 480px;
+	border: none;
+}
+.west {
+	width: 200px;
+	max-width: 300px;
+	overflow: auto;
+	border: inset 1px;
+	padding: .5em;
+}
+
+.east {
+	border: inset 1px;
+	padding: .5em;å
+}
+
+.east ul, .east ul li {
+	list-style-type: none;
+	margin:1px;
+	padding: .25em 1em;
+}
+
+.passed-test>dl, .failed-test>dl {
+	margin: 0;
+	padding: 0;
+
+}
+.passed-test>dl>dt, .failed-test>dl>dt {
+	margin: 0;
+	padding: .5em;
+	display: block;
+	border: outset 1px lightgray;
+	background: lightgray;
+	color: black;
+	border-radius: .33em;
+}
+.passed-test>dl>dt:before {
+	color : green;
+	content: '➡';
+	margin: .5em;
+}
+.failed-test>dl>dt:before {
+	color : red;
+	content: '➡';
+	margin: .5em;
+}
+
+.passed-test>dl dt {
+	margin: 0;
+}
+.passed-test>dl dd {
+	display: none;
+}
+.failed-test>dl dt {
+}
+.failed-test>dl dd {
+	display: block;
+}
+
+.failed-assertions {
+	
+}

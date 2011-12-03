@@ -223,8 +223,17 @@ This `TabPage` contains a single `red.web.ui.controls.StaticText` control with t
 							</ctl:DropdownList>
 						</dd>
 					</dl>
-				</ctl:TabPage>
+                </ctl:TabPage>
+                <ctl:TabPage labelText="Radio buttons">
+                    <ctl:RadioGroup caption="Some radio buttons">
+                        <ctl:Radio labelText="Option 1"></ctl:Radio>
+                        <ctl:Radio labelText="Option 2"></ctl:Radio>
+                        <ctl:Radio labelText="Option 3"></ctl:Radio>
+                        <ctl:Radio labelText="Option 4"></ctl:Radio>
+                    </ctl:RadioGroup>
 
+                    <ctl:Button>Post</ctl:Button>
+                </ctl:TabPage>
 			</ctl:TabContainer>
 		</ctl:Form>
 		<br />

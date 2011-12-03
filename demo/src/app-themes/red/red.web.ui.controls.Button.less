@@ -1,0 +1,52 @@
+@import "theme-defaults.less";
+
+button.Button, a.Button {
+
+  font-weight: bold;
+  line-height: 1.75em;
+  padding: .5em 1em;
+
+  border-radius: .5em;
+  border: none;
+
+  .themeShiny();
+
+  color: @accentText;
+  text-shadow: fadeout(@textColor+@accentColor, 50%) 0 0 2px;
+
+  &:hover {
+    .shiny(lighten(spin(@accentColor, -5%), 20%), spin(@accentColor, -5%));
+    text-shadow: fadeout(@textColor+@accentColor, 50%) 0 0 2px;
+    box-shadow: inset lighten(spin(@accentColor, -5%), 95%) .25em .25em .8em, fadeout(spin(@accentColor, -5%), 25%) 0 0 .5em;
+    color: @accentText;
+  }
+  &:active {
+    .shiny(lighten(spin(@accentColor, 5%), 20%), spin(@accentColor, 5%));
+    box-shadow: inset darken(spin(@accentColor, -5%), 15%) .25em .25em .8em, fadeout(spin(@accentColor, 5%), 25%) 0 0 .25em;
+    text-shadow: fadeout(@textColor+@accentColor, 50%) 0 0 2px;
+    color: @accentText;
+  }
+}
+
+button.Button[disabled=disabled], a.Button.Disabled {
+
+  font-weight: bold;
+  line-height: 1.75em;
+  padding: .5em 1em;
+
+  border-radius: .5em;
+  border: none;
+
+  .shiny(rgb(127, 127, 127), rgb(96, 96, 96));
+
+  color: @accentText;
+
+  &:hover {
+    .shiny(rgb(127, 127, 127), rgb(96, 96, 96));
+    box-shadow: none;
+  }
+  &:active {
+    .shiny(rgb(127, 127, 127), rgb(96, 96, 96));
+    box-shadow: none;
+  }
+}

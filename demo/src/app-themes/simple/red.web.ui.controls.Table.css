@@ -1,34 +1,19 @@
-table.Table {
-	border : outset 1px;
-	border-collapse: separate;
-	border-spacing: 1px;
-}
-table.Table th, table.Table td {
-	text-align: left;
-	vertical-align: top;
-}
-
-table.Table th {
-	white-space: nowrap;
-	padding: 3px;
-	font-weight: bold;
-}
-
-table.Table td {
-	border: inset 1px;
-}
-
-
-table.Table thead tr th.SortIndicator {
-	background: rgb(222, 222, 222) !important;
-}
-
-table.Table thead tr th.SortIndicator.ASC:after {
-	float: right;
-	content: '△';
-}
-table.Table thead tr th.SortIndicator.DESC:after {
-	display: block;
-	float: right;
-	content: '▽';
-}
+table.Table{font-size:.9em;margin:16px;border-spacing:0;border-collapse:collapse;outline:solid 1px lightgray;font-family:'Helvetica',sans-serif;}
+table.Table thead th.Sortable:hover{background:#1369e0;color:#ffffff;}
+table.Table thead th.Sortable:active{background:#1347e0;color:#ffffff;}
+table.Table thead tr th.SortIndicator{color:#ffffff;background:#0040c0;}
+table.Table thead tr th.SortIndicator.ASC:after{float:right;content:'△';}
+table.Table thead tr th.SortIndicator.DESC:after{display:block;float:right;content:'▽';}
+table.Table caption{font-family:'Helvetica',sans-serif;vertical-align:top;text-align:left;text-transform:capitalize;font-weight:normal;line-height:1.75em;color:#ffffff;padding:1px 2px;background:#0040c0;}
+table.Table thead,table.Table tfoot{font-family:'Helvetica',sans-serif;text-transform:capitalize;font-weight:normal;line-height:1.25em;}
+table.Table thead{cursor:default;}
+table.Table thead th{vertical-align:top;text-align:left;font-weight:normal;color:#404040;padding:1px 2px;}
+table.Table thead th:not(:last-child){border-right:inset 1px rgba(127, 127, 127, 0.125);}
+table.Table tbody{font-weight:normal;}
+table.Table tbody tr{background:#ffffff;}
+table.Table tbody tr:nth-child(odd){background:#f7faff;}
+table.Table tbody tr td{color:#606060;vertical-align:top;text-align:left;padding:1px 2px;}
+table.Table>tbody>tr.selected>td{background-color:rgba(0, 64, 196, 0.5) !important;color:#ffffff !important;}
+table.Table tbody td:not(:last-child){border-right:solid 1px #7f7f7f;}
+table.Table tbody tr td span.RowIndicator{display:block;color:#969696;min-width:2em;text-align:right;float:right;margin-right:.25em;}
+table.Table tfoot .Pager{margin:.25em;}table.Table tfoot .Pager button.Button{line-height:1.25em;width:1.75em;text-align:center;display:inline-block;margin-right:.25em;padding:.45em;}

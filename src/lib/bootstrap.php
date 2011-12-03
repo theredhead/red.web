@@ -183,7 +183,9 @@ HTML;
 					}
 					break;
 				case 3 :
-					$value = bootstrap_exception_handler_var_dump($frame['args']);
+                    $value = (isset($frame['args']))
+                            ? bootstrap_exception_handler_var_dump($frame['args'])
+                            : '';
 					break;
 				break;
 			}

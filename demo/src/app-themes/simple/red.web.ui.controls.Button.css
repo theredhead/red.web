@@ -1,0 +1,4 @@
+button.Button,a.Button{font-weight:bold;line-height:1.75em;padding:.5em 1em;border:none;background:#0040c0;color:#ffffff;text-shadow:#ffffff 0 0 2px;}button.Button:hover,a.Button:hover{background:#1369e0;color:#ffffff;}
+button.Button:active,a.Button:active{background:#1347e0;color:#ffffff;}
+button.Button[disabled=disabled],a.Button.Disabled{font-weight:bold;line-height:1.75em;padding:.5em 1em;border:none;background:#707070;color:#ffffff;}button.Button[disabled=disabled]:hover,a.Button.Disabled:hover{background:#707070;box-shadow:none;}
+button.Button[disabled=disabled]:active,a.Button.Disabled:active{background:#707070;box-shadow:none;}

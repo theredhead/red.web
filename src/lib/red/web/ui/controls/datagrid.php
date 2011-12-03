@@ -250,7 +250,7 @@ namespace red\web\ui\controls
 		{
 			$this->state['sortDir'] = $direction == 'DESC' ? 'DESC' : 'ASC';
 		}
-		
+
 		public function getSortDescriptor()
 		{
 			$column = $this->getSortColumn();
@@ -279,6 +279,10 @@ namespace red\web\ui\controls
 				$cell->addCssClass('SortIndicator');
 				$cell->addCssClass($this->getSortDirection());
 			}
+            else if ($column->isSortable())
+            {
+                $cell->addCssClass('Sortable');
+            }
 
 			$cell->setAttribute('onclick', 
 					$this->createClientEventTrigger(

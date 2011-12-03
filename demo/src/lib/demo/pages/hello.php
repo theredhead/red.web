@@ -30,6 +30,9 @@ namespace demo\pages
 		 */
 		protected $selLanguage;
 
+		/**
+		 * This is used by WebPage to bubble the EV_PAGE_LOAD event.
+		 */
 		protected function load(\red\web\http\HttpRequest $request, \red\web\http\HttpResponse $response)
 		{
 			parent::load($request, $response);
@@ -60,6 +63,7 @@ namespace demo\pages
 		private function onBtnCrash_clicked(Button $sender, EventArgument $argument)
 		{
 			// crash this request
+
 			throw new DemonstrationException('You asked for it...');
 		}
 

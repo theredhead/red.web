@@ -5,7 +5,7 @@ namespace red\web\ui\controls
 	use \red\EventArgument;
 	use \red\web\ui\controls\IPublishEvents;
 
-	class DropdownList extends BaseControl implements IPublishEvents
+	class DropdownList extends BaseControl implements IPublishEvents, \red\web\ui\IThemable
 	{
 		const EV_SELECTEDINDEX_CHANGED = 'SelectedIndexChanged';
 
@@ -185,5 +185,22 @@ namespace red\web\ui\controls
 		{
 			return array(self::EV_SELECTEDINDEX_CHANGED);
 		}
-	}
+
+        /**
+         * get an array of resource types to try and register.
+         *
+         * array should hold filename extensions to register as values
+         *
+         * example:
+         *  return array('css', 'js');
+         *
+         *
+         *
+         * @return array
+         */
+        static public function getThemeResourceTypes()
+        {
+            return array('css');
+        }
+    }
 }

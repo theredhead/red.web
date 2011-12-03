@@ -551,9 +551,9 @@ namespace red\web\ui
 			$this->preRender();
 
 			$this->addStateFieldToForms();
-			$this->injectManagedScripts();
 			$this->injectManagedCss();
-			
+			$this->injectManagedScripts();
+
 			$writer = new \red\xml\XMLWriter();
 			$writer->setSkipXmlDeclaration(true);
 			$writer->write($this);

@@ -21,8 +21,30 @@ namespace red\web\ui\controls
 		{
 			$this->state = $state;
 		}
-		
-		// <editor-fold defaultstate="collapsed" desc="Property boolean Visible">
+
+        /**
+         * Override this if tou wish to constrain the types of children your
+         * control will accept.
+         */
+        protected function acceptsChild(\red\xml\XMLNode $child)
+        {
+            return true;
+        }
+
+        public function prependChild(\red\xml\XMLNode $node)
+        {
+            $this->acceptsChild($node) or self::fail('Cannot accept "%s" as child', $node);
+            return parent::prependChild($node);
+        }
+
+        public function appendChild(\red\xml\XMLNode $node)
+        {
+            $this->acceptsChild($node) or self::fail('Cannot accept "%s" as child', $node);
+            return parent::appendChild($node);
+        }
+
+
+        // <editor-fold defaultstate="collapsed" desc="Property boolean Visible">
 		/**
 		 * @return boolean
 		 */

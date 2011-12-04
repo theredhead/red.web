@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:red="red.web.ui.controls">
+	<head>
+		<title>Designer</title>
+        <style type="text/css">
+            html, body {
+                height: 100%; width: 100%;
+                padding: 0; margin: 0;
+                background: none;
+            }
+            table.layout {
+                height: 100%; width: 100%;
+                padding: 0; margin: 20px;
+                background: none;
+            }
+        </style>
+	</head>
+	<body>
+        <red:Form>
+            <table class="layout">
+                <tr>
+                    <td colspan="2">
+                        <red:Button>Refresh</red:Button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:50 max-width:640px;">
+                        <red:TabContainer style="height: 100%; width: 100%;" autoPostback="false">
+                            <red:TabPage caption="Template editor">
+                                <red:Textbox id="txtTemplate" multiline="true" rows="40" cols="40" style="height: 100%; width: 100%; overflow-y:scroll;"/>
+                            </red:TabPage>
+                            <red:TabPage caption="Code behind">
+                                <red:Textbox id="txtCode" multiline="true" rows="40" cols="40" style="height: 100%; width: 100%; overflow-y:scroll;"/>
+                            </red:TabPage>
+                        </red:TabContainer>
+                    </td>
+                    <td style="width:50%;">
+                        <iframe style="height: 100%; width: 100%;" id="output" src="/designer-output.php" />
+                    </td>
+                </tr>
+            </table>
+        </red:Form>
+        <script>
+            _resize = function() {
+                console.log('resizing');
+                $('table.layout').height(($(window).innerHeight() - 164)+'px');
+            }
+            $(document).ready(function(){
+                _resize();
+                $(window).resize(_resize);
+            });
+        </script>
+	</body>
+</html>

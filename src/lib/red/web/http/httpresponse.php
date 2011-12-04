@@ -133,7 +133,12 @@ namespace red\web\http
 			header('Location: '.$url, $responseCode);
 			exit;
 		}
-	}
+
+        public function clearBuffer()
+        {
+            $this->buffer = array();
+        }
+    }
 }
 
 #EOF

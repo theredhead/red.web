@@ -7,7 +7,7 @@
 		<red:Form>
 
 			<red:DirectoryBrowser id="finder" root="~/" allowUpload="true" allowDownload="true">
-				
+
 			</red:DirectoryBrowser>
 
 		</red:Form>

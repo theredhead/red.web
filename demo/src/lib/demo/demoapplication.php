@@ -64,6 +64,9 @@ namespace demo
 					$page = new pages\Finder($this);
 					break;
 
+                case '/designer' :
+                    $page = new pages\Designer($this);
+                    break;
 				default :
 					$page = new pages\Hello($this);
 					break;

@@ -34,7 +34,8 @@ namespace red\web\ui\controls
 		{
 			switch(strtolower($name))
 			{
-				case 'multipleline' :
+                case 'multiline' :
+                case 'multipleline' :
 					$this->setIsMultipleLine(in_array($value, array('1', 1, true, 'true', 'yes', 'on')));
 					break;
 

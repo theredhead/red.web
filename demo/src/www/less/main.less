@@ -1,0 +1,160 @@
+@import "../../app-themes/default/theme-defaults.less";
+
+@media screen {
+	html {
+		background: rgb(222,222,222);
+        height: 100%;
+	}
+	body {
+		min-height: 100%;
+		font-family: 'Helvetica', sans-serif;
+		width: 80%;
+		min-width: 768px;
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 2em;
+		background: rgb(250,250,250);
+		border-left: inset 1px rgb(127,127,127);
+		border-right: inset 1px rgb(127,127,127);
+		box-shadow: 0 0 16px rgb(255,255,255);
+	}
+	
+	h1, h2, h3, h4, h5, h6 {
+		text-shadow: 1px 3px 10px rgba(127, 127, 127, .5);
+		margin: .5em 10px .5em 10px;
+	}
+
+    p {
+      margin: .5em 10px .5em 10px;
+      outline: solid 1px transparent;
+    }
+
+	
+	table {
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	table, tr, td, th {
+		vertical-align : top;
+		text-align: left;
+		margin: 0;
+		padding: 0;
+	}
+	
+	span.null-representation {
+		color: gray;
+		font-style: italic;
+	}
+	
+	.selected {
+		background-color : @accentColor;
+		color: rgb(255, 255, 255) !important;
+		text-shadow: 0 0 2px rgba(127, 127, 127, 1) !important;
+		.themeShiny();
+	}
+
+	.Repeater>ul {
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0; padding: 0;
+	}
+	.Repeater>ul>li
+	{
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0; padding: 0;
+	}
+	.Repeater>ul>li:nth-child(odd) {
+		background: rgb(247, 250, 255);
+	}
+	.Repeater>ul>li:not(:last-child) {
+		line-height: 1.5em;
+		width: 100%;
+		border-bottom: solid 1px rgb(200,200,200);
+	}
+	.PersonListItem {
+		cursor: default;
+	}
+	.PersonListItem .Gravatar {
+		margin: 4px;
+	}
+	.PersonListItem .StaticText.title {
+		font-weight: bold;
+		color : rgb(64,64,64);
+	}
+	.PersonListItem .StaticText.subtitle {
+		color : rgb(127,127,127);
+	}
+
+	.selected .PersonListItem .StaticText.title {
+		font-weight: bold;
+		color : rgb(255,255,255);
+	}
+	.selected .PersonListItem .StaticText.subtitle {
+		color : rgb(220,220,220);
+		text-shadow: none;
+	}
+
+    a:not(.NoStyles) {
+      color: darken(desaturate(@accentColor, 66%), 66%);
+
+      &:link {
+        -webkit-transition-property: color;
+        -webkit-transition-duration: .25s;
+        border-bottom: dotted 1px;
+        text-decoration: none;
+      }
+      &:hover {
+        color: @accentColor;
+        border-bottom: solid 1px;
+      }
+
+      img {
+        border: none;
+      }
+    }
+
+
+	.RadioGroup label.Radio {
+	    display: block;
+	    line-height: 1.5em;
+
+	    input {
+	        margin-right: 1em;
+	    }
+	    
+	    &:hover {
+	        border-radius: .25em;
+	        box-shadow: @accentColor 0 0 .5em;
+	    }
+	}
+
+	fieldset {
+    	display: block;
+    	list-style-type:none;
+    	margin:1em;
+    	padding:1em;
+    	background-color: rgba(255,255,255,.75);
+    	border-radius: 8px;
+    	border: none;
+    	box-shadow:  inset 2px 2px 8px rgba(127,127,127,.5)
+    				,2px 2px 8px rgba(127,127,127,.25);
+    	legend {
+    	  display: inline-block;
+    	  padding: .25em .5em;
+    	  background: white;
+          border-radius: .5em;
+          background: -webkit-gradient(linear, left top, left bottom,
+              from(rgb(245, 245, 245)), to(rgb(255, 255, 255)),
+              color-stop(0.25, rgb(240, 240, 240)),
+              color-stop(0.5, rgb(246, 246, 246)),
+              color-stop(0.75, rgb(250, 250, 250)));
+
+    	}
+ 	}
+
+ 	.shiny
+ 	{
+ 	  .themeShiny();
+ 	}
+}

@@ -1,0 +1,25 @@
+[Global]
+CurrentProject=red.web.vpj
+[ProjectDates]
+red.web.vpj=20111130214737000
+[ActiveConfig]
+red.web.vpj=Debug
+[TreeExpansion2]
+-@ red.web.vpj
+  - Other Files
+  - Source Files
+scroll:0
+[State]
+SCREEN: 2560 1440 206 187 1755 1099 0 0 N 0 0 0 0 1374 822 0
+CWD: ../red.web
+BUFFER: BN="demo/src/lib/demo/pages/hello.php"
+BI: MA=1 74 1  TABS=1 5  WWS=1 IWT=1 ST=0 IN=2 BW=0 US=32000 RO=0 SE=1 SN=0 BIN=0 MN=HTML	HM=0 MF=32 TL=0 MLL=0 ASE=0 LNL=1 LCF=6 CAPS=0 E=0 ESBU2=16 CL="" SC="" SCE= SCU=
+VIEW: LN=.0 CL=1 LE=0 CX=2 CY=0 WI=5 BI=105 HT=0 HN=0 HF=0 HC=4
+WINDOW: 0 0 1065 575 0 0 M  WF=0 WT=1 ",,,"
+BUFFER: BN="demo/src/lib/demo/pages/hello.php"
+VIEW: LN=.1521 CL=1 LE=0 CX=4 CY=36 WI=173 BI=105 HT=0 HN=0 HF=0 HC=4
+FILEHIST: 2
+/Users/kris/Library/Application Support/SlickEdit/tbLayout.slk
+demo/src/lib/demo/pages/hello.php
+TBCLASS: 0 0
+DEBUG2: 0

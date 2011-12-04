@@ -796,6 +796,9 @@ namespace red\web\ui
 					case 'css' :
 						$this->registerStylesheet('/!theme-css/' . implode('/', array_unique($resourcesToRegister)));
 						break;
+                    case 'js' :
+                        $this->registerClientScript('/!theme-js/' . implode('/', array_unique($resourcesToRegister)));
+                        break;
 				}
 			}
 		}

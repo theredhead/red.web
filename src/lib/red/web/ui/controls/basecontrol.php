@@ -96,7 +96,7 @@ namespace red\web\ui\controls
 		}
 
 		/**
-		 * @return WebPage
+		 * @return \red\web\ui\WebPage
 		 */
 		public function getPage()
 		{

@@ -4,7 +4,7 @@
 		<title>Hello, World!</title>
 	</head>
 	<body>
-		<a style="margin: -2em; float: right;" href="https://github.com/theredhead/red.web">
+		<a class="NoStyles" style="margin: -2em; float: right;" href="https://github.com/theredhead/red.web">
 			<ctl:Image id="imgForkMe" imageHref="/img/forkme.png" alt="Fork me on github!"/>
 		</a>
 
@@ -16,8 +16,116 @@
 			<ctl:TabContainer autoPostback="true">
 				<ctl:TabPage labelText="Hello">
 
-					<ctl:Image style="float:right;" id="imgScreenshot" imageHref="/img/screen-640.png" />
+                    <div style="background: -webkit-gradient(linear, left top, right bottom, from(rgb(222,222,222)), to(rgb(255,255,255))); border: inset 2px">
+                        <h1>Some cool features in `red.web`</h1>
 
+                        <ctl:Carousel width="640" height="300" easing="easeOutBack">
+                            <ctl:CarouselContent>
+                                <h2>Server side events</h2>
+                                <p>
+                                    We allow you to write code on the server that executes whenever something happens in the client.
+                                </p>
+                                <p>
+                                    Your user presses a button in their browser, your code runs on the server.
+                                </p>
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Seperation of UI from logic</h2>
+                                <p>
+                                    From now on, you'll <strong>really</strong> be able to separate UI from logic.
+                                    Every page will have a ui template and a class implementation. As an added bonus,
+                                    all templates are fully localizable without disturbing the logic in the implementation.
+                                </p>
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Safe, easy data access</h2>
+                                <p>
+                                    We provide <a href="http://php.net/PDO">PDO</a> based connectors to
+                                    <a href="http://www.mysql.com">mysql</a> and <a href="http://www.sqlite.org">sqlite</a>
+                                    databases. Making it simple to use prepared statements and prevent any possible attack
+                                    vector for sql injection from ever existing in your code.
+                                </p>
+                                <p>
+                                    You can ofcourse still opt to use your favorite <a href="http://www.google.com/search?q=orm+tools">orm tools</a>
+                                </p>
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Rich collection of built-in controls</h2>
+                                <ul>
+                                    <li>Tables</li>
+                                    <li>Repeaters</li>
+                                    <li>Images</li>
+                                    <li>Textboxes</li>
+                                    <li>Buttons</li>
+                                    <li>Carousels</li>
+                                    <li>TabContainers</li>
+                                </ul>
+                                <p>
+                                    And it's all themable.
+                                </p>
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Speedy</h2>
+                                <p>
+                                    Most speed optimization is made to cut development time. Because it's cheaper to add
+                                    a server than to add a developer, a simple fact of life that is not likely to ever
+                                    change. But at runtime the framework is no slouch either. The template parser is built
+                                    on top of <a href="http://php.net/DOMDocument">DOMDocument</a> which is built on
+                                    <a href="http://xmlsoft.org/">libxml</a> and <em>it is fast.</em>
+                                </p>
+
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Support for your favorites</h2>
+                                <p>
+                                    Do you like using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>?
+                                    <a href="http://www.smarty.net/">Smarty</a>? <a href="http://phptal.org/">PHPTAL</a>?
+                                    you're in luck! red.web already supports Markdown and we'll be adding PHPTAL and
+                                    Smarty support over the next few weeks.
+                                </p>
+                            </ctl:CarouselContent>
+                        </ctl:Carousel>
+                    </div>
+
+                    <!--
+                            <ctl:CarouselContent>
+                                <h2>Databinding</h2>
+                                <p>
+                                    All our applications nowadays use data in one form or another. We've designed a simple
+                                    method to give a control, or even an entire page, its data in one go. We bind it.
+                                </p>
+                                <p>
+                                    Data sources are two way delegators, they know how to interact with your data and with
+                                    the controls you use. Allowing the full range of CRUD operations for many types of
+                                    controls and data, and easy for you to implement for your own data structures.
+                                </p>
+                                <p>
+                                    Best of all, you can implement the delegation on your own controls that you can then
+                                    embed directly into your pages markup. making many types of pages possible without a
+                                    single line of code.
+                                </p>
+                            </ctl:CarouselContent>
+
+                            <ctl:CarouselContent>
+                                <h2>Minimum amount of code required</h2>
+                                <p>
+                                    A basic webpage doesn't require any implementation code. Just a class outline will do.
+                                    If you want to be able to respond to button clicks or other changes to your pages' state
+                                    all you need to do is implement a single method.
+                                </p>
+                                <p>
+                                    As with all code, the less you need to write, the less bugs you potentially introduce.
+                                </p>
+                            </ctl:CarouselContent>
+                    -->
+
+
+                    <ctl:Image style="float:right;" id="imgScreenshot" imageHref="/img/screen-640.png" />
 
 					<h1>Hello, World!</h1>
 					<p>
@@ -93,29 +201,46 @@
 					</ctl:DataGrid>
 
 				</ctl:TabPage>
-				<ctl:TabPage labelText="Checkboxes">
-					
+				<ctl:TabPage labelText="Checks and Radios">
+
+
+
 					<h2>A table with checkboxes</h2>
 					<p>
 						Just here to prove that state is maintained for checkboxes as well.
 					</p>
-					<table>
-						<tr>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-						</tr>
-						<tr>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-						</tr>
-						<tr>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-							<td><ctl:Checkbox /></td>
-						</tr>
-					</table>
+
+                    <table>
+                        <tr>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                        </tr>
+                        <tr>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                        </tr>
+                        <tr>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                            <td><ctl:Checkbox /></td>
+                        </tr>
+                    </table>
+
+                    <ctl:RadioGroup caption="Some radio buttons">
+                        <ctl:Radio labelText="Option 1"></ctl:Radio>
+                        <ctl:Radio labelText="Option 2"></ctl:Radio>
+                        <ctl:Radio labelText="Option 3"></ctl:Radio>
+                        <ctl:Radio labelText="Option 4"></ctl:Radio>
+                    </ctl:RadioGroup>
+
+                    <ctl:RadioGroup caption="More radio buttons">
+                        <ctl:Radio labelText="Option 1"></ctl:Radio>
+                        <ctl:Radio labelText="Option 2"></ctl:Radio>
+                        <ctl:Radio labelText="Option 3"></ctl:Radio>
+                        <ctl:Radio labelText="Option 4"></ctl:Radio>
+                    </ctl:RadioGroup>
 
 				</ctl:TabPage>
 				<ctl:TabPage labelText="TextBoxes">
@@ -223,16 +348,6 @@ This `TabPage` contains a single `red.web.ui.controls.StaticText` control with t
 							</ctl:DropdownList>
 						</dd>
 					</dl>
-                </ctl:TabPage>
-                <ctl:TabPage labelText="Radio buttons">
-                    <ctl:RadioGroup caption="Some radio buttons">
-                        <ctl:Radio labelText="Option 1"></ctl:Radio>
-                        <ctl:Radio labelText="Option 2"></ctl:Radio>
-                        <ctl:Radio labelText="Option 3"></ctl:Radio>
-                        <ctl:Radio labelText="Option 4"></ctl:Radio>
-                    </ctl:RadioGroup>
-
-                    <ctl:Button>Post</ctl:Button>
                 </ctl:TabPage>
 			</ctl:TabContainer>
 		</ctl:Form>

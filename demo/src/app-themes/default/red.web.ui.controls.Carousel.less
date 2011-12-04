@@ -1,0 +1,30 @@
+@import "theme-defaults.less";
+
+.Carousel {
+    z-index: 1;
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    overflow: hidden;
+
+    .CarouselContentWrapper {
+        z-index: -1;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+
+        .CarouselContent {
+          z-index: -2;
+          position: relative;
+          display: block;
+          float: left;
+          clear: none;
+          margin: 0;
+          padding: 0;
+          outline: none;
+          overflow: hidden;
+        }
+    }
+}

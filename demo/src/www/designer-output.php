@@ -11,6 +11,10 @@ class DesignedPageBase extends \red\web\ui\WebPage
 {
     public function __construct(\red\web\http\HttpApplication $application)
     {
+        if ($_SERVER['REMOTE_ADDRE'] != '127.0.0.1')
+        {
+            throw new ErrorException('The designer cannot run off localhost for security reasons.');
+        }
         parent::__construct($application);
         $this->clear();
         $this->registerClientScript('/js/events.js');

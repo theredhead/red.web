@@ -213,6 +213,7 @@ Deze `TabPage` bevat één enkele `red.web.ui.controls.StaticText` control met d
 						<dd>
 							<ctl:DropdownList id="selTheme">
 								<ctl:DropdownItem value="default">Standaard</ctl:DropdownItem>
+								<ctl:DropdownItem value="simple">Eenvoudig</ctl:DropdownItem>
 								<ctl:DropdownItem value="red">Rood</ctl:DropdownItem>
 							</ctl:DropdownList>
 						</dd>

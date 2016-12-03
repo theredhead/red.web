@@ -32,7 +32,7 @@ set_error_handler('bootstrap_error_handler');
  * the framework, but there is still stuff that could go wrong while
  * bootstrapping. Like running an incompatible version of PHP
  */
-function bootstrap_exception_handler(\Exception $ex)
+function bootstrap_exception_handler(\Throwable $ex)
 {
 	$title = typeid($ex);
 	$type = get_class($ex);

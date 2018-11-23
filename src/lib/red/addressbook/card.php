@@ -2,7 +2,7 @@
 
 namespace red\addressbook
 {
-	use \red\Object;
+	use \red\Obj;
 	use \red\MBString;
 	use \red\DateTime;
 	use \red\data\DataSchemaRecord;
@@ -23,7 +23,7 @@ namespace red\addressbook
 	 * BirthDate
 	 * Anniversary
 	 */
-	class Card extends Object
+	class Card extends Obj
 	{
 		/**
 		 * @var array

@@ -2,9 +2,9 @@
 
 namespace red\addressbook
 {
-	use red\Object;
+	use red\Obj;
 
-	class Note extends Object
+	class Note extends Obj
 	{
 		
 	}

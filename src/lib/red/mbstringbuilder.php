@@ -2,10 +2,10 @@
 
 namespace red
 {
-	use red\Object;
+	use red\Obj;
 	use red\MBString;
 
-	class MBStringBuilder extends Object
+	class MBStringBuilder extends Obj
 	{
 		protected $parts = array();
 		

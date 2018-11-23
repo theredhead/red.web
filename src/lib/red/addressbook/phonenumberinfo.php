@@ -2,9 +2,9 @@
 
 namespace red\addressbook
 {
-	use red\Object;
+	use red\Obj;
 
-	class PhoneNumberInfo extends Object
+	class PhoneNumberInfo extends Obj
 	{
 		
 	}

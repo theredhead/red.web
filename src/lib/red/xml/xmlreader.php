@@ -11,7 +11,7 @@ namespace red\xml
 	use \DOMCData;
 	use \DOMCdataSection;
 	
-	class XMLReader extends \red\Object
+	class XMLReader extends \red\Obj
 	{
 		/**
 		 * @return XMLElement

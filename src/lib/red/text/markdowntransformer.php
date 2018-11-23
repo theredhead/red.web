@@ -1,9 +1,9 @@
 <?php
 namespace red\text
 {
-	use \red\Object;
+	use \red\Obj;
 
-	class MarkdownTransformer extends Object implements ITextTransformer
+	class MarkdownTransformer extends Obj implements ITextTransformer
 	{
 		/**
 		 * Transform the text from $input and return the result

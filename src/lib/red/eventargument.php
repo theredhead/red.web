@@ -2,7 +2,7 @@
 
 namespace red
 {
-	class EventArgument extends Object
+	class EventArgument extends Obj
 	{
 		public function __construct()
 		{

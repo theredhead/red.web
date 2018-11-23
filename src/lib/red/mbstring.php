@@ -5,7 +5,7 @@ namespace red
 	/**
 	 * String class that can handle UTF encoded strings
 	 */
-	class MBString extends Object implements \ArrayAccess
+	class MBString extends Obj implements \ArrayAccess
 	{
 		const ENCODING_UTF8  = 'UTF-8';
 		const ENCODING_UTF16 = 'UTF-16';
@@ -14,7 +14,7 @@ namespace red
 		/**
 		 * @var string The string this instance is representing, considered binary data.
 		 */
-		protected $string;
+		protected $value;
 		/**
 		 * @var string The name of the encoding used for this instance
 		 */
@@ -28,7 +28,7 @@ namespace red
 		static public function defaultValue()
 		{
 			static $empty = null;
-			assert($empty instanceof MBString or $empty = static::withString(''));
+            ($empty instanceof MBString or $empty = static::withString(''));
 			return $empty;
 		}
 
@@ -56,7 +56,7 @@ namespace red
 		{
 			assert('is_string($aString); // MBString::initWithString');
 			assert('is_string($encoding); // MBString::initWithString');
-			$this->string = $aString;
+			$this->value = $aString;
 			$this->encoding = $encoding;
 
 			return $this;
@@ -81,7 +81,7 @@ namespace red
 		{
 			if ($startIx + $length <= $this->length())
 			{
-				return static::withString(mb_substr($this->string, $startIx, $length, $this->encoding), $this->encoding);
+				return static::withString(mb_substr($this->value, $startIx, $length, $this->encoding), $this->encoding);
 			}
 			else
 			{
@@ -97,7 +97,7 @@ namespace red
 		public function getHtmlEntities($flag = ENT_COMPAT)
 		{
 //			return $this;
-			return MBString::withString(htmlentities($this->string, $flag, $this->encoding, false));
+			return MBString::withString(htmlentities($this->value, $flag, $this->encoding, false));
 		}
 
 		/**
@@ -109,8 +109,8 @@ namespace red
 		 */
 		public function indexOf($needle, $offset = 0)
 		{
-			assert($needle instanceof MBString or $needle = new static($needle, $this->encoding));
-			return mb_strpos($this->string, $needle->string, $offset, $this->encoding);
+			($needle instanceof MBString or $needle = new static($needle, $this->encoding));
+			return mb_strpos($this->value, $needle->value, $offset, $this->encoding);
 		}
 
 		/**
@@ -120,7 +120,7 @@ namespace red
 		 */
 		public function copy()
 		{
-			return static::withString($this->string, $this->encoding);
+			return static::withString($this->value, $this->encoding);
 		}
 
 		/**
@@ -131,7 +131,7 @@ namespace red
 		public function trim()
 		{
 			$copy = $this->copy();
-			$copy->string = trim($copy->string);
+			$copy->value = trim($copy->value);
 		}
 
 		/**
@@ -141,7 +141,7 @@ namespace red
 		 */
 		public function length()
 		{
-			return mb_strlen($this->string, $this->encoding);
+			return mb_strlen($this->value, $this->encoding);
 		}
 
 		/**
@@ -151,7 +151,7 @@ namespace red
 		 */
 		public function toString()
 		{
-			return $this->string;
+			return $this->value;
 		}
 
 		// <editor-fold defaultstate="collapsed" desc="Implementations for ArrayAccess and Iterator">
@@ -208,7 +208,7 @@ namespace red
 		public function format($va_arg)
 		{
 			$arguments = func_get_args();
-			array_unshift($arguments, $this->string);
+			array_unshift($arguments, $this->value);
 			assert($string = call_user_func_array('sprintf', $arguments));
 			
 			return new static($string, $this->encoding);
@@ -224,7 +224,7 @@ namespace red
 		{
 			$additional = implode(DIRECTORY_SEPARATOR, func_get_args());
 			return static::withString(
-				$this->string . DIRECTORY_SEPARATOR . $additional, $this->getEncoding());
+				$this->value . DIRECTORY_SEPARATOR . $additional, $this->getEncoding());
 		}
 		
 		/**
@@ -284,7 +284,7 @@ namespace red
 		{
 			assert($otherString instanceof MBString or $otherString = MBString::withString($otherString, $this->encoding));
 			
-			return MBString::withString($this->string.$otherString->string, $this->encoding);
+			return MBString::withString($this->value.$otherString->value, $this->encoding);
 		}
 
 		/**
@@ -297,7 +297,7 @@ namespace red
 		{
 			assert($otherString instanceof MBString or $otherString = MBString::withString($otherString, $this->encoding));
 
-			return MBString::withString($otherString->string.$this->string, $this->encoding);
+			return MBString::withString($otherString->value.$this->value, $this->encoding);
 		}
 
 		/**
@@ -307,7 +307,7 @@ namespace red
 		 */
 		public function toLower()
 		{
-			return static::withString(mb_strtolower($this->string, $this->encoding));
+			return static::withString(mb_strtolower($this->value, $this->encoding));
 		}
 
 		/**
@@ -317,7 +317,7 @@ namespace red
 		 */
 		public function toUpper()
 		{
-			return static::withString(mb_strtoupper($this->string, $this->encoding));
+			return static::withString(mb_strtoupper($this->value, $this->encoding));
 		}
 	}
 }

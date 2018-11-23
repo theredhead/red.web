@@ -2,7 +2,7 @@
 
 namespace red
 {
-	abstract class Object
+	abstract class Obj
 	{
 		private static $instanceCounter = 0;
 		private static $reflectors = array();
@@ -83,7 +83,7 @@ namespace red
 		/**
 		 * Determine if another instance is the same instance.
 		 */
-		final public function isSameInstance(Object $obj)
+		final public function isSameInstance(Obj $obj)
 		{
 			return $this->getObjectIdentity() === $obj->getObjectIdentity();
 		}
@@ -224,10 +224,10 @@ namespace red
 		 * Notify this instance that it should handle an event message
 		 *
 		 * @param EventInfo $eventInfo
-		 * @param Object $sender
+		 * @param Obj $sender
 		 * @param EventArgument $arg 
 		 */
-		final protected function receiveEventMessage(EventInfo $eventInfo, Object $sender, EventArgument $arg)
+		final protected function receiveEventMessage(EventInfo $eventInfo, Obj $sender, EventArgument $arg)
 		{
 			$reflector = new \ReflectionObject($this);
 			$method = $reflector->getMethod($eventInfo->getHandlerMethodName());

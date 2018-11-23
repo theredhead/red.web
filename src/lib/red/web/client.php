@@ -2,12 +2,12 @@
 
 namespace red\web
 {
-	use \red\Object;
+	use \red\Obj;
 	use \red\web\URL;
 	use \red\web\http\HttpRequest;
 	use \red\web\http\HttpResponse;
 
-	class Client extends Object
+	class Client extends Obj
 	{
 
 		/**

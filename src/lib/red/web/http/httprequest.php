@@ -3,12 +3,12 @@
 namespace red\web\http
 {
 	use \red\web\Url;
-	use \red\Object;
+	use \red\Obj;
 	
 	/**
 	 * Represents an http request to some endpoint along with all its data.
 	 */
-	class HttpRequest extends Object
+	class HttpRequest extends Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property string RequestUrl">
 		private $requestUrl = null;
@@ -310,8 +310,9 @@ namespace red\web\http
 		 */
 		public function isPostback()
 		{
-			return $this->isPostback = $this->getRequestMethod() == 'POST'
-					&& (string)$this->getRefererUrl() == (string)$this->getRequestUrl();
+			return $this->isPostback = $this->getRequestMethod() == 'POST' &&
+                    (string)$this->getRefererUrl()->getPathAsString() ==
+                    (string)$this->getRequestUrl()->getPathAsString();
 		}
 
 		// </editor-fold>

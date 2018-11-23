@@ -2,13 +2,13 @@
 
 namespace red\web\http
 {
-	use \red\Object;
+	use \red\Obj;
 
 	/**
 	 * HttpApplicationPlugin defines one possible skeleton for an IHttpApplicationPlugin
 	 * based plugin.
 	 */
-	abstract class HttpApplicationPlugin extends Object implements IHttpApplicationPlugin
+	abstract class HttpApplicationPlugin extends Obj implements IHttpApplicationPlugin
 	{
 		/**
 		 * @var \red\web\http\HttpApplication

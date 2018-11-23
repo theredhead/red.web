@@ -2,11 +2,11 @@
 
 namespace red\io
 {
-	use red\Object;
+	use red\Obj;
 	use SplFileInfo;
 	use ArrayIterator;
 
-	class FileAggregator extends Object implements \IteratorAggregate
+	class FileAggregator extends Obj implements \IteratorAggregate
 	{
 		/**
 		 * @var Callable null

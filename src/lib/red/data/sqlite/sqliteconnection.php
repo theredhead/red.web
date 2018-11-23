@@ -2,7 +2,7 @@
 
 namespace red\data\sqlite
 {
-	abstract class SqliteAggregateFunction extends \red\Object
+	abstract class SqliteAggregateFunction extends \red\Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property mixed Context">
 		private $context = null;

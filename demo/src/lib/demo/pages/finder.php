@@ -2,12 +2,12 @@
 
 namespace demo\pages
 {
-	use \red\Object;
+	use \red\Obj;
 	use \red\web\http\HttpRequest;
 	use \red\web\http\HttpResponse;
 	use SplFileObject;
 
-	class TheDelegate extends Object implements \red\web\ui\controls\IDirectoryBrowserDelegate
+	class TheDelegate extends Obj implements \red\web\ui\controls\IDirectoryBrowserDelegate
 	{
 		protected $rootDirectory = null;
 		public function setRootDirectory($root)

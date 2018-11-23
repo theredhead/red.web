@@ -2,9 +2,9 @@
 
 namespace red\data
 {
-	use red\Object;
+	use red\Obj;
 	
-	class SortDescriptor extends Object
+	class SortDescriptor extends Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property string ColumnName">
 		private $columnName = null;

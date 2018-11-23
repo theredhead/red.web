@@ -67,7 +67,7 @@ namespace red\web\ui\html
 		 */
 		public function hasCssClass($className)
 		{
-			assert($className instanceof MBString or $className = MBString::withString($className));
+			($className instanceof MBString or $className = MBString::withString($className));
 			return isset($this->cssClasses[$className->toString()]);
 		}
 		

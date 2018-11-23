@@ -2,7 +2,7 @@
 
 namespace red\web\ui\controls
 {
-	use \red\Object;
+	use \red\Obj;
 	use \red\MBString;
 	use \red\EventArgument;
 	use red\web\ui\html\HtmlText;

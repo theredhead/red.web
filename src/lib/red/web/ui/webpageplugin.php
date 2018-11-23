@@ -3,9 +3,9 @@
 namespace red\web\ui
 {
 	use \red\IPlugin;
-	use \red\Object;
+	use \red\Obj;
 
-	abstract class WebPagePlugin extends Object implements IWebPagePlugin
+	abstract class WebPagePlugin extends Obj implements IWebPagePlugin
 	{
 		/**
 		 * @var \red\web\ui\WebPage

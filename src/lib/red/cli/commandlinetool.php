@@ -2,9 +2,9 @@
 
 namespace red\cli
 {
-	use \red\Object;
+	use \red\Obj;
 
-	abstract class CommandLineTool extends Object
+	abstract class CommandLineTool extends Obj
 	{
 		/**
 		 * Keeps the result of parsed commandline arguments

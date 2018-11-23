@@ -2,12 +2,12 @@
 
 namespace red\web
 {
-	use \red\Object;
+	use \red\Obj;
 
 	/**
 	 * Provides low-level OOP access to the curl library as provided by php
 	 */
-	class Curl extends Object
+	class Curl extends Obj
 	{
 		const OPT_IPRESOLVE = CURLOPT_IPRESOLVE;
 		const IPRESOLVE_WHATEVER = CURL_IPRESOLVE_WHATEVER;

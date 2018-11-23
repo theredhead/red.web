@@ -4,7 +4,7 @@ namespace red\xml
 {
 	use red\MBString;
 	
-	abstract class XMLNode extends \red\Object
+	abstract class XMLNode extends \red\Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property XMLNode ParentNode">
 		private $parentNode = null;
@@ -107,10 +107,10 @@ namespace red\xml
 		 * Worker method that collects all nodes causing a callback to 
 		 * return true into an XMLNodeList 
 		 * 
-		 * @param type $callback
+		 * @param Callable $callback
 		 * @param XMLNodeList $result 
 		 */
-		final protected function internalFindAll($callback, $deep, XMLNodeList &$result)
+		final protected function internalFindAll(Callable $callback, $deep, XMLNodeList &$result)
 		{
 			if ($callback($this))
 			{

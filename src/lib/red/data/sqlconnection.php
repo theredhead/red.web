@@ -2,9 +2,9 @@
 
 namespace red\data
 {
-	use red\Object;
+	use red\Obj;
 
-	abstract class SqlConnection extends Object
+	abstract class SqlConnection extends Obj
 	{
 		/**
 		 * @var SqlConnectionString

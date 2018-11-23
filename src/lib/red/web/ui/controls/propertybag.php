@@ -2,7 +2,7 @@
 
 namespace red\web\ui\controls
 {
-	class PropertyBag extends \red\Object implements \ArrayAccess
+	class PropertyBag extends \red\Obj implements \ArrayAccess
 	{
 		/**
 		 * holds this property bags actual data

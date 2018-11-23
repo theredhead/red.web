@@ -2,14 +2,14 @@
 
 namespace red\web
 {
-	use \red\Object;
+	use \red\Obj;
 	
 	/**
 	 * Description of Session
 	 *
 	 * @author kris
 	 */
-	abstract class Session extends Object
+	abstract class Session extends Obj
 	{
 		/**
 		 * Open the session. Called by the PHP runtime upon session_start()

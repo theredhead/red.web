@@ -312,7 +312,7 @@
 				<ctl:TabPage labelText="Markdown">
 					<ctl:StaticText markdown="true">
 
-This is a page containing ![John Gruber](http://a3.twimg.com/profile_images/546338003/gruber-sxsw-final_normal.png)[Markdown](https://github.com/michelf/php-markdown/)
+This is a page containing [Markdown](https://github.com/michelf/php-markdown/)
 =======================================================================================================================================================================
 
 Markdown is a neat way for writer types (as opposed to developer types) to "markup" content.
@@ -326,6 +326,21 @@ of the parser/transformer,  by [Michel Fortin](http://michelf.com/projects/php-m
 to integrate.
 
 This `TabPage` contains a single `red.web.ui.controls.StaticText` control with the `isMarkDown` flag set to `true`.
+
+
+One thing you can easilly do with Markdown is format a piece of code:
+
+	class Demonstration
+	{
+		public void DoSomethinf()
+		{
+			MessageBox.Show("Hello, World!");
+		}
+	}
+
+
+
+
 
 					</ctl:StaticText>
 				</ctl:TabPage>

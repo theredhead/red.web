@@ -2,7 +2,7 @@
 
 namespace red\web\ui
 {
-	class CssManager extends \red\Object
+	class CssManager extends \red\Obj
 	{
 		/**
 		 * holds the css meant to be inserted in the head section as inline sheets

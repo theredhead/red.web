@@ -8,7 +8,7 @@ namespace red\xml
 	/**
 	 * XMLNodeList represents a list of XMLNode instances 
 	 */
-	class XMLNodeList extends \red\Object implements \Countable, \Iterator, \ArrayAccess
+	class XMLNodeList extends \red\Obj implements \Countable, \Iterator, \ArrayAccess
 	{
 		/**
 		 * Keeps the nodes in this list.

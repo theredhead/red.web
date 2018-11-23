@@ -2,7 +2,7 @@
 
 namespace red\web\http
 {
-	class HttpResponse extends \red\Object
+	class HttpResponse extends \red\Obj
 	{
 		private $buffer = array();
 

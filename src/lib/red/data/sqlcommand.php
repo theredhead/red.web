@@ -5,7 +5,7 @@ namespace red\data
 	/**
 	 * Represents a SQL statement
 	 */
-	abstract class SqlCommand extends \red\Object
+	abstract class SqlCommand extends \red\Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property SqlConnection Connection">
 		private $connection = null;

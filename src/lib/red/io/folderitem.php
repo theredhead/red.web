@@ -2,10 +2,10 @@
 
 namespace red\io
 {
-	use \red\Object;
+	use \red\Obj;
 	use SplFileObject;
 
-	class FolderItem extends Object
+	class FolderItem extends Obj
 	{
 		protected $path;
 

@@ -23,7 +23,7 @@ namespace red\web\ui
 		{
 			$result = null;
 			
-			if (mb_strpos($tagName, ':') > 0)
+			if (\mb_strpos($tagName, ':') > 0)
 			{
 				list($prefix, $className) = explode(':', $tagName);
 				$namespace = str_replace('.', NAMESPACE_SEPARATOR, $originalElement->lookupNamespaceUri($prefix));

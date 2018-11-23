@@ -2,7 +2,7 @@
 
 namespace red\web\http
 {
-	abstract class HttpApplication extends \red\Object
+	abstract class HttpApplication extends \red\Obj
 	{
 		/**
 		 * Event hook for Plugin infrastructure

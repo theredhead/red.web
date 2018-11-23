@@ -2,9 +2,9 @@
 
 namespace red\data
 {
-	use \red\Object;
+	use \red\Obj;
 	
-	class DataSchemaTable extends Object
+	class DataSchemaTable extends Obj
 	{
 		public function __construct()
 		{

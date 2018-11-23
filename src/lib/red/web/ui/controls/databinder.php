@@ -14,7 +14,7 @@ namespace red\web\ui\controls
 	use \red\xml\XMLElement;
 	use \red\xml\XMLLiteral;
 	
-	class DataBinder extends \red\Object
+	class DataBinder extends \red\Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property mixed DataItem">
 		private $dataItem = null;

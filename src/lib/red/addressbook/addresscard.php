@@ -2,7 +2,7 @@
 
 namespace red\addresbook
 {
-	class AddressCard extends \red\Object
+	class AddressCard extends \red\Obj
 	{
 		/**
 		 * @var AddressBook

@@ -2,7 +2,7 @@
 
 namespace red\web
 {
-	use red\Object;
+	use red\Obj;
 	use red\MBString;
 	
 	/**
@@ -16,7 +16,7 @@ namespace red\web
 	 * 
 	 * @author kris
 	 */
-	class URL extends Object implements \ArrayAccess
+	class URL extends Obj implements \ArrayAccess
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property string Protocol">
 		private $protocol = 'http';

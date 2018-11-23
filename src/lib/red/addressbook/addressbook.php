@@ -2,13 +2,13 @@
 
 namespace red\addressbook
 {
-	use \red\Object;
+	use \red\Obj;
 	use \red\data\DataStore;
 	
 	/**
 	 * Represents a single addressbook and the standardized addressbook API
 	 */
-	class AddressBook extends Object
+	class AddressBook extends Obj
 	{
 		/**
 		 * @var DataStore

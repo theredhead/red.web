@@ -2,7 +2,7 @@
 
 namespace red\data
 {
-	use red\Object;
+	use red\Obj;
 
 	class SqlConnectionStringException extends \Exception
 	{
@@ -12,7 +12,7 @@ namespace red\data
 		}
 	}
 
-	class SqlConnectionString extends Object
+	class SqlConnectionString extends Obj
 	{
 		const CONNECTOR_MYSQL = '\\red\\data\\mysql\\MySqlConnection';
 		const CONNECTOR_SQLITE = '\\red\\data\\sqlite\\SqLiteConnection';

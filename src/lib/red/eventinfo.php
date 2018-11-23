@@ -11,7 +11,7 @@ namespace red
 	 * 
 	 * By encapsulation and carefully delegated message passing, event handlers can be private.
 	 */
-	class EventInfo extends Object
+	class EventInfo extends Obj
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property string EventName">
 		private $eventName = null;
@@ -55,7 +55,7 @@ namespace red
 		private $handlerInstance = null;
 
 		/**
-		 * @return Object
+		 * @return Obj
 		 */
 		public function getHandlerInstance()
 		{
@@ -63,9 +63,9 @@ namespace red
 		}
 
 		/**
-		 * @param Object $newHandlerInstance
+		 * @param Obj $newHandlerInstance
 		 */
-		public function setHandlerInstance(Object $newHandlerInstance)
+		public function setHandlerInstance(Obj $newHandlerInstance)
 		{
 			$this->handlerInstance = $newHandlerInstance;
 		}
@@ -74,7 +74,7 @@ namespace red
 		private $registeringInstance = null;
 
 		/**
-		 * @return Object
+		 * @return Obj
 		 */
 		public function getRegisteringInstance()
 		{
@@ -82,9 +82,9 @@ namespace red
 		}
 
 		/**
-		 * @param Object $newRegisteringInstance
+		 * @param Obj $newRegisteringInstance
 		 */
-		public function setRegisteringInstance(Object $newRegisteringInstance)
+		public function setRegisteringInstance(Obj $newRegisteringInstance)
 		{
 			$this->registeringInstance = $newRegisteringInstance;
 		}
@@ -92,12 +92,12 @@ namespace red
 		// </editor-fold>
 
 		/**
-		 * @param Object $registeringInstance The instance that registered the handler
-		 * @param Object $handlingInstance The instance that will act on an $eventName
+		 * @param Obj $registeringInstance The instance that registered the handler
+		 * @param Obj $handlingInstance The instance that will act on an $eventName
 		 * @param string $eventName The name of the event to act on
 		 * @param string $methodName The name of the method that will be used to act on $eventName
 		 */
-		public function __construct(Object $registeringInstance, Object $handlingInstance, $eventName, $methodName)
+		public function __construct(Obj $registeringInstance, Obj $handlingInstance, $eventName, $methodName)
 		{
 			parent::__construct();
 			$this->setRegisteringInstance($registeringInstance);
@@ -109,10 +109,10 @@ namespace red
 		/**
 		 * Pass the message on to the receiving instance (HandlerInstance)
 		 *
-		 * @param Object $sender
+		 * @param Obj $sender
 		 * @param EventArgument $argument 
 		 */
-		final public function __invoke(Object $sender, EventArgument $argument)
+		final public function __invoke(Obj $sender, EventArgument $argument)
 		{
 			$this->getHandlerInstance()->receiveEventMessage(
 					$this, $sender, $argument);
@@ -134,8 +134,8 @@ namespace red
 				$argument = array_shift($parameters);
 				if ($sender instanceof \ReflectionParameter && $argument instanceof \ReflectionParameter)
 				{
-					if (	(	$sender->getClass()->isSubclassOf('red\\Object')
-							||  $sender->getClass()->getName() == 'red\\Object')
+					if (	(	$sender->getClass()->isSubclassOf('red\\Obj')
+							||  $sender->getClass()->getName() == 'red\\Obj')
 						&&	(	$argument->getClass()->isSubclassOf('red\\EventArgument')
 							||	$argument->getClass()->getName() == 'red\\EventArgument'))
 					{

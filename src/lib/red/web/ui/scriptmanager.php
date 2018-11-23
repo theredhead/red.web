@@ -2,7 +2,7 @@
 
 namespace red\web\ui
 {
-	class ScriptManager extends \red\Object
+	class ScriptManager extends \red\Obj
 	{
 		/**
 		 * minified jQuery from googleapis.com

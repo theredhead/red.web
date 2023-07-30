@@ -123,8 +123,8 @@ namespace tests
 		 */
 		public function testMultipleTestFailures()
 		{
-			assert('false');
-			assert('0 > 1');
+			assert(false);
+			assert(0 > 1);
 		}
 	}
 }

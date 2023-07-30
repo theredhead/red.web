@@ -14,7 +14,7 @@ namespace red\web\http
 		private $requestUrl = null;
 
 		/**
-		 * @return \red\web\URL
+		 * @return \red\web\Url
 		 */
 		public function getRequestUrl()
 		{
@@ -28,6 +28,8 @@ namespace red\web\http
 		{
 			$newRequestUrl instanceof Url or 
 				Url::isUrl($newRequestUrl) and $newRequestUrl = new Url($newRequestUrl);
+			
+			error_log(sprintf("[%s] setRequestUrl %s", get_class($this), var_export($newRequestUrl, true)), 1);
 
 			$this->requestUrl = $newRequestUrl;
 		}
@@ -334,7 +336,7 @@ namespace red\web\http
 			{
 				$fullRequestUrl = self::protocolNameFromFormalProtocolHeader($info['SERVER_PROTOCOL']) .'://'. $info['HTTP_HOST'] . $info['REQUEST_URI'];
 				
-				$instance->setRequestUrl($fullRequestUrl);
+				$instance->setRequestUrl(new Url($fullRequestUrl));
 				$instance->setRequestMethod($info['REQUEST_METHOD']);
 				$instance->setRedirectUrL($extract('REDIRECT_URL'));
 				$instance->setRefererUrl($extract('HTTP_REFERER'));

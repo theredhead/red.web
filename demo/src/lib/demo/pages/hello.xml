@@ -83,10 +83,8 @@
                             <ctl:CarouselContent>
                                 <h2>Support for your favorites</h2>
                                 <p>
-                                    Do you like using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>?
-                                    <a href="http://www.smarty.net/">Smarty</a>? <a href="http://phptal.org/">PHPTAL</a>?
-                                    you're in luck! red.web already supports Markdown and we'll be adding PHPTAL and
-                                    Smarty support over the next few weeks.
+                                    Do you like using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>
+                                    you're in luck! red.web supports it out of the box and it's easy to add other transformations!
                                 </p>
                             </ctl:CarouselContent>
                         </ctl:Carousel>
@@ -332,7 +330,7 @@ One thing you can easilly do with Markdown is format a piece of code:
 
 	class Demonstration
 	{
-		public void DoSomethinf()
+		public void DoSomething()
 		{
 			MessageBox.Show("Hello, World!");
 		}

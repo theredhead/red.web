@@ -16,7 +16,7 @@ namespace red\web
 	 * 
 	 * @author kris
 	 */
-	class URL extends Obj implements \ArrayAccess
+	class Url extends Obj implements \ArrayAccess
 	{
 		// <editor-fold defaultstate="collapsed" desc="Property string Protocol">
 		private $protocol = 'http';
@@ -292,16 +292,9 @@ namespace red\web
 			{
 				return true;
 			}
-			if (strpos($test, ' ') > -1)
-			{
-				return false;
-			}
 			if (strpos($test, '.') > 1)
 			{
-				$info = parse_url($test);
-				return
-						is_array($info)
-					&&	isset($info['host']);
+				return parse_url($test) !== false;
 			}
 			return false;
 		}

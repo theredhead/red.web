@@ -54,8 +54,8 @@ namespace red
 		 */
 		public function initWithString($aString, $encoding = self::ENCODING_UTF8)
 		{
-			assert('is_string($aString); // MBString::initWithString');
-			assert('is_string($encoding); // MBString::initWithString');
+			assert(is_string($aString));
+			assert(is_string($encoding));
 			$this->value = $aString;
 			$this->encoding = $encoding;
 

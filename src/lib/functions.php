@@ -114,10 +114,10 @@ function ordinalize($number, $suffixes=array('th', 'st', 'nd', 'rd', 'th', 'th',
  */
 function cardinalize($aNumber, $ifZero, $ifOne, $ifGreaterThanOne)
 {
-	assert('is_integer($aNumber) && $aNumber > -1;');
-	assert('is_string($ifZero);');
-	assert('is_string($ifOne);');
-	assert('is_string($ifGreaterThanOne);');
+	assert(is_integer($aNumber) && $aNumber > -1);
+	assert(is_string($ifZero));
+	assert(is_string($ifOne));
+	assert(is_string($ifGreaterThanOne));
 
 	$result = null;
 

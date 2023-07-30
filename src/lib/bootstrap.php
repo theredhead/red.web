@@ -8,14 +8,19 @@ define('REDWEB_BOOTSTRAP_FILE', __FILE__);
 defined('DEBUG') or define('DEBUG', getenv('DEBUG')==1);
 
 /**
- * Rep[ort all errors, in strict mode. 
+ * Report all errors, in strict mode. 
  */
 error_reporting(E_ALL | E_STRICT);
 
 /**
  * display errors while debugging.
  */
-ini_set('display_errors', true);
+ini_set('display_errors', defined('DEBUG'));
+
+require_once 'validateruntime.php';
+require_once 'functions.php';
+require_once 'autoloader.php';
+require_once 'errorhandling.php';
 
 /**
  * Make errors, notices, warnings etc. into exceptions.
@@ -296,10 +301,5 @@ if (php_sapi_name() != 'cli')
 
 
 date_default_timezone_set('Europe/Amsterdam');
-
-require_once 'validateruntime.php';
-require_once 'functions.php';
-require_once 'autoloader.php';
-require_once 'errorhandling.php';
 
 #EOF

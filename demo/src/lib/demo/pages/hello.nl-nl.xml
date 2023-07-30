@@ -191,8 +191,8 @@
 				<ctl:TabPage labelText="Markdown">
 					<ctl:StaticText markdown="true">
 
-Dit is een pagina opgemaakt met ![John Gruber](http://a3.twimg.com/profile_images/546338003/gruber-sxsw-final_normal.png)[Markdown](https://github.com/michelf/php-markdown/)
-=============================================================================================================================================================================
+Dit is een pagina opgemaakt met [Markdown](https://github.com/michelf/php-markdown/)
+====================================================================================
 
 Markdown is een doeltreffende manier voor schrijvenrs (niet perse ontwikkelaars) om textuele inhoud op te maken.
 Oorspronkelijk is markdown geschreven in (ik geloof) perl, door John Gruber die we allemaal kennen van [daringfireball](http://daringfireball.net).

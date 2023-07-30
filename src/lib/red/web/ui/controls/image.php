@@ -151,29 +151,33 @@ namespace red\web\ui\controls
 			{
 				$this->setAttribute('alt', basename($this->getImageHref()));
 			}
-			if ($this->getWidth() == null || $this->getHeight() == null)
-			{
-				$realPath = $this->getPage()->getApplication()->mapPath($this->getImageHref());
+			// if ($this->getWidth() == null || $this->getHeight() == null)
+			// {
+			// 	$realPath = $this->getPage()->getApplication()->mapPath($this->getImageHref());
 
-				if (file_exists($realPath) && is_readable($realPath))
-				{
-					$img = imagecreatefromstring(file_get_contents($realPath));
-					$this->setHeight(imagesy($img));
-					$this->setWidth(imagesx($img));
-				}
-				else
-				{
-					static::fail('Image file %s does not exist or is not readable.', $this->getImageHref());
-				}
-			}
+			// 	if (file_exists($realPath) && is_readable($realPath))
+			// 	{
+			// 		$level = error_reporting(E_NONE);
+			// 		// known to warn: imagecreatefromstring(): gd-png: libpng warning: iCCP: known incorrect sRGB profile
+			// 		$img = @imagecreatefromstring(file_get_contents($realPath));
+			// 		error_reporting($level);
+
+			// 		$this->setHeight(imagesy($img));
+			// 		$this->setWidth(imagesx($img));
+			// 	}
+			// 	else
+			// 	{
+			// 		static::fail('Image file %s does not exist or is not readable.', $this->getImageHref());
+			// 	}
+			// }
 			if ($this->hasEventListeners(self::EV_CLICKED))
 			{
 				$this->setAttribute('onclick', $this->createClientEventTrigger(self::EV_CLICKED, null));
 			}
 
 			parent::setAttribute('src', $this->getImageHref());
-			parent::setAttribute('height', (string)$this->getHeight());
-			parent::setAttribute('width', (string)$this->getWidth());
+			$this->getHeight() && parent::setAttribute('height', (string)$this->getHeight());
+			$this->getWidth() && parent::setAttribute('width', (string)$this->getWidth());
 
 			parent::preRender();
 		}
